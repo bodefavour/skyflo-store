@@ -11,25 +11,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center">
-      {/* Image Container (Prevents Overflow, Shows Only 70% of Image) */}
-      <div className="w-full h-[100vh] md:h-[100vh] overflow-hidden flex justify-center items-center">
-        <img
-          src={backgroundImage}
-          alt="Hero Background"
-          className="w-full max-w-[1600px] h-full object-cover"
-          style={{ objectPosition: "contain" }} // Shows the upper 70% of the image
-        />
+      {/* Responsive Image Wrapper */}
+      <div className="relative w-full h-screen flex justify-center items-start">
+        {/* PC/Laptop Specific Container */}
+        <div className="w-full h-[100vh] md:h-[100vh] md:max-w-[1600px] mx-auto overflow-hidden">
+          <div
+            className="w-full h-full bg-cover bg-top md:object-contain"
+            style={{
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        </div>
       </div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-5"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
 
       {/* Hero Text */}
       <h1
-        className="absolute font-light uppercase leading-[1.2] font-phudu text-white"
+        className="absolute font-extralight uppercase leading-[1.2] font-phudu text-white"
         style={{
-          top: "5%", // Adjusted for upper 1/3
-          left: "55%",
+          top: "20%", // Upper 1/3 of screen
+          left: "50%",
           transform: "translateX(-50%)",
           whiteSpace: "nowrap",
         }}
