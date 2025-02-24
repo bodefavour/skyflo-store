@@ -34,8 +34,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <h1
         className="absolute font-extralight uppercase leading-[1.2] font-phudu text-white"
         style={{
-          top: "20%", // Upper 1/3 of screen
-          left: "50%",
+          top: "5%", // Upper 1/3 of screen
+          left: "55%",
           transform: "translateX(-50%)",
           whiteSpace: "nowrap",
         }}
