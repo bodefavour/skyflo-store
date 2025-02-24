@@ -10,29 +10,33 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   brandName = "SKYFLO",
 }) => {
   return (
-    <section
-      className="absolute inset-0 w-full h-full bg-cover bg-top"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top",
-      }}
-    >
-      {/* Dark overlay to make text stand out */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+    <section className="relative w-full min-h-screen flex flex-col items-center">
+      {/* Image Container (Prevents Overflow, Shows Only 70% of Image) */}
+      <div className="w-full h-[100vh] md:h-[100vh] overflow-hidden flex justify-center items-center">
+        <img
+          src={backgroundImage}
+          alt="Hero Background"
+          className="w-full max-w-[1600px] h-full object-cover"
+          style={{ objectPosition: "contain" }} // Shows the upper 70% of the image
+        />
+      </div>
 
-      {/* Main hero text */}
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-5"></div>
+
+      {/* Hero Text */}
       <h1
-        className="relative z-10 text-[10rem] md:text-[14rem] font-extralight uppercase tracking-[0.4em] leading-[1.2] font-phudu text-center"
+        className="absolute font-light uppercase leading-[1.2] font-phudu text-white"
         style={{
-          position: "absolute",
-          top: "15%", // Adjusted to be in upper 1/3rd
-          left: "50%",
+          top: "5%", // Adjusted for upper 1/3
+          left: "55%",
           transform: "translateX(-50%)",
           whiteSpace: "nowrap",
         }}
       >
-        {brandName}
+        <span className="text-[6rem] tracking-[0.2em] md:text-[14rem] md:tracking-[0.4em]">
+          {brandName}
+        </span>
       </h1>
     </section>
   );

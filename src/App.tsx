@@ -5,9 +5,17 @@ import ProductGrid from "../src/components/ProductGrid";
 
 function App() {
   const sampleProducts = [
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/red-gown.jpg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/crown.jpg" },
-    // ... add more
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// ... add more
   ];
 
   return (
