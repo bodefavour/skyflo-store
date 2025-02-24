@@ -5,7 +5,10 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}", // for Next.js
     "./components/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        phudu: ["Phudu", "sans-serif"],
+      },},
   },
   plugins: [],
 }
