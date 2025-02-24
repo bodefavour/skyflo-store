@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Main hero text */}
       <h1
-        className="relative z-10 text-[6rem] md:text-[10rem] font-bold uppercase tracking-[0.2em] leading-tight font-phudu"
+        className="relative z-10 text-[10rem] md:text-[14rem] font-extralight uppercase tracking-[0.4em] leading-[1.2] font-phudu text-center"
         style={{
           position: "absolute",
           top: "15%", // Adjusted to be in upper 1/3rd
