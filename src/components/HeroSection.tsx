@@ -11,10 +11,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
+      className="absolute inset-0 w-full h-full bg-cover bg-top"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top",
       }}
     >
       {/* Dark overlay to make text stand out */}
