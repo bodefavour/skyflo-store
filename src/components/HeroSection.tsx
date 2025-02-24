@@ -22,14 +22,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Main hero text */}
       <h1
-        className="relative z-10 text-6xl md:text-9xl font-bold tracking-wide uppercase"
+        className="relative z-10 text-[6rem] md:text-[10rem] font-bold uppercase tracking-[0.2em] leading-tight font-phudu"
         style={{
-          fontFamily: "'Phudu', sans-serif", // Apply Phudu font
           position: "absolute",
-          top: "10%", // Moves text to the upper 1/3rd
+          top: "15%", // Adjusted to be in upper 1/3rd
           left: "50%",
           transform: "translateX(-50%)",
-          whiteSpace: "nowrap", // Prevents text from wrapping
+          whiteSpace: "nowrap",
         }}
       >
         {brandName}
