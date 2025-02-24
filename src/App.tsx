@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main>
       <NavBar />
-      <HeroSection backgroundImage="src/public/images/hero-bg.jpg" brandName="SKYFLO" />
+      <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="SKYFLO" />
       <ProductGrid products={sampleProducts} />
     </main>
   );

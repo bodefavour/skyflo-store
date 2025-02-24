@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import NavBar from "../src/components/NavBar";
+import HeroSection from "../src/components/HeroSection";
+import ProductGrid from "../src/components/ProductGrid";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
