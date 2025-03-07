@@ -30,7 +30,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-30 text-white py-4 px-6 z-70 flex justify-end">
+    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-50 text-white py-4 px-6 z-50 flex justify-end">
       {/* Right Section: All Icons */}
       <div className="flex items-center space-x-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
