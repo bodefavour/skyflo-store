@@ -4,31 +4,24 @@ import { MenuIcon, XIcon, SearchIcon, ShoppingBagIcon } from "@heroicons/react/o
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const menuItems = [
-    "Gift Section",
-    "Jewellries and Beaded Bracelets",
-    "Fashion Section",
-    "Travel Section",
-    "Tote Bag Section",
-    "Lip Gloss",
-    "Decor",
-    "Events",
-    "Holiday Specials",
-  ];
+  const toggleMenu = () => {
+    console.log("Toggling menu:", !menuOpen);
+    setMenuOpen(!menuOpen);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-90 text-white py-4 px-6 flex justify-between items-center z-50">
-      {/* Left Hero Icons */}
+    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-90 text-white flex justify-between items-center px-6 py-4 z-50">
+      {/* Left Section - Other Icons */}
       <div className="flex items-center gap-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
         <ShoppingBagIcon className="w-6 h-6 cursor-pointer text-white" />
       </div>
 
-      {/* Brand Logo */}
-      <h1 className="text-3xl font-phudu tracking-wider uppercase">Skyflo</h1>
+      {/* Center - Brand Logo */}
+      <h1 className="text-3xl font-phudu tracking-wider uppercase">SKYFLO</h1>
 
-      {/* Menu Icon Button */}
-      <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none">
+      {/* Right Section - Menu Icon */}
+      <button onClick={toggleMenu} className="focus:outline-none">
         {menuOpen ? (
           <XIcon className="w-6 h-6 text-white" />
         ) : (
@@ -36,19 +29,15 @@ const NavBar: React.FC = () => {
         )}
       </button>
 
-      {/* Full-screen Menu Popup */}
+      {/* Menu Popup */}
       {menuOpen && (
-        <div className="absolute inset-0 z-40 bg-black bg-opacity-90 flex flex-col justify-center items-center space-y-6">
-          {menuItems.map((item, index) => (
-            <a
-              key={index}
-              href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-              className="text-4xl font-phudu uppercase tracking-widest transition-transform duration-300 hover:scale-105"
-              onClick={() => setMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
+        <div className="absolute top-16 right-4 w-48 bg-black bg-opacity-90 shadow-lg rounded-lg p-4">
+          <ul className="space-y-3 text-lg font-phudu">
+            <li className="cursor-pointer" onClick={() => setMenuOpen(false)}>For Men</li>
+            <li className="cursor-pointer" onClick={() => setMenuOpen(false)}>For Women</li>
+            <li className="cursor-pointer" onClick={() => setMenuOpen(false)}>For Kids</li>
+            <li className="cursor-pointer" onClick={() => setMenuOpen(false)}>Gifts</li>
+          </ul>
         </div>
       )}
     </nav>
