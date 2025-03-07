@@ -17,7 +17,7 @@ const NavBar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-90 text-white py-4 px-6 flex justify-between items-center z-50">
+    <nav className="fixed top-0 left-0 w-full bg-white bg-opacity-90 text-white py-4 px-6 flex justify-between items-center z-50">
       {/* Left Icons */}
       <div className="flex items-center gap-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
 
       {/* Full-screen Menu Popup Overlay */}
       {menuOpen && (
-        <div className="absolute inset-0 z-40 bg-white flex flex-col justify-center items-center space-y-6">
+        <div className="absolute inset-0 z-40 bg-white bg-opacity flex flex-col justify-center items-center space-y-6">
           {/* Close Button */}
           <button
             onClick={() => setMenuOpen(false)}
