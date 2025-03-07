@@ -30,7 +30,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-10 text-white py-4 px-6 z-100 flex justify-end">
+    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-10 text-white py-4 px-6 z-70 flex justify-end">
       {/* Right Section: All Icons */}
       <div className="flex items-center space-x-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
@@ -42,7 +42,7 @@ const NavBar: React.FC = () => {
 
       {/* Popup Panel – appears in the upper-right corner */}
       {menuOpen && (
-        <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 z-100">
+        <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 z-50">
           {/* Close Button */}
           <button
             onClick={() => setMenuOpen(false)}
