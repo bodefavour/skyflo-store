@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import NavBar from "../src/components/NavBar";
+import NavBar from "./components/NavBar";
 import HeroSection from "../src/components/HeroSection";
 import ProductGrid from "../src/components/ProductGrid";
 
