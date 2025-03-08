@@ -6,6 +6,7 @@ interface HeroSectionProps {
   textSize?: string; 
   textSpacing?: string;
   customStyle?: React.CSSProperties;
+className?: string; // Accept custom styles
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
