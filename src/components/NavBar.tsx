@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
     "Travel Section",
     "Tote Bag Section",
     "Lip Gloss",
-    "Decor",
+    "Décor",
     "Events",
     "Holiday Specials",
   ];
@@ -20,26 +20,25 @@ const NavBar: React.FC = () => {
   // Dummy submenu items for each menu item.
   const subMenus: { [key: string]: { name: string; image: string }[] } = {
     "Gift Section": [
-      { name: "Birthday Gifts", image: "/images/31343C.svg" },
-      { name: "Anniversary Gifts", image: "/images/31343C.svg" },
-      { name: "Seasonal Gifts", image: "/images/31343C.svg" },
+      { name: "Birthday Gifts", image: "/images/birthday.jpg" },
+      { name: "Anniversary Gifts", image: "/images/anniversary.jpg" },
+      { name: "Seasonal Gifts", image: "/images/seasonal.jpg" },
     ],
     "Jewellries and Beaded Bracelets": [
-      { name: "Necklaces", image: "/images/31343C.svg" },
-      { name: "Rings", image: "/images/31343C.svg" },
-      { name: "Bracelets", image: "/images/31343C.svg" },
+      { name: "Necklaces", image: "/images/necklace.jpg" },
+      { name: "Rings", image: "/images/rings.jpg" },
+      { name: "Bracelets", image: "/images/bracelets.jpg" },
     ],
     "Fashion Section": [
-      { name: "Clothing", image: "/images/31343C.svg" },
-      { name: "Footwear", image: "/images/31343C.svg" },
-      { name: "Accessories", image: "/images/31343C.svg" },
+      { name: "Clothing", image: "/images/clothing.jpg" },
+      { name: "Footwear", image: "/images/footwear.jpg" },
+      { name: "Accessories", image: "/images/accessories.jpg" },
     ],
-    // Add images for the other categories...
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-20 text-white py-4 px-6 z-50 flex justify-end">
-      {/* Right Section: All Icons */}
+    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-0 text-white py-4 px-6 z-50 flex justify-end">
+      {/* Right Section: Icons */}
       <div className="flex items-center space-x-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
         <ShoppingBagIcon className="w-6 h-6 cursor-pointer text-white" />
@@ -48,10 +47,11 @@ const NavBar: React.FC = () => {
         </button>
       </div>
 
-      {/* Popup Panel - Bigger size, centered */}
+      {/* Overlay with Blur Effect */}
       {menuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex items-center justify-center z-50">
-          <div className="relative bg-white w-[80%] max-w-[700px] h-[80vh] rounded-lg shadow-lg p-6 flex flex-col transition-transform">
+        <div className={'fixed inset-0 bg-black bg-opacity-40 backdrop-blur-lg z-50 flex justify-end transition-opacity duration-500 ${menuOPen ? "opacity-100" : "opacity-0 pointer-events-none"}'}>
+          {/* Popup Panel – 30% of the screen width */}
+          <div className={'relative bg-white w-[43%] h-full shadow-lg p-6 flex flex-col transform transition-all duration-1200 ease-in-out ${menuOpen ? "translate-x-0 opacity-100 scale-100" : "translate-x-full opacity-0 scale-95"}'}>
             
             {/* Close Button */}
             <button
@@ -83,7 +83,7 @@ const NavBar: React.FC = () => {
               </div>
             ) : (
               // Submenu View with Transition Effect
-              <div className="flex flex-col space-y-4 transition-transform animate-slideIn">
+              <div className={'flex flex-col space-y-4 transform transition-all duration-500 ease-out ${activeSection ? "translate-x-0 opacity-100 scale-100" : "translate-x-10 opacity-0 scale-95"}'}>
                 {/* Back Button */}
                 <button onClick={() => setActiveSection(null)} className="flex items-center text-black hover:text-gray-500 transition">
                   <ArrowLeftIcon className="w-5 h-5 mr-2" />
@@ -93,15 +93,15 @@ const NavBar: React.FC = () => {
                 <h2 className="text-2xl font-phudu text-black">{activeSection}</h2>
 
                 {/* Submenu List with Images */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   {subMenus[activeSection]?.map((subItem, idx) => (
-                    <div key={idx} className="flex flex-col items-center text-center">
+                    <div key={idx} className="flex items-center space-x-4">
                       <img
                         src={subItem.image}
                         alt={subItem.name}
-                        className="w-24 h-24 object-cover rounded-lg shadow-md"
+                        className="w-20 h-20 object-cover rounded-lg shadow-md"
                       />
-                      <p className="text-sm font-phudu text-black mt-2">{subItem.name}</p>
+                      <p className="text-lg font-phudu text-black">{subItem.name}</p>
                     </div>
                   ))}
                 </div>
