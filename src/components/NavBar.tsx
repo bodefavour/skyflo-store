@@ -21,19 +21,19 @@ const NavBar: React.FC = () => {
   // Dummy submenu items for each menu item.
   const subMenus: { [key: string]: { name: string; image: string; path: string }[] } = {
     "Gift Section": [
-      { name: "Birthday Gifts", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Anniversary Gifts", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Seasonal Gifts", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
+      { name: "Birthday Gifts", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Anniversary Gifts", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Seasonal Gifts", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
     ],
     "Jewellries and Beaded Bracelets": [
-      { name: "Necklaces", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Rings", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Bracelets", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
+      { name: "Necklaces", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Rings", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Bracelets", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
     ],
     "Fashion Section": [
-      { name: "Clothing", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Footwear", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
-      { name: "Accessories", image: "/images/31343C.svg", path: "./pages/BirthdayGiftPage"},
+      { name: "Clothing", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Footwear", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
+      { name: "Accessories", image: "/images/31343C.svg", path: "./pages/birthday-gifts"},
     ],
   };
 

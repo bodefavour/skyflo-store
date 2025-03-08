@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import ProductGrid from "./components/ProductGrid";
-import BirthdayGiftPage from "./pages/BirthdayGiftPage"; // Import the new page
+import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 
 function App() {
   const sampleProducts = [
@@ -11,15 +11,15 @@ function App() {
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// Add more products
   ];
 
@@ -33,7 +33,7 @@ function App() {
             <ProductGrid products={sampleProducts} />
           </>
         } />
-        <Route path="/birthday-gifts" element={<BirthdayGiftPage />} />
+        <Route path="/birthday-gifts" element={<BirthdayGifts />} />
       </Routes>
     </Router>
   );
