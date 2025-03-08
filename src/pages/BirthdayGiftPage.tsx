@@ -11,12 +11,12 @@ const BirthdayGifts: React.FC = () => {
   ];
 
 return (
-    <main>
-      <NavBar />
-      <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="Birthday" className="h-[40vh] text-sm md:text-lg lg:text-xl" />
-      <ProductGrid products={sampleProducts} />
-    </main>
-  );
+  <main>
+    <NavBar />
+    <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="Birthday" />
+    <ProductGrid products={sampleProducts} />
+  </main>
+);
 };
 
 export default BirthdayGifts;
