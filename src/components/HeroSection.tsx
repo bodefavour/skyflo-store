@@ -2,12 +2,12 @@ import React from "react";
 
 interface HeroSectionProps {
   backgroundImage: string;
-  brandName?: string;
+  brandName?: string; textSize?: string;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
-  brandName = "SKYFLO",
+  brandName = "SKYFLO", textSize = "text-6xl"
 }) => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center">
