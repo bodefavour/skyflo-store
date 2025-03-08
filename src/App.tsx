@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="SKYFLO" />
+            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" />
             <ProductGrid products={sampleProducts} />
           </>
         } />

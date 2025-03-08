@@ -42,7 +42,7 @@ customStyle,
         className="absolute font-extralight uppercase leading-[1.2] font-phudu text-white"
         style={{
           top: "5%", // Upper 1/3 of screen
-          left: "55%",
+          left: "52%",
           transform: "translateX(-50%)",
           whiteSpace: "nowrap",
         }}
