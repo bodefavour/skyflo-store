@@ -9,7 +9,18 @@ function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
     { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    // Add more products
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
+{ id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// Add more products
   ];
 
   return (
