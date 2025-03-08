@@ -28,7 +28,8 @@ const NavBar: React.FC = () => {
     "Jewellries and Beaded Bracelets": [
       { name: "Tarnish Silver", image: "/images/31343C.svg", path: "./birthday-gifts"},
       { name: "Tarnish Gold", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Already Vade Collections", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "Beaded Section", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "Already Vade Collections", image: "/images/31343C.svg", path: "./birthday-gifts"},
+{ name: "Beaded Section", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ],
     "Fashion Section": [
       { name: "Caps", image: "/images/31343C.svg", path: "./birthday-gifts"},
@@ -41,11 +42,31 @@ const NavBar: React.FC = () => {
     ], 
     "Tote Bag Section": [
       { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
-      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}
+      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ], 
     "Lip Gloss": [
       { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
-      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}
+      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ],
+"Decor": [
+      { name: "Already Made Booth", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+      { name: "Baloon Pieces", image: "/images/31343C.svg", path: "./birthday-gifts"},
+{ name: "Mode Of Purchase", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ],
+"Events": [
+      { name: "Birthday Planning", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+      { name: "Wedding Planning", image: "/images/31343C.svg", path: "./birthday-gifts"},
+{ name: "Anniversary", image: "/images/31343C.svg", path: "./birthday-gifts"},
+{ name: "Gender Reveal", image: "/images/31343C.svg", path: "./birthday-gifts"},
+{ name: "Proposal Planning", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ],
+"Holiday Specials": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
+"Hampers": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ],
     ],
   };
 
