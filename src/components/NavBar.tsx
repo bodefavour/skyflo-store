@@ -33,12 +33,20 @@ const NavBar: React.FC = () => {
     "Fashion Section": [
       { name: "Caps", image: "/images/31343C.svg", path: "./birthday-gifts"},
       { name: "Veils", image: "/images/31343C.svg", path: "./birthday-gifts"},
-    ], "Travel Section": [
+    ], 
+"Travel Section": [
       { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Kids", image: "/images/31343C.svg", path: "./birthday-gifts"},
-    ], "Tote Bag Section": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}], "Lip Gloss": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}],
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+{ name: "For Kids", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ], 
+"Tote Bag Section": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+{ name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}
+], 
+"Lip Gloss": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+{ name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}
+],
   };
 
   return (
