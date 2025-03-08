@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MenuIcon, XIcon, SearchIcon, ShoppingBagIcon, ArrowLeftIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -101,7 +102,9 @@ const NavBar: React.FC = () => {
                         alt={subItem.name}
                         className="w-20 h-20 object-cover rounded-lg shadow-md"
                       />
-                      <p className="text-lg font-phudu text-black">{subItem.name}</p>
+                      <Link to={`/${subItem.path}`} onClick={() => setMenuOpen(false)} className="text-lg font-phudu text-black hover:text-gray-500 transition">
+                      {subItem.name}
+                      </Link>
                     </div>
                   ))}
                 </div>

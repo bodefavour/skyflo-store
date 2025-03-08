@@ -11,7 +11,7 @@ const birthdayGifts = [
 function BirthdayGiftPage() {
   return (
     <main>
-      <HeroSection backgroundImage="/images/birthday-hero.jpg" brandName="Birthday Gifts" />
+      <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="Birthday Gifts" />
       <ProductGrid products={birthdayGifts} />
     </main>
   );
