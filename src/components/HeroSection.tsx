@@ -5,6 +5,7 @@ interface HeroSectionProps {
   brandName?: string; 
 textSize?: string; 
 textSpacing?: string;
+customStyle?: React.CSSProperties;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -12,6 +13,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   brandName = "SKYFLO", 
 textSize = "text-6xl", 
 textSpacing = "tracking-normal leading-tight",
+customStyle,
 }) => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center">
