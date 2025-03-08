@@ -20,19 +20,19 @@ const NavBar: React.FC = () => {
   // Dummy submenu items for each menu item.
   const subMenus: { [key: string]: { name: string; image: string }[] } = {
     "Gift Section": [
-      { name: "Birthday Gifts", image: "/images/birthday.jpg" },
-      { name: "Anniversary Gifts", image: "/images/anniversary.jpg" },
-      { name: "Seasonal Gifts", image: "/images/seasonal.jpg" },
+      { name: "Birthday Gifts", image: "/images/31343C.svg" },
+      { name: "Anniversary Gifts", image: "/images/31343C.svg" },
+      { name: "Seasonal Gifts", image: "/images/31343C.svg" },
     ],
     "Jewellries and Beaded Bracelets": [
-      { name: "Necklaces", image: "/images/necklace.jpg" },
-      { name: "Rings", image: "/images/rings.jpg" },
-      { name: "Bracelets", image: "/images/bracelets.jpg" },
+      { name: "Necklaces", image: "/images/31343C.svg" },
+      { name: "Rings", image: "/images/31343C.svg" },
+      { name: "Bracelets", image: "/images/31343C.svg" },
     ],
     "Fashion Section": [
-      { name: "Clothing", image: "/images/clothing.jpg" },
-      { name: "Footwear", image: "/images/footwear.jpg" },
-      { name: "Accessories", image: "/images/accessories.jpg" },
+      { name: "Clothing", image: "/images/31343C.svg" },
+      { name: "Footwear", image: "/images/31343C.svg" },
+      { name: "Accessories", image: "/images/31343C.svg" },
     ],
   };
 
