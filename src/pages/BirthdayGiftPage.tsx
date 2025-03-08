@@ -13,7 +13,7 @@ const BirthdayGifts: React.FC = () => {
 return (
   <main>
     <NavBar />
-    <HeroSection backgroundImage="/images/hero-bg.jpg" brandName="Birthday" />
+    <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="Birthday" />
     <ProductGrid products={sampleProducts} />
   </main>
 );

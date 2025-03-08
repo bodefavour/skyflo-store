@@ -21,20 +21,24 @@ const NavBar: React.FC = () => {
   // Dummy submenu items for each menu item.
   const subMenus: { [key: string]: { name: string; image: string; path: string }[] } = {
     "Gift Section": [
-      { name: "Birthday Gifts", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Anniversary Gifts", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Seasonal Gifts", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For Women", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For Children", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For men", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ],
     "Jewellries and Beaded Bracelets": [
-      { name: "Necklaces", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Rings", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Bracelets", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "Tarnish Silver", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "Tarnish Gold", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "Already Vade Collections", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "Beaded Section", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ],
     "Fashion Section": [
-      { name: "Clothing", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Footwear", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "Accessories", image: "/images/31343C.svg", path: "./birthday-gifts"},
-    ],
+      { name: "Caps", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "Veils", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ], "Travel Section": [
+      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Kids", image: "/images/31343C.svg", path: "./birthday-gifts"},
+    ], "Tote Bag Section": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}], "Lip Gloss": [
+      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"}],
   };
 
   return (
