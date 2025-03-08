@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import NavBar from "./components/NavBar";
 import HeroSection from "../src/components/HeroSection";
 import ProductGrid from "../src/components/ProductGrid";
-
+import BirthdayGiftPage from "./pages/BirthdayGiftPage"; // Import the new page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

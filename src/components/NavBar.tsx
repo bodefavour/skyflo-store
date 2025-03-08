@@ -51,7 +51,7 @@ const NavBar: React.FC = () => {
       {/* Overlay with Blur Effect */}
       {menuOpen && (
         <div className={'fixed inset-0 bg-black bg-opacity-40 backdrop-blur-lg z-50 flex justify-end transition-opacity duration-500 ${menuOPen ? "opacity-100" : "opacity-0 pointer-events-none"}'}>
-          {/* Popup Panel – 30% of the screen width */}
+          {/* Popup Panel – 43% of the screen width */}
           <div className={'relative bg-white w-[43%] h-full shadow-lg p-6 flex flex-col transform transition-all duration-1200 ease-in-out ${menuOpen ? "translate-x-0 opacity-100 scale-100" : "translate-x-full opacity-0 scale-95"}'}>
             
             {/* Close Button */}
