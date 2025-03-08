@@ -3,9 +3,9 @@ import React from "react";
 interface HeroSectionProps {
   backgroundImage: string;
   brandName?: string; 
-textSize?: string; 
-textSpacing?: string;
-customStyle?: React.CSSProperties;
+  textSize?: string; 
+  textSpacing?: string;
+  customStyle?: React.CSSProperties;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
