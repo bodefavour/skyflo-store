@@ -5,8 +5,10 @@ interface HeroSectionProps {
   brandName?: string; 
   textSize?: string; 
   textSpacing?: string;
-  customStyle?: React.CSSProperties; children?: ReactNode;
-  className?: string;  brandNameStyle?: React.CSSProperties;
+  customStyle?: React.CSSProperties; 
+children?: ReactNode;
+  className?: string;  
+brandNameStyle?: React.CSSProperties;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
