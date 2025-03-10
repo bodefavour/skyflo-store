@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface HeroSectionProps {
   backgroundImage: string;
@@ -6,15 +6,16 @@ interface HeroSectionProps {
   textSize?: string; 
   textSpacing?: string;
   customStyle?: React.CSSProperties; children?: ReactNode;
-className?: string;  brandNameStyle?: React.CSSProperties;
+  className?: string;  brandNameStyle?: React.CSSProperties;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
   brandName = "SKYFLO", 
-textSize = "text-6xl", 
-textSpacing = "tracking-normal leading-tight",
-customStyle,
+  textSize = "text-6xl", 
+  textSpacing = "tracking-normal leading-tight",
+  customStyle,
+  children,
 }) => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center">
@@ -39,7 +40,7 @@ customStyle,
 
       {/* Custom Content Section */}
       <div className="absolute z-10 flex flex-col justify-end pb-16 text-center text-white">
-        {children} {/* 👈 Injects custom content */}
+        {children}
       </div>
 
       {/* Hero Text */}
