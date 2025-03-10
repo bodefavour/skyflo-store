@@ -5,7 +5,7 @@ interface HeroSectionProps {
   brandName?: string; 
   textSize?: string; 
   textSpacing?: string;
-  customStyle?: React.CSSProperties; children?: React.ReactNode;
+  customStyle?: React.CSSProperties; children?: ReactNode;
 className?: string;  brandNameStyle?: React.CSSProperties;
 }
 
@@ -37,7 +37,7 @@ customStyle,
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
 
-{/* Custom Content Section */}
+      {/* Custom Content Section */}
       <div className="absolute z-10 flex flex-col justify-end pb-16 text-center text-white">
         {children} {/* 👈 Injects custom content */}
       </div>
