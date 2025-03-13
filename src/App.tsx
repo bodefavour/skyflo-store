@@ -13,6 +13,7 @@ import EventsPae from "./pages/EventsPae"; // Import the new page
 import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
+import Layout from "./components/Layout";
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
@@ -32,7 +33,7 @@ function App() {
   ];
 
   return (
-    <Router> <Layout /> {/* Wrap the entire app with the Layout component */}
+    <Router> <Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
       <NavBar /> {/* NavBar stays on every page */}
       <Routes>
         <Route path="/" element={
