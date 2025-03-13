@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="container mx-auto text-center mt-8">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Your Brand Name. All rights reserved.</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} Skyflo. All rights reserved.</p>
       </div>
     </footer>
   );
