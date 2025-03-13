@@ -14,6 +14,7 @@ import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
 import Layout from "./components/Layout";
+
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
@@ -51,7 +52,8 @@ function App() {
         <Route path="/Decor" element={<Décor />} />
         <Route path="/Events" element={<EventsPae />} />
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
-      </Routes> <Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
+      </Routes> 
+<Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
     </Router>
   );
 }
