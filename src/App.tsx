@@ -11,7 +11,7 @@ import LipGloss from "./pages/BirthdayGiftPage"; // Import the new page
 import Décor from "./pages/BirthdayGiftPage"; // Import the new page
 import EventsPae from "./pages/BirthdayGiftPage"; // Import the new page
 import HolidaySpecials from "./pages/BirthdayGiftPage"; // Import the new page
-
+import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
