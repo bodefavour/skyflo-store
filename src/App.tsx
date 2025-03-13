@@ -32,7 +32,7 @@ function App() {
   ];
 
   return (
-    <Router>
+    <Router> <Layout /> {/* Wrap the entire app with the Layout component */}
       <NavBar /> {/* NavBar stays on every page */}
       <Routes>
         <Route path="/" element={
