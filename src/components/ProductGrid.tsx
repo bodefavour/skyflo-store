@@ -40,7 +40,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
     <section className="py-12 px-6">
       <ProductFilter onFilterChange={handleFilterChange} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 mt-8">
         {filteredProducts.map((product) => (
           <div key={product.id} className="relative group bg-white shadow-lg rounded-lg p-4">
             <img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-lg group-hover:scale-110 transition-transform" />
