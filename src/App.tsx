@@ -12,7 +12,7 @@ import Décor from "./pages/Décor"; // Import the new page
 import EventsPae from "./pages/EventsPae"; // Import the new page
 import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
-
+import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
@@ -37,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" />
+            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" /> <ProductCarousel /> {/* New carousel under the hero section */}
             <ProductGrid products={sampleProducts} />
           </>
         } />
