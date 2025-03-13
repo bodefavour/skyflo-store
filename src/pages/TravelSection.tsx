@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "../components/HeroSection";
 import ProductGrid from "../components/ProductGrid";
 
-const BirthdayGifts: React.FC = () => {
+const TravelSection: React.FC = () => {
   const sampleProducts = [
     { id: 1, name: "Luxury Necklace", price: 499.99, image: "/images/31343C.svg" },
     { id: 2, name: "Elegant Watch", price: 899.99, image: "/images/31343C.svg" },
@@ -31,8 +31,4 @@ const BirthdayGifts: React.FC = () => {
   );
 };
 
-export default BirthdayGifts;
-//     //The  BirthdayGifts  component is a page that displays a hero section and a grid of products.
-//     //The  ProductGrid  component is a reusable component that displays a grid of products.
-//     //The  HeroSection  component is a reusable component that displays a hero section with a background image and content.
-//     //The  sampleProducts  array contains sample product data that is passed to the  ProductGrid  component.
+export default TravelSection;

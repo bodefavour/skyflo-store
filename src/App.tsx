@@ -3,7 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import ProductGrid from "./components/ProductGrid";
-import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
+import JewellryBeads from "./pages/BirthdayGiftPage"; // Import the new page
+import TravelSection from "./pages/BirthdayGiftPage"; // Import the new page
+import ToteBag from "./pages/BirthdayGiftPage"; // Import the new page
+import FashionSection from "./pages/BirthdayGiftPage"; // Import the new page
+import LipGloss from "./pages/BirthdayGiftPage"; // Import the new page
+import Décor from "./pages/BirthdayGiftPage"; // Import the new page
+import EventsPae from "./pages/BirthdayGiftPage"; // Import the new page
+import HolidaySpecials from "./pages/BirthdayGiftPage"; // Import the new page
 
 function App() {
   const sampleProducts = [
