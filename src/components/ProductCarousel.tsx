@@ -9,7 +9,7 @@ const ProductCarousel = () => {
   const carouselItems = [
     { id: 1, name: "Elegant Earrings", image: "/images/31343C.svg" },
     { id: 2, name: "Luxury Bag", image: "/images/31343C.svg" },
-    { id: 3, name: "Classic Watch", image: "/images/31343C.svg" },
+    { id: 3, name: "Classic Watch", image: "/images/31343C.svg" }, { id: 3, name: "Classic Watch", image: "/images/31343C.svg" }, { id: 3, name: "Classic Watch", image: "/images/31343C.svg" },
   ];
 
   return (
