@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import ProductGrid from "./components/ProductGrid";
-import JewellryBeads from "./pages/BirthdayGiftPage"; // Import the new page
-import TravelSection from "./pages/BirthdayGiftPage"; // Import the new page
-import ToteBag from "./pages/BirthdayGiftPage"; // Import the new page
-import FashionSection from "./pages/BirthdayGiftPage"; // Import the new page
-import LipGloss from "./pages/BirthdayGiftPage"; // Import the new page
-import Décor from "./pages/BirthdayGiftPage"; // Import the new page
-import EventsPae from "./pages/BirthdayGiftPage"; // Import the new page
-import HolidaySpecials from "./pages/BirthdayGiftPage"; // Import the new page
+import JewellriesBeads from "./pages/BirthdayGiftPage"; // Import the new page
+import TravelSection from "./pages/TravelSection"; // Import the new page
+import ToteBag from "./pages/ToteBaSec"; // Import the new page
+import FashionSection from "./pages/FashionSection"; // Import the new page
+import LipGloss from "./pages/LipGloss"; // Import the new page
+import Décor from "./pages/Décor"; // Import the new page
+import EventsPae from "./pages/EventsPae"; // Import the new page
+import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 
 function App() {
@@ -42,22 +42,14 @@ function App() {
           </>
         } />
         <Route path="/birthday-gifts" element={<BirthdayGifts />} />
-      </Routes>
-<Route path="/Jewellries-Beads" element={<JewellriesBeads />} />
-      </Routes>
-<Route path="/Fashion" element={<FashionSection />} />
-      </Routes>
-<Route path="/travel-section" element={<TravelSection />} />
-      </Routes>
-<Route path="/tote-bags" element={<ToteBag />} />
-      </Routes>
-<Route path="/Lip-gloss" element={<LipGloss />} />
-      </Routes>
-<Route path="/Decor" element={<Decor />} />
-      </Routes>
-<Route path="/Events" element={<EventsPae />} />
-      </Routes>
-<Route path="/Holiday-Specials" element={<HolidaySpecials />} />
+        <Route path="/Jewellries-Beads" element={<JewellriesBeads />} />
+        <Route path="/Fashion" element={<FashionSection />} />
+        <Route path="/travel-section" element={<TravelSection />} />
+        <Route path="/tote-bags" element={<ToteBag />} />
+        <Route path="/Lip-gloss" element={<LipGloss />} />
+        <Route path="/Decor" element={<Décor />} />
+        <Route path="/Events" element={<EventsPae />} />
+        <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
       </Routes>
     </Router>
   );
