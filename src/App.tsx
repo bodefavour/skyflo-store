@@ -17,20 +17,20 @@ import Layout from "./components/Layout";
 import ProductPage from "./components/productpage";
 function App() {
   const sampleProducts = [
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },
-    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
-    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg" },// Add more products
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page"},
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page" },
+    { id: 2, name: "Royal Crown", price: 299.99, image: "/images/31343C.svg", path: "./Product-page" },// Add more products
   ];
 
   return (
@@ -52,7 +52,7 @@ function App() {
         <Route path="/Decor" element={<Décor />} />
         <Route path="/Events" element={<EventsPae />} />
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
-<Route path="/Product page" element={<ProductPage />} />
+        <Route path="/Product-page" element={<ProductPage />} />
       </Routes> 
 <Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
     </Router>

@@ -42,7 +42,7 @@ const ProductPage: React.FC = () => {
             </section>
 
             <footer className="product-footer">
-                <p>&copy; 2023 Skyflo Store. All rights reserved.</p>
+                <p>&copy; 2025 Skyflo Store. All rights reserved.</p>
             </footer>
         </div>
     );
