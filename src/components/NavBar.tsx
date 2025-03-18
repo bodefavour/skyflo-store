@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
     "Gift Section": [
       { name: "For Women", image: "/images/31343C.svg", path: "./birthday-gifts"},
       { name: "For Children", image: "/images/31343C.svg", path: "./birthday-gifts"},
-      { name: "For men", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For Men", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ],
     "Jewellries and Beaded Bracelets": [
       { name: "Tarnish Silver", image: "/images/31343C.svg", path: "./Jewellries-Beads"},
@@ -36,17 +36,17 @@ const NavBar: React.FC = () => {
       { name: "Veils", image: "/images/31343C.svg", path: "./Fashion"},
     ], 
     "Travel Section": [
-      { name: "For Woven", image: "/images/31343C.svg", path: "./travel-section"},
-      { name: "For Ven", image: "/images/31343C.svg", path: "./travel-section"}, 
+      { name: "For Women", image: "/images/31343C.svg", path: "./travel-section"},
+      { name: "For Men", image: "/images/31343C.svg", path: "./travel-section"}, 
       { name: "For Kids", image: "/images/31343C.svg", path: "./travel-section"},
     ], 
     "Tote Bag Section": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./tote-bags"}, 
-      { name: "For Woven", image: "/images/31343C.svg", path: "./tote-bags"},
+      { name: "For Men", image: "/images/31343C.svg", path: "./tote-bags"}, 
+      { name: "For Women", image: "/images/31343C.svg", path: "./tote-bags"},
     ], 
     "Lip Gloss": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./Lip-gloss"}, 
-      { name: "For Woven", image: "/images/31343C.svg", path: "./Lip-gloss"},
+      { name: "For Men", image: "/images/31343C.svg", path: "./Lip-gloss"}, 
+      { name: "For Women", image: "/images/31343C.svg", path: "./Lip-gloss"},
     ],
     "Decor": [
       { name: "Already Made Booth", image: "/images/31343C.svg", path: "./Decor"}, 
@@ -61,11 +61,11 @@ const NavBar: React.FC = () => {
       { name: "Proposal Planning", image: "/images/31343C.svg", path: "./Events"},
     ],
     "Holiday Specials": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./Holiday-Specials"}, 
+      { name: "For Men", image: "/images/31343C.svg", path: "./Holiday-Specials"}, 
       { name: "For Woven", image: "/images/31343C.svg", path: "./Holiday-Specials"}, ],
     "Hampers": [
-      { name: "For Ven", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
-      { name: "For Woven", image: "/images/31343C.svg", path: "./birthday-gifts"},
+      { name: "For Men", image: "/images/31343C.svg", path: "./birthday-gifts"}, 
+      { name: "For Women", image: "/images/31343C.svg", path: "./birthday-gifts"},
     ],
   };
 
