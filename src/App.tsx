@@ -54,6 +54,7 @@ function App() {
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
       </Routes> 
 <Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
+<Route path="/Events" element={<EventsPae />} />
     </Router>
   );
 }
