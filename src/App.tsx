@@ -14,7 +14,7 @@ import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
 import Layout from "./components/Layout";
-
+import ProductPage from "./components/productpage";
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg" },
