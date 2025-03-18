@@ -21,7 +21,7 @@ const TravelSection: React.FC = () => {
           Essential travel accessories for comfort and convenience.
           </h2>
           <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
+            Explore Travel Options
           </button>
         </div>
       </HeroSection>

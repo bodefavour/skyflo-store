@@ -21,7 +21,7 @@ const JewellriesBeads: React.FC = () => {
           Elegant, handcrafted pieces designed to shine.
           </h2>
           <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
+            Explore Jewellry Options
           </button>
         </div>
       </HeroSection>

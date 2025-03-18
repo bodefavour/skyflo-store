@@ -21,7 +21,7 @@ const LipGloss: React.FC = () => {
           Hydrating, high-shine gloss for a flawless finish.
           </h2>
           <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
+            Explore Gloss Options
           </button>
         </div>
       </HeroSection>
