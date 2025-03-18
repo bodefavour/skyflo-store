@@ -52,9 +52,9 @@ function App() {
         <Route path="/Decor" element={<Décor />} />
         <Route path="/Events" element={<EventsPae />} />
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
+<Route path="/Product page" element={<ProductPage />} />
       </Routes> 
 <Layout children={undefined} /> {/* Wrap the entire app with the Layout component */}
-<Route path="/Product page" element={<ProductPage />} />
     </Router>
   );
 }
