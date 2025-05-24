@@ -5,22 +5,22 @@ const featuredProducts = [
   {
     name: "Luxury Gift Box",
     price: "₦25,000",
-    image: "/images/product1.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     name: "Beaded Elegance Bracelet",
     price: "₦15,000",
-    image: "/images/product2.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     name: "Premium Travel Tote",
     price: "₦30,000",
-    image: "/images/product3.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     name: "Golden Lip Gloss Duo",
     price: "₦9,500",
-    image: "/images/product4.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
 ];
 
@@ -28,47 +28,47 @@ const sections = [
   {
     title: "Gifting Made Special",
     description: "Discover curated gifts that leave lasting impressions.",
-    image: "../public/images/hero-bg.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Jewelry & Beaded Bracelets",
     description: "Handcrafted elegance to elevate your everyday look.",
-    image: "/images/jewelry.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Fashion Essentials",
     description: "Timeless style curated with elegance and flair.",
-    image: "/images/fashion.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Travel Collection",
     description: "Travel in luxury with our premium accessories.",
-    image: "/images/travel.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Tote Bags",
     description: "Where functionality meets fashion — our best-selling totes.",
-    image: "/images/totes.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Lip Gloss Selection",
     description: "Gloss up your day with smooth, radiant lips.",
-    image: "/images/lipgloss.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Decor & Aesthetics",
     description: "Elevate your space with intentional artful decor.",
-    image: "/images/decor.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Events by Skyflo",
     description: "Unforgettable experiences, beautifully organized.",
-    image: "/images/events.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
   {
     title: "Holiday Specials",
     description: "Celebrate in style with limited-edition festive picks.",
-    image: "/images/holiday.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg",
   },
 ];
 
