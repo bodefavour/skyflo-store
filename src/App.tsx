@@ -1,8 +1,8 @@
-import React from "react";
+// import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
-import ProductGrid from "./components/ProductGrid";
+// import ProductGrid from "./components/ProductGrid";
 import JewellriesBeads from "./pages/BirthdayGiftPage"; // Import the new page
 import TravelSection from "./pages/TravelSection"; // Import the new page
 import ToteBag from "./pages/ToteBaSec"; // Import the new page
@@ -12,9 +12,10 @@ import Décor from "./pages/Décor"; // Import the new page
 import EventsPae from "./pages/EventsPae"; // Import the new page
 import HolidaySpecials from "./pages/HolidaySpecials"; // Import the new page
 import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
-import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
+// import ProductCarousel from "./components/ProductCarousel"; // Import the new carousel component
 import Layout from "./components/Layout";
 import ProductPage from "./components/productpage";
+import LandingBody from "./components/LandingBody";
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page"},
@@ -39,8 +40,8 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" /> <ProductCarousel /> {/* New carousel under the hero section */}
-            <ProductGrid products={sampleProducts} />
+            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" /> 
+            <LandingBody />
           </>
         } />
         <Route path="/birthday-gifts" element={<BirthdayGifts />} />
