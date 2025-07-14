@@ -12,38 +12,49 @@ import { motion } from "framer-motion";
 
 const services = [
     {
-        title: "Skincare Essentials",
-        desc: "Nurture your skin with our carefully crafted skincare essentials, inspired by rich Esan heritage and designed to celebrate your natural glow.",
+        title: "Gift Boxes",
+        desc: "Experience the joy of giving with our curated luxury gift selections. From timeless keepsakes to heartfelt surprises, we make every moment unforgettable.",
         image: "/images/IMG-20250402-WA0132.jpg",
     },
     {
-        title: "Beardcare Essentials",
-        desc: "Elevate your beard game with grooming rituals that honor tradition while delivering softness, strength, and style.",
+        title: "Jewelries and Beaded Bracelets",
+        desc: "Explore a collection where craftsmanship meets culture. Our handcrafted jewelry and beaded bracelets are designed to elevate your style with intentional elegance.",
         image: "/images/IMG-20250322-WA0048.jpg",
     },
     {
-        title: "Personal Hygiene",
-        desc: "Cleanse and refresh daily with products rooted in culture and crafted for lasting freshness and confidence.",
+        title: "Fashion",
+        desc: "Step into refined fashion with Skyflo’s exclusive wardrobe pieces — blending modern luxury with timeless silhouettes that speak confidence and class.",
         image: "/images/IMG-20250322-WA0051.jpg",
     },
     {
-        title: "Beauty Tools and Makeup Accessories",
-        desc: "Tools and accessories designed to enhance your natural beauty and express your unique style with cultural pride.",
+        title: "Travel",
+        desc: "Redefine how you move. Our travel accessories are crafted for those who believe in journeying with style, functionality, and a sense of identity.",
         image: "/images/IMG-20250402-WA0140.jpg",
     },
     {
-        title: "Subscription Boxes",
-        desc: "Curated self-care experiences delivered to your door; Discover the perfect blend of tradition and modern indulgence every month.",
+        title: "Tote Bag's",
+        desc: "Minimal yet bold — our signature tote bags are built to carry your world while turning heads. Fashion meets everyday luxury in every stitch.",
         image: "/images/IMG-20250322-WA0051.jpg",
     },
     {
-        title: "Skin Therapy and Consultations",
-        desc: "Personalized skin solutions and expert advice that connect age-old wisdom with modern skincare science.",
+        title: "Lip Gloss",
+        desc: "More than makeup — it’s a glow. Our luxury lip glosses offer high shine, smooth application, and nourishing formulas to leave you feeling radiant.
+",
         image: "/images/IMG-20250402-WA0132.jpg",
     },
     {
-        title: "Skinfood & Nutrition",
-        desc: "Fuel your skin from within with nutrition inspired by nature and crafted for radiant, healthy skin.",
+        title: "Decor",
+        desc: "Bring intentional beauty to your space. Our curated decor pieces inspire calm, sophistication, and a deep sense of home.",
+        image: "/images/IMG-20250402-WA0134.jpg",
+    },
+{
+        title: "Events",
+        desc: "From private soirées to large-scale celebrations, we create experiences that exude elegance. Let Skyflo design your next unforgettable moment.",
+        image: "/images/IMG-20250402-WA0134.jpg",
+    },
+{
+        title: "Holiday Specials",
+        desc: "Limited-edition magic designed for your most memorable seasons. Skyflo’s holiday picks are perfect for gifting or self-indulgence.",
         image: "/images/IMG-20250402-WA0134.jpg",
     },
 ].map((service) => ({
@@ -59,33 +70,30 @@ const LandingContents = () => {
     return (<><main>
 
     </main><div className="bg-white text-black px-6 md:px-16 py-12 space-y-20">
-            {/* Awareness Teaser */}
-            {/* <motion.section className="text-center">
-              <p className="text-xl italic text-gray-700">“You’ve never glowed like this before… Boshan is almost here 👀✨”</p>
-          </motion.section> */}
 
             <motion.section
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                    Welcome to Boshan
-                </h2>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                    Your Skin. Your Ritual. Your Lifestyle.
-                </h2>
-                <p className="text-lg md:text-xl leading-relaxed">
-                    BOSHAN is more than a brand, it's a movement. Rooted in rich Esan culture and elevated with modern elegance,
-                    we curate handcrafted skincare, luxe fashion, and memorable gifting experiences for today’s bold, conscious generation.
-                    Join the Glow List today to be the first to preorder and get exclusive early bird benefits!
-                </p>
-                <Link to="/auth">
-                    <button className="mt-6 bg-orange-600 hover:bg-orange-700 transition text-white px-8 py-3 rounded-full text-lg font-medium shadow-xl">
-                        Be the First to Pre-Order
-                    </button>
-                </Link>
-            </motion.section>
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  className="max-w-4xl mx-auto text-center"
+>
+  <h2 className="text-4xl md:text-5xl font-bold mb-6">
+    Welcome to Skyflo
+  </h2>
+  <h2 className="text-4xl md:text-5xl font-bold mb-6">
+    Luxury Gifting. Curated Elegance. Everyday Moments.
+  </h2>
+  <p className="text-lg md:text-xl leading-relaxed">
+    Skyflo is your destination for elevated lifestyle essentials — from premium gift boxes to artisan-crafted fashion, accessories, and décor. 
+    We blend intentional design, cultural richness, and a taste of indulgence for those who believe luxury should feel personal. 
+    Be the first to discover limited releases, exclusive drops, and unforgettable moments made just for you.
+  </p>
+  <Link to="/auth">
+    <button className="mt-6 bg-black hover:bg-gray-900 transition text-white px-8 py-3 rounded-full text-lg font-medium shadow-xl">
+      Join the Skyflo Experience
+    </button>
+  </Link>
+</motion.section>
 
             <motion.section
     initial="hidden"
