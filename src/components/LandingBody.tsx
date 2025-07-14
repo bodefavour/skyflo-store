@@ -122,7 +122,7 @@ const LandingContents = () => {
                         </Link>
                     </motion.div>
                 ))}
-
+</motion.section>
             {/* Final CTA */}
             <motion.section
                 initial={{ scale: 0.95, opacity: 0 }}
