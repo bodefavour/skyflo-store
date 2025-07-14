@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" /> 
+            <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandname="SKYFLO" /> 
             <LandingBody />
           </>
         } />
