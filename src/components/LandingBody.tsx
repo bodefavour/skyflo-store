@@ -88,7 +88,7 @@ const LandingContents = () => {
             </motion.section>
 
             {/* Services Overview */}
-            <motion.section
+            <motion.section>
                 initial="hidden"
                 whileInView="visible"
                 variants={{
