@@ -38,8 +38,7 @@ const services = [
     },
     {
         title: "Lip Gloss",
-        desc: "More than makeup — it’s a glow. Our luxury lip glosses offer high shine, smooth application, and nourishing formulas to leave you feeling radiant.
-",
+        desc: "More than makeup — it’s a glow. Our luxury lip glosses offer high shine, smooth application, and nourishing formulas to leave you feeling radiant.",
         image: "/images/IMG-20250402-WA0132.jpg",
     },
     {
