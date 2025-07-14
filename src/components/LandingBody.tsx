@@ -130,23 +130,27 @@ const LandingContents = () => {
                     </motion.div>
                 ))}
 </motion.section>
-            {/* Final CTA */}
-            <motion.section
-                initial={{ scale: 0.95, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.7 }}
-                className="text-center space-y-6"
-            >
-                <h3 className="text-3xl font-bold">Glow Different. Gift Bold. The Boshan Way.</h3>
-                <p className="max-w-2xl mx-auto text-lg">
-                    Join the tribe that's redefining beauty, fashion, and celebration. Culture meets Gen-Z energy in every drop, stitch, and beat.
-                </p>
-                <Link to="/product-page">
-                    <button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md">
-                        Shop Now
-                    </button>
-                </Link>
-            </motion.section>
+        {/* Final CTA */}
+<motion.section
+  initial={{ scale: 0.95, opacity: 0 }}
+  whileInView={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.7 }}
+  className="text-center space-y-6 bg-black text-white py-16 px-6 rounded-lg shadow-2xl"
+>
+  <h3 className="text-4xl md:text-5xl font-bold tracking-wide">
+    Redefine Luxury. Elevate Every Moment.
+  </h3>
+
+  <p className="max-w-2xl mx-auto text-lg md:text-xl leading-relaxed text-gray-300">
+    Join the Skyflo movement—where curated gifts, timeless fashion, and bold beauty converge to create unforgettable experiences. Discover elegance, delivered with purpose.
+  </p>
+
+  <Link to="/product-page">
+    <button className="bg-white text-black px-10 py-4 rounded-full font-semibold text-lg tracking-wide hover:bg-gray-200 transition-all duration-300 shadow-lg">
+      Explore Our Collection
+    </button>
+  </Link>
+</motion.section>
         </div></>
     );
 };
