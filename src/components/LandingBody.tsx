@@ -87,19 +87,18 @@ const LandingContents = () => {
                 </Link>
             </motion.section>
 
-            {/* Services Overview */}
-            <motion.section>
-                initial="hidden"
-                whileInView="visible"
-                variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                        opacity: 1,
-                        transition: { staggerChildren: 0.3 },
-                    },
-                }}
-                className="grid md:grid-cols-2 gap-10"
-            >
+            <motion.section
+    initial="hidden"
+    whileInView="visible"
+    variants={{
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.3 },
+        },
+    }}
+    className="grid md:grid-cols-2 gap-10"
+>
                 {services.map((service, index) => (
                     <motion.div
                         key={index}
