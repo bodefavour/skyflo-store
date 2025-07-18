@@ -62,9 +62,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   
   const floatingVariants = {
     float: {
-      y: [0, -20, 0],
+      y: [0, -15, 0],
       transition: {
-        duration: 6,
+        duration: 4,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -73,7 +73,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <motion.section 
-      className={`relative w-full min-h-screen flex flex-col items-center overflow-hidden ${className}`}
+      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden ${className}`}
       variants={containerVariants}
       initial="hidden"
       animate={controls}
@@ -95,104 +95,109 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/40"></div>
       
       {/* Floating Elements */}
       <motion.div 
-        className="absolute top-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-full blur-xl"
+        className="absolute top-[20%] left-[15%] w-48 h-48 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-full blur-xl"
         variants={floatingVariants}
         animate="float"
       />
       <motion.div 
-        className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-gradient-to-b from-[#d4af37]/10 to-transparent rounded-full blur-xl"
+        className="absolute bottom-[30%] right-[15%] w-32 h-32 bg-gradient-to-b from-[#d4af37]/10 to-transparent rounded-full blur-xl"
         variants={floatingVariants}
         animate="float"
         style={{ animationDelay: "2s" }}
       />
       
-      {/* Brand Name */}
-      {brandName && (
-        <motion.div 
-          className="absolute top-[15%] left-1/2 transform -translate-x-1/2 text-center z-10"
-          variants={childVariants}
-        >
+      {/* Main Content Container */}
+      <div className="relative z-10 max-w-6xl w-full px-8 flex flex-col items-center">
+        {/* Brand Name */}
+        {brandName && (
           <motion.div 
-            className="border-t border-b border-[#d4af37] py-2 px-8 mb-4 text-sm tracking-widest text-[#d4af37]"
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="text-center mb-6"
+            variants={childVariants}
           >
-            LUXURY GIFTING EXPERIENCE
+            <motion.div 
+              className="border-t border-b border-[#d4af37] py-2 px-8 mb-6 text-sm tracking-[0.3em] text-[#d4af37]"
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "100%", opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              LUXURY GIFTING
+            </motion.div>
+            <motion.h1 
+              className="font-serif font-light text-white text-6xl md:text-7xl lg:text-8xl tracking-tight"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              {brandName}
+            </motion.h1>
           </motion.div>
-          <motion.h1 
-            className="font-serif font-light text-white text-5xl md:text-7xl lg:text-8xl tracking-tight"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
+        )}
+        
+        {/* Tagline */}
+        {tagline && (
+          <motion.div 
+            className="text-center max-w-2xl mb-10"
+            variants={childVariants}
           >
-            {brandName}
-          </motion.h1>
-        </motion.div>
-      )}
-      
-      {/* Tagline */}
-      {tagline && (
+            <motion.p 
+              className="text-xl md:text-2xl font-light text-gray-200 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            >
+              {tagline}
+            </motion.p>
+          </motion.div>
+        )}
+        
+        {/* Primary CTA */}
         <motion.div 
-          className="absolute top-[35%] left-1/2 transform -translate-x-1/2 text-center z-10 max-w-3xl px-4"
+          className="mb-16"
           variants={childVariants}
         >
-          <motion.p 
-            className="text-xl md:text-2xl font-light text-white leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
           >
-            {tagline}
-          </motion.p>
+            <a 
+              href={ctaLink}
+              className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-10 py-5 font-medium tracking-wider text-lg transition-all duration-300 shadow-xl rounded-full"
+            >
+              {ctaText}
+            </a>
+          </motion.div>
         </motion.div>
-      )}
-      
-      {/* Primary CTA */}
-      <motion.div 
-        className="absolute bottom-[25%] left-1/2 transform -translate-x-1/2 z-10 text-center"
-        variants={childVariants}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <a 
-            href={ctaLink}
-            className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300 shadow-lg rounded-full"
+        
+        {/* Custom Content */}
+        {children && (
+          <motion.div 
+            className="text-center text-white"
+            variants={childVariants}
           >
-            {ctaText}
-          </a>
-        </motion.div>
-      </motion.div>
-      
-      {/* Custom Content */}
-      <motion.div 
-        className="absolute bottom-[15%] left-1/2 transform -translate-x-1/2 text-center text-white z-10 w-full px-4"
-        variants={childVariants}
-      >
-        {children}
-      </motion.div>
+            {children}
+          </motion.div>
+        )}
+      </div>
       
       {/* Scrolling Indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1.2 }}
       >
         <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-2">Scroll to Discover</span>
-          <div className="w-6 h-10 rounded-full border-2 border-[#d4af37] flex justify-center p-1">
+          <span className="text-white text-sm mb-2 tracking-widest">SCROLL TO DISCOVER</span>
+          <div className="w-8 h-12 rounded-full border border-[#d4af37] flex justify-center p-1">
             <motion.div
               className="w-2 h-2 bg-[#d4af37] rounded-full"
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
           </div>
