@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-// Import all product images properly
-import giftBoxesImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import jewelryImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import fashionImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import travelImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import toteBagsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import lipGlossImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import decorImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import eventsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import holidaySpecialsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import backgroundPattern from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+// Import all images properly
+import giftBoxesImage from "../images/gift-boxes.jpg";
+import jewelryImage from "../images/jewelry.jpg";
+import fashionImage from "../images/fashion.jpg";
+import travelImage from "../images/travel.jpg";
+import toteBagsImage from "../images/tote-bags.jpg";
+import lipGlossImage from "../images/lip-gloss.jpg";
+import decorImage from "../images/decor.jpg";
+import eventsImage from "../images/events.jpg";
+import holidaySpecialsImage from "../images/holiday-specials.jpg";
+import backgroundPattern from "../images/luxury-pattern.png";
 
 // Organized image assets
 const imageAssets = {
@@ -26,7 +26,9 @@ const imageAssets = {
     events: eventsImage,
     holidaySpecials: holidaySpecialsImage,
   },
-  pattern: backgroundPattern
+  backgrounds: {
+    pattern: backgroundPattern
+  }
 };
 
 const services = [
@@ -137,7 +139,6 @@ const LandingContents = () => {
                 className="group overflow-hidden"
               >
                 <div className="relative h-[400px] overflow-hidden">
-                  {/* Image with gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
                   <img
                     src={service.image}
@@ -146,7 +147,6 @@ const LandingContents = () => {
                     loading="lazy"
                   />
                   
-                  {/* Content overlay */}
                   <div className="absolute bottom-0 left-0 right-0 z-20 p-6 transition-all duration-500 group-hover:pb-10">
                     <h4 className="text-xl md:text-2xl font-serif mb-2">{service.title}</h4>
                     <p className="text-gray-300 mb-4 text-sm">{service.desc}</p>
@@ -219,8 +219,14 @@ const LandingContents = () => {
         transition={{ duration: 0.8 }}
         className="py-32 relative overflow-hidden"
       >
-        {/* Background with subtle pattern */}
-        <div className="absolute inset-0 bg-[url('/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif')] bg-repeat opacity-[0.03]"></div>
+        {/* Background with properly imported pattern */}
+        <div className="absolute inset-0">
+          <img 
+            src={imageAssets.backgrounds.pattern} 
+            alt="Luxury pattern background"
+            className="w-full h-full object-cover opacity-[0.03]"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
