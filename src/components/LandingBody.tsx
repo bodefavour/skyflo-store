@@ -50,7 +50,7 @@ const services = [
   },
 ].map((service) => ({
   ...service,
-  link: `/preorder/${encodeURIComponent(service.title.toLowerCase().replace(/\s+/g, "-"))}`,
+  link: `/${encodeURIComponent(service.title.toLowerCase().replace(/\s+/g, "-"))}`,
 }));
 
 const LandingContents = () => {
