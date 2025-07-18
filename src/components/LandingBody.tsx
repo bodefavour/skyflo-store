@@ -14,7 +14,7 @@ const services = [
   },
   {
     title: "Fashion",
-    desc: "Confidently express yourself through Skyflo’s signature luxury fashion essentials.",
+    desc: "Confidently express yourself through Skyflo's signature luxury fashion essentials.",
     image: "/images/IMG-20250322-WA0051.jpg",
   },
   {
@@ -24,7 +24,7 @@ const services = [
   },
   {
     title: "Tote Bags",
-    desc: "Functional, fashionable, and bold — Skyflo’s signature totes carry elegance.",
+    desc: "Functional, fashionable, and bold — Skyflo's signature totes carry elegance.",
     image: "/images/IMG-20250322-WA0051.jpg",
   },
   {
@@ -54,85 +54,237 @@ const services = [
 
 const LandingContents = () => {
   return (
-    <main className="bg-black text-white px-4 md:px-16 py-16 space-y-24 font-sans">
-
+    <main className="bg-[#0a0a0a] text-white font-sans overflow-hidden">
       {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-center space-y-6 max-w-3xl mx-auto"
-      >
-        <h2 className="text-3xl md:text-5xl font-bold tracking-wider">Welcome to Skyflo</h2>
-        <h3 className="text-2xl md:text-4xl font-medium text-gold-400">Luxury Gifting. Curated Elegance. Everyday Moments.</h3>
-        <p className="text-base md:text-lg text-gray-300">
-          Skyflo is your destination for refined lifestyle experiences — from premium gifts to timeless fashion, 
-          cultural accessories, and bold beauty products. Luxury meets soul here.
-        </p>
-        <Link to="/auth">
-          <button className="mt-6 bg-[#d1a954] hover:bg-[#c99b3f] transition text-black px-6 py-3 rounded-full text-lg font-medium shadow-lg">
-            Join the Skyflo Experience
-          </button>
-        </Link>
-      </motion.section>
+      <section className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-16 py-24 overflow-hidden">
+        {/* Luxury texture background */}
+        <div className="absolute inset-0 bg-[url('/images/luxury-texture.png')] bg-cover bg-center opacity-10"></div>
+        
+        {/* Animated floating elements */}
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-gradient-to-b from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="inline-block mb-6">
+              <div className="border-t border-b border-[#d4af37] py-1 px-6 text-sm tracking-widest text-[#d4af37]">
+                EXCLUSIVE COLLECTION
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-6">
+              <span className="block">Welcome to</span>
+              <span className="font-normal italic text-[#d4af37]">Skyflo</span>
+            </h1>
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-xl md:text-2xl font-light mb-6 tracking-wider">
+                <span className="block">Luxury Gifting. Curated Elegance.</span>
+                <span className="block">Everyday Moments.</span>
+              </h2>
+              <p className="text-gray-300 font-light leading-relaxed max-w-2xl mx-auto mb-8">
+                Skyflo is your destination for refined lifestyle experiences — from premium gifts to timeless fashion, 
+                cultural accessories, and bold beauty products. Luxury meets soul here.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+              <Link to="/auth">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300 shadow-lg"
+                >
+                  Join the Skyflo Experience
+                </motion.button>
+              </Link>
+              <Link to="/product-page">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-transparent border border-[#d4af37] hover:bg-[#d4af37]/10 text-[#d4af37] px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300"
+                >
+                  View Collections
+                </motion.button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Luxury Brand Logos Section */}
+      <section className="py-16 bg-[#0f0f0f] border-y border-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4 md:px-16">
+          <h3 className="text-center text-gray-400 font-light mb-12 tracking-widest text-sm">
+            AS FEATURED IN
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 items-center justify-center">
+            {["Vogue", "ELLE", "Harper's Bazaar", "GQ", "Tatler"].map((brand, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex justify-center"
+              >
+                <div className="text-gray-400 text-xl font-serif italic">{brand}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Service Grid */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.2 },
-          },
-        }}
-        className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        {services.map((service, index) => (
+      <section className="py-24 px-4 md:px-16">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            key={index}
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="group bg-[#1a1a1a] hover:shadow-lg hover:scale-[1.02] transition p-4 md:p-6 rounded-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
           >
-            <img
-              src={service.image}
-              alt={service.title}
-              className="rounded-xl mb-4 h-48 object-cover w-full"
-            />
-            <h4 className="text-xl md:text-2xl font-semibold text-gold-400 mb-2">{service.title}</h4>
-            <p className="text-sm md:text-base text-gray-300 mb-4">{service.desc}</p>
-            <Link
-              to={service.link}
-              className="text-[#d1a954] hover:underline font-medium text-sm md:text-base"
-            >
-              Explore More →
-            </Link>
+            <h3 className="text-3xl md:text-4xl font-serif mb-6">Our Collections</h3>
+            <div className="w-24 h-0.5 bg-[#d4af37] mx-auto mb-6"></div>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Discover our exclusive range of luxury products crafted with precision and elegance
+            </p>
           </motion.div>
-        ))}
-      </motion.section>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group overflow-hidden"
+              >
+                <div className="relative h-[400px] overflow-hidden">
+                  {/* Image with gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
+                  />
+                  
+                  {/* Content overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 z-20 p-6 transition-all duration-500 group-hover:pb-10">
+                    <h4 className="text-xl md:text-2xl font-serif mb-2">{service.title}</h4>
+                    <p className="text-gray-300 mb-4 text-sm">{service.desc}</p>
+                    <Link
+                      to={service.link}
+                      className="text-[#d4af37] font-medium text-sm flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    >
+                      Discover Collection
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="py-24 bg-[#0f0f0f] border-y border-[#1a1a1a]">
+        <div className="max-w-5xl mx-auto px-4 md:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h3 className="text-3xl md:text-4xl font-serif mb-6">Client Experiences</h3>
+            <div className="w-24 h-0.5 bg-[#d4af37] mx-auto mb-6"></div>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Discover what our distinguished clientele says about the Skyflo experience
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-[#1a1a1a] p-8 border border-[#2a2a2a]"
+              >
+                <div className="text-[#d4af37] text-4xl mb-4">"</div>
+                <p className="text-gray-300 mb-6 italic">
+                  The attention to detail in Skyflo's packaging and products is unmatched. Every item feels like a bespoke creation.
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 rounded-full bg-gray-700 mr-4"></div>
+                  <div>
+                    <h4 className="font-medium">Alexandra R.</h4>
+                    <p className="text-sm text-gray-500">Luxury Brand Consultant</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Final CTA */}
       <motion.section
-        initial={{ scale: 0.95, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center space-y-6 py-20 px-6 bg-[#111] rounded-lg shadow-2xl"
+        className="py-32 relative overflow-hidden"
       >
-        <h3 className="text-3xl md:text-4xl font-bold text-white">
-          Redefine Luxury. Elevate Every Moment.
-        </h3>
-        <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-400">
-          Join the Skyflo movement — where curated gifts, elegant style, and cultural energy combine to make bold statements in every gesture.
-        </p>
-        <Link to="/product-page">
-          <button className="bg-[#d1a954] text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-[#c99739] transition-all shadow-lg">
-            Explore Our Collection
-          </button>
-        </Link>
+        {/* Background with subtle pattern */}
+        <div className="absolute inset-0 bg-[url('/images/luxury-pattern.png')] bg-repeat opacity-[0.03]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
+          <div className="inline-block mb-8">
+            <div className="border-t border-b border-[#d4af37] py-1 px-6 text-sm tracking-widest text-[#d4af37]">
+              EXCLUSIVE OFFER
+            </div>
+          </div>
+          <h3 className="text-4xl md:text-5xl font-serif font-light mb-6">
+            Redefine Luxury. Elevate Every Moment.
+          </h3>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
+            Join the Skyflo movement — where curated gifts, elegant style, and cultural energy combine to make bold statements in every gesture.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/product-page">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300 shadow-lg"
+              >
+                Explore Our Collection
+              </motion.button>
+            </Link>
+            <Link to="/preorder">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300"
+              >
+                Pre-order Now
+              </motion.button>
+            </Link>
+          </div>
+        </div>
       </motion.section>
     </main>
   );
