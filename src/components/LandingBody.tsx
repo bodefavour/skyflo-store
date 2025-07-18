@@ -58,7 +58,7 @@ const LandingContents = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-16 py-24 overflow-hidden">
         {/* Luxury texture background */}
-        <div className="absolute inset-0 bg-[url('/images/luxury-texture.png')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('/images/Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif')] bg-cover bg-center opacity-10"></div>
         
         {/* Animated floating elements */}
         <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
