@@ -1,52 +1,79 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import heroBackground from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
-import heroBackgroundMobile from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+
+// Import all product images properly
+import giftBoxesImage from "../images/gift-boxes.jpg";
+import jewelryImage from "../images/jewelry.jpg";
+import fashionImage from "../images/fashion.jpg";
+import travelImage from "../images/travel.jpg";
+import toteBagsImage from "../images/tote-bags.jpg";
+import lipGlossImage from "../images/lip-gloss.jpg";
+import decorImage from "../images/decor.jpg";
+import eventsImage from "../images/events.jpg";
+import holidaySpecialsImage from "../images/holiday-specials.jpg";
+import backgroundPattern from "../images/luxury-pattern.png";
+
+// Organized image assets
+const imageAssets = {
+  products: {
+    giftBoxes: giftBoxesImage,
+    jewelry: jewelryImage,
+    fashion: fashionImage,
+    travel: travelImage,
+    toteBags: toteBagsImage,
+    lipGloss: lipGlossImage,
+    decor: decorImage,
+    events: eventsImage,
+    holidaySpecials: holidaySpecialsImage,
+  },
+  pattern: backgroundPattern
+};
+
 const services = [
   {
     title: "Gift Boxes",
     desc: "Curated luxury gifts made to impress, inspire, and elevate your gifting game.",
-    image: "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
+    image: imageAssets.products.giftBoxes,
   },
   {
     title: "Jewelries and Beaded Bracelets",
     desc: "Handcrafted pieces that blend culture, elegance, and timeless design.",
-    image: "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
+    image: imageAssets.products.jewelry,
   },
   {
     title: "Fashion",
     desc: "Confidently express yourself through Skyflo's signature luxury fashion essentials.",
-    image: "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
+    image: imageAssets.products.fashion,
   },
   {
     title: "Travel",
     desc: "Refined travel accessories for those who journey in style and identity.",
-    image: "/images/IMG-20250402-WA0140.jpg",
+    image: imageAssets.products.travel,
   },
   {
     title: "Tote Bags",
     desc: "Functional, fashionable, and bold — Skyflo's signature totes carry elegance.",
-    image: "/images/IMG-20250322-WA0051.jpg",
+    image: imageAssets.products.toteBags,
   },
   {
     title: "Lip Gloss",
     desc: "Luxury gloss with a radiant finish. Shine bold. Glow different.",
-    image: "/images/IMG-20250402-WA0132.jpg",
+    image: imageAssets.products.lipGloss,
   },
   {
     title: "Decor",
     desc: "Intentional decor pieces that turn everyday spaces into luxurious sanctuaries.",
-    image: "/images/IMG-20250402-WA0134.jpg",
+    image: imageAssets.products.decor,
   },
   {
     title: "Events",
     desc: "Elegant experiences, beautifully crafted. Let Skyflo bring your moments to life.",
-    image: "/images/IMG-20250402-WA0134.jpg",
+    image: imageAssets.products.events,
   },
   {
     title: "Holiday Specials",
     desc: "Exclusive festive collections to gift, keep, and remember.",
-    image: "/images/IMG-20250402-WA0134.jpg",
+    image: imageAssets.products.holidaySpecials,
   },
 ].map((service) => ({
   ...service,
@@ -56,73 +83,6 @@ const services = [
 const LandingContents = () => {
   return (
     <main className="bg-[#0a0a0a] text-white font-sans overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-16 py-24 overflow-hidden">
-        {/* Luxury texture background */}
-        <picture className="absolute inset-0">
-  <source media="(max-width: 768px)" srcSet={heroBackgroundMobile} />
-  <source media="(min-width: 769px)" srcSet={heroBackground} />
-  <img
-    src={heroBackground}
-    alt="Luxury background texture"
-    className="w-full h-full object-cover opacity-10"
-    loading="eager"
-  />
-</picture>
-        
-        {/* Animated floating elements */}
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-gradient-to-b from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="inline-block mb-6">
-              <div className="border-t border-b border-[#d4af37] py-1 px-6 text-sm tracking-widest text-[#d4af37]">
-                EXCLUSIVE COLLECTION
-              </div>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-6">
-              <span className="block">Welcome to</span>
-              <span className="font-normal italic text-[#d4af37]">Skyflo</span>
-            </h1>
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-xl md:text-2xl font-light mb-6 tracking-wider">
-                <span className="block">Luxury Gifting. Curated Elegance.</span>
-                <span className="block">Everyday Moments.</span>
-              </h2>
-              <p className="text-gray-300 font-light leading-relaxed max-w-2xl mx-auto mb-8">
-                Skyflo is your destination for refined lifestyle experiences — from premium gifts to timeless fashion, 
-                cultural accessories, and bold beauty products. Luxury meets soul here.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
-              <Link to="/auth">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300 shadow-lg"
-                >
-                  Join the Skyflo Experience
-                </motion.button>
-              </Link>
-              <Link to="/product-page">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-transparent border border-[#d4af37] hover:bg-[#d4af37]/10 text-[#d4af37] px-8 py-4 font-medium tracking-wider text-lg transition-all duration-300"
-                >
-                  View Collections
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Luxury Brand Logos Section */}
       <section className="py-16 bg-[#0f0f0f] border-y border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-4 md:px-16">
@@ -183,6 +143,7 @@ const LandingContents = () => {
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
                   />
                   
                   {/* Content overlay */}
@@ -259,7 +220,7 @@ const LandingContents = () => {
         className="py-32 relative overflow-hidden"
       >
         {/* Background with subtle pattern */}
-        <div className="absolute inset-0 bg-[url('/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif')] bg-repeat opacity-[0.03]"></div>
+        <div className="absolute inset-0 bg-[url('/images/luxury-pattern.png')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
