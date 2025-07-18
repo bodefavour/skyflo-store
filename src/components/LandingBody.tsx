@@ -6,17 +6,17 @@ const services = [
   {
     title: "Gift Boxes",
     desc: "Curated luxury gifts made to impress, inspire, and elevate your gifting game.",
-    image: "/images/IMG-20250402-WA0132.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
   },
   {
     title: "Jewelries and Beaded Bracelets",
     desc: "Handcrafted pieces that blend culture, elegance, and timeless design.",
-    image: "/images/IMG-20250322-WA0048.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
   },
   {
     title: "Fashion",
     desc: "Confidently express yourself through Skyflo's signature luxury fashion essentials.",
-    image: "/images/IMG-20250322-WA0051.jpg",
+    image: "/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif",
   },
   {
     title: "Travel",
