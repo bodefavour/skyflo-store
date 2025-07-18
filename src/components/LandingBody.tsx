@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 // Import all images properly
-import giftBoxesImage from "../images/gift-boxes.jpg";
-import jewelryImage from "../images/jewelry.jpg";
-import fashionImage from "../images/fashion.jpg";
-import travelImage from "../images/travel.jpg";
-import toteBagsImage from "../images/tote-bags.jpg";
+import giftBoxesImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import jewelryImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import fashionImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import travelImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import toteBagsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
 import lipGlossImage from "../images/lip-gloss.jpg";
-import decorImage from "../images/decor.jpg";
-import eventsImage from "../images/events.jpg";
-import holidaySpecialsImage from "../images/holiday-specials.jpg";
-import backgroundPattern from "../images/luxury-pattern.png";
+import decorImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import eventsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import holidaySpecialsImage from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
+import backgroundPattern from "../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif";
 
 // Organized image assets
 const imageAssets = {
