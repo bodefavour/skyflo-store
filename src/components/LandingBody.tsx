@@ -220,7 +220,7 @@ const LandingContents = () => {
         className="py-32 relative overflow-hidden"
       >
         {/* Background with subtle pattern */}
-        <div className="absolute inset-0 bg-[url('/images/luxury-pattern.png')] bg-repeat opacity-[0.03]"></div>
+        <div className="absolute inset-0 bg-[url('../images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif')] bg-repeat opacity-[0.03]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
