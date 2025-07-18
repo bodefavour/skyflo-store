@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import heroBackground from '../public/images/Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif';
+import heroBackgroundMobile from '../public/images/Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif';
 const services = [
   {
     title: "Gift Boxes",
@@ -58,7 +59,16 @@ const LandingContents = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4 md:px-16 py-24 overflow-hidden">
         {/* Luxury texture background */}
-        <div className="absolute inset-0 bg-[url('../public/images/Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif')] bg-cover bg-center opacity-10"></div>
+        <picture className="absolute inset-0">
+  <source media="(max-width: 768px)" srcSet={heroBackgroundMobile} />
+  <source media="(min-width: 769px)" srcSet={heroBackground} />
+  <img
+    src={heroBackground}
+    alt="Luxury background texture"
+    className="w-full h-full object-cover opacity-10"
+    loading="eager"
+  />
+</picture>
         
         {/* Animated floating elements */}
         <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
