@@ -4,12 +4,12 @@ import { db } from '../../Firebase/firebaseConfig';
 import AdminLayout from '../../components/admin/AdminLayout';
 
 const DashboardPage = () => {
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<{
     totalProducts: 0,
     totalOrders: 0,
     totalRevenue: 0,
-    recentOrders: []
-  });
+    recentOrders: { id: string; [key: string]: any }[]
+  }>({ totalProducts: 0, totalOrders: 0, totalRevenue: 0, recentOrders: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
