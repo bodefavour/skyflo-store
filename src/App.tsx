@@ -46,11 +46,16 @@ function App() {
         } />
         <Route path="/birthday-gifts" element={<BirthdayGifts />} />
         <Route path="/Jewellries-Beads" element={<JewellriesBeads />} />
+        <Route path="/jewelry-%26-accessories" element={<JewellriesBeads />} />
         <Route path="/Fashion" element={<FashionSection />} />
+        <Route path="/fashion-essentials" element={<FashionSection />} />
+        <Route path="/travel-collections" element={<TravelSection />} />
         <Route path="/travel-section" element={<TravelSection />} />
         <Route path="/tote-bags" element={<ToteBag />} />
         <Route path="/Lip-gloss" element={<LipGloss />} />
         <Route path="/Decor" element={<Décor />} />
+        <Route path="/home-decor" element={<Décor />} />
+        <Route path="/event-packages" element={<EventsPae />} />
         <Route path="/Events" element={<EventsPae />} />
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
         <Route path="/Product-page" element={<ProductPage />} />
