@@ -55,7 +55,9 @@ const AdminAuth = () => {
         }
       }
     } catch (err) {
-      setError(err.message);
+ if (err instanceof Error) {
+ setError(err.message);
+ }
     }
   };
 
