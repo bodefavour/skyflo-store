@@ -20,6 +20,10 @@ import ProductsPage from "./pages/admin/products/ProductsPage";
 import ProductForm from "./pages/admin/products/ProductsForm";
 import AdminAuth from "./pages/admin/AdminAuth";
 import DashboardPage from "./pages/admin/DashboardPage";
+import OrdersPage from "./pages/admin/products/OrdersPage";
+import AnalyticsPage from "./pages/admin/products/AnalyticsPage";
+import CategoriesPage from "./pages/admin/products/CategoriesPage";
+import UsersPage from "./pages/admin/products/UsersPage";
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page"},
@@ -63,6 +67,10 @@ function App() {
         <Route path="/admin/dashboard" element={<DashboardPage />} />
         <Route path="/admin/products" element={<ProductsPage />} />
       <Route path="/admin/products/add" element={<ProductForm />} />
+      <Route path="/admin/categories" element={<CategoriesPage />} />
+      <Route path="/admin/orders" element={<OrdersPage />} />
+      <Route path="/admin/orders" element={<OrdersPage />} />
+      <Route path="/admin/user" element={<UsersPage />} />
       <Route path="/admin/products/edit/:id" element={<ProductForm />} />
         <Route path="/event-packages" element={<EventsPae />} />
         <Route path="/Events" element={<EventsPae />} />
