@@ -17,6 +17,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,13 +40,12 @@ const ProductsPage = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this product?')) {
-      try {
-        await deleteDoc(doc(db, 'products', id));
-        setProducts(products.filter(product => product.id !== id));
-      } catch (error) {
-        console.error('Error deleting product:', error);
-      }
+    try {
+      await deleteDoc(doc(db, 'products', id));
+      setProducts(products.filter(product => product.id !== id));
+      setDeleteConfirm(null);
+    } catch (error) {
+      console.error('Error deleting product:', error);
     }
   };
 
@@ -112,12 +112,29 @@ const ProductsPage = () => {
                           Edit
                         </button>
                       </Link>
-                      <button
-                        onClick={() => handleDelete(product.id)}
-                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                      >
-                        Delete
-                      </button>
+                      {deleteConfirm === product.id ? (
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleDelete(product.id)}
+                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                          >
+                            Confirm
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirm(null)}
+                            className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setDeleteConfirm(product.id)}
+                          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
