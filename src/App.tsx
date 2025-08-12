@@ -71,6 +71,7 @@ function App() {
       <Route path="/admin/orders" element={<OrdersPage />} />
       <Route path="/admin/orders" element={<OrdersPage />} />
       <Route path="/admin/user" element={<UsersPage />} />
+      <Route path="/admin/analytics" element={<AnalyticsPage />} />
       <Route path="/admin/products/edit/:id" element={<ProductForm />} />
         <Route path="/event-packages" element={<EventsPae />} />
         <Route path="/Events" element={<EventsPae />} />
