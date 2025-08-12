@@ -46,7 +46,7 @@ function App() {
         } />
         <Route path="/birthday-gifts" element={<BirthdayGifts />} />
         <Route path="/Jewellries-Beads" element={<JewellriesBeads />} />
-        <Route path="/jewelry-%26-accessories" element={<JewellriesBeads />} />
+        <Route path="/jewelry-accessories" element={<JewellriesBeads />} />
         <Route path="/Fashion" element={<FashionSection />} />
         <Route path="/fashion-essentials" element={<FashionSection />} />
         <Route path="/travel-collections" element={<TravelSection />} />
