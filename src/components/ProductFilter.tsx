@@ -1,39 +1,90 @@
 import React, { useState } from "react";
 
-const ProductFilter = ({ onFilterChange }: { onFilterChange: (filters: any) => void }) => {
-  const [filters, setFilters] = useState({
-    priceRange: "",
-    category: "",
-    sort: "newest",
-    line: "",
-    color: "",
-    material: "",
-  });
+interface Filters {
+  sort?: "priceAsc" | "priceDesc" | "nameAsc";
+  priceRange?: [number, number];
+  category?: string;
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const newFilters = { ...filters, [name]: value };
-    setFilters(newFilters);
-    onFilterChange(newFilters);
+interface ProductFilterProps {
+  onFilterChange: (filters: Filters) => void;
+  defaultSort?: "priceAsc" | "priceDesc" | "nameAsc";
+  availableCategories?: string[];
+}
+
+const ProductFilter: React.FC<ProductFilterProps> = ({ 
+  onFilterChange,
+  defaultSort = "priceAsc",
+  availableCategories = []
+}) => {
+  const [sortOption, setSortOption] = useState(defaultSort);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [category, setCategory] = useState<string>("");
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value as "priceAsc" | "priceDesc" | "nameAsc";
+    setSortOption(value);
+    onFilterChange({ sort: value, priceRange, category });
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPriceRange = [0, Number(e.target.value)] as [number, number];
+    setPriceRange(newPriceRange);
+    onFilterChange({ sort: sortOption, priceRange: newPriceRange, category });
+  };
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setCategory(value);
+    onFilterChange({ sort: sortOption, priceRange, category: value });
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-wrap gap-4 p-6 bg-gray-100 rounded-lg shadow-md">
-      <select name="sort" value={filters.sort} onChange={handleChange} className="p-2 border rounded">
-        <option value="newest">Sort by Newest</option>
-        <option value="lowToHigh">Price: Low to High</option>
-        <option value="highToLow">Price: High to Low</option>
-      </select>
+    <div className="bg-gray-50 p-4 rounded-lg mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <select
+            value={sortOption}
+            onChange={handleSortChange}
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-[#d4af37] focus:border-[#d4af37]"
+          >
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+            <option value="nameAsc">Name: A-Z</option>
+          </select>
+        </div>
 
-      <input type="text" name="category" placeholder="Category" value={filters.category} onChange={handleChange} className="p-2 border rounded" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Max Price: ${priceRange[1]}
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="1000"
+            value={priceRange[1]}
+            onChange={handlePriceChange}
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#d4af37]"
+          />
+        </div>
 
-      <input type="text" name="line" placeholder="Line" value={filters.line} onChange={handleChange} className="p-2 border rounded" />
-
-      <input type="text" name="color" placeholder="Color" value={filters.color} onChange={handleChange} className="p-2 border rounded" />
-
-      <input type="text" name="material" placeholder="Material" value={filters.material} onChange={handleChange} className="p-2 border rounded" />
-
-      <input type="number" name="priceRange" placeholder="Max Price" value={filters.priceRange} onChange={handleChange} className="p-2 border rounded" />
+        {availableCategories.length > 0 && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+            <select
+              value={category}
+              onChange={handleCategoryChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-[#d4af37] focus:border-[#d4af37]"
+            >
+              <option value="">All Categories</option>
+              {availableCategories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
