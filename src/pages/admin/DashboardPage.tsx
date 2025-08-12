@@ -5,9 +5,9 @@ import AdminLayout from '../../components/admin/AdminLayout';
 
 const DashboardPage = () => {
   const [stats, setStats] = useState<{
-    totalProducts: 0,
-    totalOrders: 0,
-    totalRevenue: 0,
+ totalProducts: number,
+ totalOrders: number,
+ totalRevenue: number,
     recentOrders: { id: string; [key: string]: any }[]
   }>({ totalProducts: 0, totalOrders: 0, totalRevenue: 0, recentOrders: [] });
   const [loading, setLoading] = useState(true);
