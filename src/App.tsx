@@ -16,6 +16,10 @@ import BirthdayGifts from "./pages/BirthdayGiftPage"; // Import the new page
 import Layout from "./components/Layout";
 import ProductPage from "./components/productpage";
 import LandingBody from "./components/LandingBody";
+import ProductsPage from "./pages/admin/products/ProductsPage";
+import ProductForm from "./pages/admin/products/ProductsForm";
+import AdminAuth from "./pages/admin/AdminAuth";
+import DashboardPage from "./pages/admin/DashboardPage";
 function App() {
   const sampleProducts = [
     { id: 1, name: "Red Gown", price: 599.99, image: "/images/31343C.svg", path: "./Product-page"},
@@ -55,6 +59,8 @@ function App() {
         <Route path="/Lip-gloss" element={<LipGloss />} />
         <Route path="/Decor" element={<Décor />} />
         <Route path="/home-decor" element={<Décor />} />
+        <Route path="/admin/login" element={<AdminAuth />} />
+        <Route path="/admin/dashboard" element={<DashboardPage />} />
         <Route path="/admin/products" element={<ProductsPage />} />
       <Route path="/admin/products/add" element={<ProductForm />} />
       <Route path="/admin/products/edit/:id" element={<ProductForm />} />
