@@ -185,24 +185,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         )}
       </div>
       
-      {/* Scrolling Indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-2 tracking-widest">SCROLL TO DISCOVER</span>
-          <div className="w-8 h-12 rounded-full border border-[#d4af37] flex justify-center p-1">
-            <motion.div
-              className="w-2 h-2 bg-[#d4af37] rounded-full"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
-        </div>
-      </motion.div>
     </motion.section>
   );
 };
