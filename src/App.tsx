@@ -55,6 +55,9 @@ function App() {
         <Route path="/Lip-gloss" element={<LipGloss />} />
         <Route path="/Decor" element={<Décor />} />
         <Route path="/home-decor" element={<Décor />} />
+        <Route path="/admin/products" element={<ProductsPage />} />
+      <Route path="/admin/products/add" element={<ProductForm />} />
+      <Route path="/admin/products/edit/:id" element={<ProductForm />} />
         <Route path="/event-packages" element={<EventsPae />} />
         <Route path="/Events" element={<EventsPae />} />
         <Route path="/Holiday-Specials" element={<HolidaySpecials />} />
