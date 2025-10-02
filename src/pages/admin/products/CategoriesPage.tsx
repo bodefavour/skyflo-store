@@ -101,7 +101,7 @@ const CategoriesPage = () => {
     <AdminLayout>
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">Product Categories</h1>
+          <h1 className="text-2xl font-bold text-white">Product Categories</h1>
         </div>
 
         {error && (
@@ -143,9 +143,9 @@ const CategoriesPage = () => {
               </h2>
               <ul className="divide-y divide-[#2a2a2a]">
                 {categories.length === 0 ? (
-                  <li className="p-6 text-center text-gray-500">No categories found</li>) : (
+                  <li className="p-6 text-center text-gray-400">No categories found</li>) : (
                   categories.map((category) => (
-                    <li key={category.id} className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <li key={category.id} className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:bg-[#2a2a2a]/30 transition-colors">
                       <div className="flex-1 min-w-0">
                         {editingId === category.id ? (
                           <div className="flex flex-col sm:flex-row gap-3">
@@ -177,9 +177,9 @@ const CategoriesPage = () => {
                           </div>
                         ) : (
                           <div className="space-y-1">
-                            <span className="text-lg font-medium">{category.name}</span>
+                            <span className="text-lg font-medium text-white">{category.name}</span>
                             {category.slug && (
-                              <p className="text-xs text-gray-500 uppercase tracking-wide">Slug: {category.slug}</p>
+                              <p className="text-xs text-gray-400 uppercase tracking-wide">Slug: {category.slug}</p>
                             )}
                           </div>
                         )}

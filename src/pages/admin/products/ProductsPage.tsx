@@ -98,7 +98,7 @@ const ProductsPage = () => {
           </div>
 
           {filteredProducts.length === 0 ? (
-            <div className="p-8 text-center text-gray-500">
+            <div className="p-8 text-center text-gray-400">
               {products.length === 0 ? 'No products found' : 'No matching products found'}
             </div>
           ) : (
@@ -119,7 +119,7 @@ const ProductsPage = () => {
                     />
                   </div>
                 </div>
-                <div className="col-span-3 flex items-center font-medium">
+                <div className="col-span-3 flex items-center font-medium text-white">
                   {product.name}
                 </div>
                 <div className="col-span-2 flex items-center text-gray-400">
