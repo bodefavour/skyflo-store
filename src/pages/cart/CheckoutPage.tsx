@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
@@ -39,19 +39,15 @@ const CheckoutPage: React.FC = () => {
     const [errors, setErrors] = useState<FormErrors>({});
     const [submitError, setSubmitError] = useState<string | null>(null);
 
-    const totals = useMemo(() => {
         const subtotal = getCartTotal();
         const shippingFee = subtotal >= 250 ? 0 : 15;
         const tax = subtotal * 0.08;
-        const total = subtotal + shippingFee + tax;
-
-        return {
+        const totals = {
             subtotal,
             shippingFee,
             tax,
-            total,
+            total: subtotal + shippingFee + tax,
         };
-    }, [cartItems, getCartTotal]);
 
     const validate = (): boolean => {
         const newErrors: FormErrors = {};

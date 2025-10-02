@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import type { Product } from '../types/types';
 
 export interface WishlistItem extends Product { }
@@ -32,31 +32,34 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     }, [items]);
 
-    const addToWishlist = (product: Product) => {
+        const addToWishlist = useCallback((product: Product) => {
         setItems((prev) => {
             if (prev.some((item) => item.id === product.id)) {
                 return prev;
             }
             return [...prev, product];
         });
-    };
+        }, []);
 
-    const removeFromWishlist = (productId: string) => {
+        const removeFromWishlist = useCallback((productId: string) => {
         setItems((prev) => prev.filter((item) => item.id !== productId));
-    };
+        }, []);
 
-    const toggleWishlist = (product: Product) => {
+        const toggleWishlist = useCallback((product: Product) => {
         setItems((prev) => {
             if (prev.some((item) => item.id === product.id)) {
                 return prev.filter((item) => item.id !== product.id);
             }
             return [...prev, product];
         });
-    };
+        }, []);
 
-    const isInWishlist = (productId: string) => items.some((item) => item.id === productId);
+        const isInWishlist = useCallback(
+            (productId: string) => items.some((item) => item.id === productId),
+            [items]
+        );
 
-    const clearWishlist = () => setItems([]);
+        const clearWishlist = useCallback(() => setItems([]), []);
 
     const value = useMemo(
         () => ({
@@ -68,7 +71,7 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             clearWishlist,
             count: items.length,
         }),
-        [items]
+            [items, addToWishlist, removeFromWishlist, toggleWishlist, isInWishlist, clearWishlist]
     );
 
     return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>;

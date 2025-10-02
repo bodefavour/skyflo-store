@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 interface HeroSectionProps {
@@ -21,7 +21,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ctaText = "Explore Collections",
   ctaLink = "/collections"
 }) => {
-  const [loaded, setLoaded] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       const img = new Image();
       img.src = backgroundImage;
       img.onload = () => {
-        setLoaded(true);
         controls.start("visible");
       };
     };

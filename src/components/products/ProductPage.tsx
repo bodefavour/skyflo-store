@@ -1,7 +1,6 @@
 import React from "react";
 import ProductImages from "./ProductImages";
 import ProductDetails from "./ProductDetails";
-import Footer from "../navigation/Footer";
 
 const ProductPage = () => {
   return (
