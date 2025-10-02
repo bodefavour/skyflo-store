@@ -127,8 +127,8 @@ const ProductDetailsPage: React.FC = () => {
                                         key={index}
                                         onClick={() => setSelectedImage(index)}
                                         className={`aspect-square rounded-lg overflow-hidden ${selectedImage === index
-                                                ? 'ring-2 ring-[#d4af37]'
-                                                : 'ring-1 ring-gray-200'
+                                            ? 'ring-2 ring-[#d4af37]'
+                                            : 'ring-1 ring-gray-200'
                                             }`}
                                     >
                                         <img
@@ -250,9 +250,8 @@ const ProductDetailsPage: React.FC = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={handleToggleWishlist}
-                                className={`w-full border border-[#d4af37]/60 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2 ${
-                                    inWishlist ? 'bg-[#d4af37] text-black' : 'bg-transparent text-gray-900 hover:bg-[#d4af37]/10'
-                                }`}
+                                className={`w-full border border-[#d4af37]/60 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2 ${inWishlist ? 'bg-[#d4af37] text-black' : 'bg-transparent text-gray-900 hover:bg-[#d4af37]/10'
+                                    }`}
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

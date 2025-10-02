@@ -113,8 +113,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         {filteredProducts.length === 0 ? (
           <div
             className={`text-center py-20 rounded-3xl border ${isDark
-                ? "border-white/10 bg-[#0f0f0f]/80 backdrop-blur-sm"
-                : "border-gray-200 bg-white"
+              ? "border-white/10 bg-[#0f0f0f]/80 backdrop-blur-sm"
+              : "border-gray-200 bg-white"
               }`}
           >
             <h3
@@ -183,38 +183,37 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
     <Link
       to={`/product/${product.id}`}
       className={`relative group block overflow-hidden rounded-2xl border transition-all duration-500 ${isDark
-          ? "bg-[#111111] border-white/10 shadow-xl shadow-black/40 hover:border-[#d4af37]/60 hover:shadow-[#d4af37]/20"
-          : "bg-white border-gray-100 hover:shadow-xl"
+        ? "bg-[#111111] border-white/10 shadow-xl shadow-black/40 hover:border-[#d4af37]/60 hover:shadow-[#d4af37]/20"
+        : "bg-white border-gray-100 hover:shadow-xl"
         }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-        <button
-          onClick={handleWishlistClick}
-          className={`absolute top-4 right-4 z-20 w-11 h-11 rounded-full flex items-center justify-center transition ${
-            inWishlist
-              ? "bg-[#d4af37] text-black"
-              : "bg-black/60 text-white hover:bg-black/80"
+      <button
+        onClick={handleWishlistClick}
+        className={`absolute top-4 right-4 z-20 w-11 h-11 rounded-full flex items-center justify-center transition ${inWishlist
+            ? "bg-[#d4af37] text-black"
+            : "bg-black/60 text-white hover:bg-black/80"
           }`}
-          aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
-        >
-          {inWishlist ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path d="M11.998 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.416 3 7.488 3c1.74 0 3.412.81 4.51 2.09A5.907 5.907 0 0116.509 3C19.58 3 22 5.42 22 8.5c0 3.78-3.408 6.86-8.54 11.54l-1.462 1.31z" />
-            </svg>
-          ) : (
-            <HeartOutlineIcon className="w-5 h-5" />
-          )}
-        </button>
+        aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+      >
+        {inWishlist ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-5 h-5"
+          >
+            <path d="M11.998 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.416 3 7.488 3c1.74 0 3.412.81 4.51 2.09A5.907 5.907 0 0116.509 3C19.58 3 22 5.42 22 8.5c0 3.78-3.408 6.86-8.54 11.54l-1.462 1.31z" />
+          </svg>
+        ) : (
+          <HeartOutlineIcon className="w-5 h-5" />
+        )}
+      </button>
 
       <div className="aspect-square overflow-hidden bg-black/20">
         <img
-            src={productImage}
+          src={productImage}
           alt={product.name}
           className={`w-full h-full object-cover transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}
         />
@@ -222,8 +221,8 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
 
       <div
         className={`absolute inset-0 bg-gradient-to-t opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 ${isDark
-            ? "from-black via-black/60 to-transparent"
-            : "from-black/70 via-black/30 to-transparent"
+          ? "from-black via-black/60 to-transparent"
+          : "from-black/70 via-black/30 to-transparent"
           }`}
       >
         <h3 className="text-white text-lg font-semibold mb-1">{product.name}</h3>
@@ -240,8 +239,8 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
         {product.category && (
           <span
             className={`inline-block mt-3 px-3 py-1 text-xs font-semibold tracking-wide rounded-full ${isDark
-                ? "bg-white/10 text-white/70"
-                : "bg-gray-100 text-gray-600"
+              ? "bg-white/10 text-white/70"
+              : "bg-gray-100 text-gray-600"
               }`}
           >
             {product.category}

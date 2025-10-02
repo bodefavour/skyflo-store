@@ -13,8 +13,8 @@ const normalizeItems = (items: unknown): OrderItem[] => {
         productId: item.productId ?? item.product_id ?? '',
         quantity: Number(item.quantity ?? 0),
         price: Number(item.price ?? 0),
-            name: item.name ?? undefined,
-            image: item.image ?? undefined,
+        name: item.name ?? undefined,
+        image: item.image ?? undefined,
     }));
 };
 
