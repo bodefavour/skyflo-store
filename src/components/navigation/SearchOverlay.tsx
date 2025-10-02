@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { searchProducts } from '../../services/api/products.service';
 import type { Product } from '../../types/types';
+import { useLocale } from '../../context/LocaleContext';
 
 interface SearchOverlayProps {
     isOpen: boolean;
@@ -14,6 +15,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {
     const [results, setResults] = useState<Product[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const { formatCurrency } = useLocale();
 
     useEffect(() => {
         if (!isOpen) {
@@ -135,7 +137,7 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {
                                                     {product.category && <p className="text-sm text-white/50 mt-1">{product.category}</p>}
                                                 </div>
                                                 <div className="text-[#d4af37] font-semibold">
-                                                    ${product.price.toFixed(2)}
+                                                    {formatCurrency(product.price)}
                                                 </div>
                                             </Link>
                                         </li>

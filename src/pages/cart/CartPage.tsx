@@ -2,10 +2,21 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
+import { useLocale } from '../../context/LocaleContext';
+
+const FREE_SHIPPING_THRESHOLD = 50;
+const STANDARD_SHIPPING_FEE = 10;
+const TAX_RATE = 0.08;
 
 const CartPage: React.FC = () => {
     const { cartItems, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
     const navigate = useNavigate();
+    const { formatCurrency } = useLocale();
+
+    const subtotal = getCartTotal();
+    const shippingFee = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING_FEE;
+    const tax = subtotal * TAX_RATE;
+    const total = subtotal + shippingFee + tax;
 
     const handleCheckout = () => {
         if (cartItems.length > 0) {
@@ -101,7 +112,7 @@ const CartPage: React.FC = () => {
                                             <p className="text-sm text-white/40 mt-1">{item.category}</p>
                                         )}
                                         <p className="text-lg font-semibold text-[#d4af37] mt-2">
-                                            ${item.price.toFixed(2)}
+                                            {formatCurrency(item.price)}
                                         </p>
                                     </div>
 
@@ -136,7 +147,7 @@ const CartPage: React.FC = () => {
                                 {/* Item Total */}
                                 <div className="text-right sm:pl-6 flex flex-col justify-between">
                                     <p className="text-lg font-semibold text-white">
-                                        ${(item.price * item.quantity).toFixed(2)}
+                                        {formatCurrency(item.price * item.quantity)}
                                     </p>
                                 </div>
                             </motion.div>
@@ -156,23 +167,21 @@ const CartPage: React.FC = () => {
                             <div className="space-y-4">
                                 <div className="flex justify-between text-white/60">
                                     <span>Subtotal</span>
-                                    <span>${getCartTotal().toFixed(2)}</span>
+                                    <span>{formatCurrency(subtotal)}</span>
                                 </div>
                                 <div className="flex justify-between text-white/60">
                                     <span>Shipping</span>
-                                    <span>{getCartTotal() > 50 ? 'Free' : '$10.00'}</span>
+                                    <span>{shippingFee === 0 ? 'Free' : formatCurrency(shippingFee)}</span>
                                 </div>
                                 <div className="flex justify-between text-white/60">
                                     <span>Tax (estimated)</span>
-                                    <span>${(getCartTotal() * 0.08).toFixed(2)}</span>
+                                    <span>{formatCurrency(tax)}</span>
                                 </div>
 
                                 <div className="border-t border-white/10 pt-4">
                                     <div className="flex justify-between text-lg font-semibold text-white">
                                         <span>Total</span>
-                                        <span>
-                                            ${(getCartTotal() + (getCartTotal() > 50 ? 0 : 10) + getCartTotal() * 0.08).toFixed(2)}
-                                        </span>
+                                        <span>{formatCurrency(total)}</span>
                                     </div>
                                 </div>
                             </div>

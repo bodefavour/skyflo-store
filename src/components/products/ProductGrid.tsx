@@ -5,6 +5,7 @@ import { Product } from "../../types/types";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { fetchProductsByCollection } from "../../services/api/products.service";
 import { useWishlist } from "../../context/WishlistContext";
+import { useLocale } from "../../context/LocaleContext";
 
 interface ProductGridProps {
   collectionName: string; // e.g. "birthdayGifts", "jewelry"
@@ -24,6 +25,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isDark = theme === "dark";
+  const { formatCurrency } = useLocale();
 
   // Fetch products from Supabase
   useEffect(() => {
@@ -170,6 +172,7 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
   const isDark = theme === "dark";
   const [isHovered, setIsHovered] = useState(false);
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { formatCurrency } = useLocale();
   const inWishlist = isInWishlist(product.id);
   const productImage = product.image || "/images/placeholder.jpg";
 
@@ -227,14 +230,14 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
       >
         <h3 className="text-white text-lg font-semibold mb-1">{product.name}</h3>
         <p className="text-[#d4af37] text-md font-semibold">
-          ${product.price.toFixed(2)}
+          {formatCurrency(product.price)}
         </p>
       </div>
 
       <div className={`p-5 ${isDark ? "text-white" : "text-gray-900"}`}>
         <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-[#d4af37] font-semibold mt-1">
-          ${product.price.toFixed(2)}
+          {formatCurrency(product.price)}
         </p>
         {product.category && (
           <span

@@ -32,20 +32,22 @@ import CheckoutPage from './pages/cart/CheckoutPage';
 import OrderConfirmationPage from './pages/cart/OrderConfirmationPage';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { LocaleProvider } from './context/LocaleContext';
 
 const withLayout = (content: ReactNode) => <Layout>{content}</Layout>;
 
 function App() {
   return (
-    <WishlistProvider>
-      <CartProvider>
-        <Router>
+    <LocaleProvider>
+      <WishlistProvider>
+        <CartProvider>
+          <Router>
           <Routes>
             <Route
               path="/"
               element={withLayout(
                 <>
-                  <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" />
+                  <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" />
                   <LandingBody />
                 </>
               )}
@@ -85,8 +87,9 @@ function App() {
             <Route path="/admin/users" element={<UsersPage />} />
           </Routes>
         </Router>
-      </CartProvider>
-    </WishlistProvider>
+        </CartProvider>
+      </WishlistProvider>
+    </LocaleProvider>
   );
 }
 

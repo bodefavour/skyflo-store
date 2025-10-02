@@ -5,12 +5,14 @@ import {
   SearchIcon,
   ShoppingBagIcon,
   ArrowLeftIcon,
+  UserIcon
 } from "@heroicons/react/outline";
 import { HeartIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
 import SearchOverlay from "./SearchOverlay";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,6 +91,17 @@ const NavBar: React.FC = () => {
             </Link>
 
             <div className="flex items-center space-x-3 sm:space-x-4">
+              <LocaleSwitcher />
+
+              <Link
+                to="/login"
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#d4af37] hover:text-[#d4af37] transition"
+                aria-label="Sign in or manage your account"
+              >
+                <UserIcon className="w-5 h-5" />
+                <span className="text-sm font-medium uppercase tracking-[0.2em]">Sign in</span>
+              </Link>
+
               <button
                 onClick={() => setIsSearchOpen(true)}
                 className="p-2 rounded-full hover:bg-white/10 transition"
@@ -168,6 +181,22 @@ const NavBar: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-10 border-t border-black/10 pt-6 space-y-3">
+                  <Link
+                    to="/login"
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-base font-medium text-black/80 hover:text-black transition"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-base font-medium text-black/80 hover:text-black transition"
+                  >
+                    Create account
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className="mt-12 flex-1 overflow-y-auto space-y-6">

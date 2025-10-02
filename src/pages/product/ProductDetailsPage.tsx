@@ -6,12 +6,14 @@ import { fetchProductById } from '../../services/api/products.service';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import { useLocale } from '../../context/LocaleContext';
 
 const ProductDetailsPage: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
     const navigate = useNavigate();
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+    const { formatCurrency } = useLocale();
 
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
@@ -161,7 +163,7 @@ const ProductDetailsPage: React.FC = () => {
 
                         <div className="flex items-baseline space-x-4">
                             <span className="text-4xl font-bold text-[#d4af37]">
-                                ${product.price.toFixed(2)}
+                                {formatCurrency(product.price)}
                             </span>
                         </div>
 
@@ -277,7 +279,7 @@ const ProductDetailsPage: React.FC = () => {
                                 </svg>
                                 <div>
                                     <h4 className="font-medium text-gray-900">Free Shipping</h4>
-                                    <p className="text-sm text-gray-600">On orders over $50</p>
+                                    <p className="text-sm text-gray-600">On orders over {formatCurrency(50)}</p>
                                 </div>
                             </div>
 

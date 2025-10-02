@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocale } from "../../context/LocaleContext";
 
 interface Filters {
   sort?: "priceAsc" | "priceDesc" | "nameAsc";
@@ -24,6 +25,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
   const [category, setCategory] = useState<string>("");
 
   const isDark = theme === "dark";
+  const { formatCurrency } = useLocale();
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as "priceAsc" | "priceDesc" | "nameAsc";
@@ -82,7 +84,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
               className={`tracking-normal text-sm font-medium ${isDark ? "text-white" : "text-gray-900"
                 }`}
             >
-              ${priceRange[1]}
+              {formatCurrency(priceRange[1])}
             </span>
           </label>
           <input

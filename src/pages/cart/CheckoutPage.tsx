@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { createOrder } from '../../services/api/orders.service';
 import type { CreateOrderPayload, ShippingAddress, PaymentDetails } from '../../types/types';
+import { useLocale } from '../../context/LocaleContext';
+
+const FREE_SHIPPING_THRESHOLD = 250;
+const STANDARD_SHIPPING_FEE = 15;
+const TAX_RATE = 0.08;
 
 interface FormErrors {
     fullName?: string;
@@ -17,7 +22,7 @@ interface FormErrors {
     paymentMethod?: string;
 }
 
-const defaultAddress: ShippingAddress = {
+const baseAddressTemplate: ShippingAddress = {
     fullName: '',
     email: '',
     phone: '',
@@ -25,23 +30,60 @@ const defaultAddress: ShippingAddress = {
     city: '',
     state: '',
     postalCode: '',
-    country: 'United States',
+    country: '',
+};
+
+const deriveCountryFromLocale = (locale: string): string => {
+    const region = locale?.split('-')[1];
+    if (!region) {
+        return 'United States';
+    }
+    if (typeof Intl !== 'undefined' && 'DisplayNames' in Intl) {
+        try {
+            const displayNames = new Intl.DisplayNames([locale], { type: 'region' });
+            const label = displayNames.of(region.toUpperCase());
+            if (label) {
+                return label;
+            }
+        } catch (error) {
+            console.warn('Unable to derive country name from locale', error);
+        }
+    }
+    return region.toUpperCase();
 };
 
 const CheckoutPage: React.FC = () => {
     const navigate = useNavigate();
     const { cartItems, getCartTotal, clearCart } = useCart();
-    const [address, setAddress] = useState<ShippingAddress>(defaultAddress);
+    const { formatCurrency, currency, locale: activeLocale, getCurrencyRate, baseCurrency } = useLocale();
+    const [address, setAddress] = useState<ShippingAddress>(() => ({
+        ...baseAddressTemplate,
+        country: deriveCountryFromLocale(activeLocale),
+    }));
     const [addressLine2, setAddressLine2] = useState('');
     const [paymentMethod, setPaymentMethod] = useState<PaymentDetails['method']>('card');
     const [notes, setNotes] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<FormErrors>({});
     const [submitError, setSubmitError] = useState<string | null>(null);
+    const [countryTouched, setCountryTouched] = useState(false);
+
+    useEffect(() => {
+        if (countryTouched) {
+            return;
+        }
+        const derivedCountry = deriveCountryFromLocale(activeLocale);
+        setAddress((prev) => {
+            if (prev.country === derivedCountry) {
+                return prev;
+            }
+            return { ...prev, country: derivedCountry };
+        });
+    }, [activeLocale, countryTouched]);
 
     const subtotal = getCartTotal();
-    const shippingFee = subtotal >= 250 ? 0 : 15;
-    const tax = subtotal * 0.08;
+    const shippingFee = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING_FEE;
+    const tax = subtotal * TAX_RATE;
     const totals = {
         subtotal,
         shippingFee,
@@ -67,6 +109,9 @@ const CheckoutPage: React.FC = () => {
     };
 
     const handleChange = (field: keyof ShippingAddress, value: string) => {
+        if (field === 'country') {
+            setCountryTouched(true);
+        }
         setAddress((prev) => ({ ...prev, [field]: value }));
         setErrors((prev) => ({ ...prev, [field]: undefined }));
     };
@@ -115,6 +160,10 @@ const CheckoutPage: React.FC = () => {
                 total: totals.total,
                 payment,
                 notes: notes.trim() || undefined,
+                currency_code: currency,
+                currency_rate: getCurrencyRate(currency),
+                base_currency: baseCurrency,
+                locale: activeLocale,
             };
 
             const order = await createOrder(payload);
@@ -342,7 +391,7 @@ const CheckoutPage: React.FC = () => {
                                                 <p className="text-white/50">Qty {item.quantity}</p>
                                             </div>
                                             <p className="font-medium text-[#d4af37]">
-                                                ${(item.price * item.quantity).toFixed(2)}
+                                                {formatCurrency(item.price * item.quantity)}
                                             </p>
                                         </div>
                                     ))}
@@ -351,21 +400,21 @@ const CheckoutPage: React.FC = () => {
                                 <div className="border-t border-white/10 pt-4 space-y-3 text-white/70">
                                     <div className="flex justify-between">
                                         <span>Subtotal</span>
-                                        <span>${totals.subtotal.toFixed(2)}</span>
+                                        <span>{formatCurrency(totals.subtotal)}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Shipping</span>
-                                        <span>{totals.shippingFee === 0 ? 'Free' : `$${totals.shippingFee.toFixed(2)}`}</span>
+                                        <span>{totals.shippingFee === 0 ? 'Free' : formatCurrency(totals.shippingFee)}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Tax</span>
-                                        <span>${totals.tax.toFixed(2)}</span>
+                                        <span>{formatCurrency(totals.tax)}</span>
                                     </div>
                                 </div>
 
                                 <div className="border-t border-white/10 pt-4 flex justify-between text-base font-semibold">
                                     <span>Total due</span>
-                                    <span>${totals.total.toFixed(2)}</span>
+                                    <span>{formatCurrency(totals.total)}</span>
                                 </div>
                             </div>
                         </motion.div>

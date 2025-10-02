@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fetchOrderById } from '../../services/api/orders.service';
 import type { Order } from '../../types/types';
+import { useLocale } from '../../context/LocaleContext';
 
 interface LocationState {
     order?: Order;
@@ -16,6 +17,7 @@ const OrderConfirmationPage: React.FC = () => {
     const [order, setOrder] = useState<Order | null>(state.order ?? null);
     const [loading, setLoading] = useState(!state.order);
     const [error, setError] = useState<string | null>(null);
+    const { formatCurrency } = useLocale();
 
     useEffect(() => {
         let active = true;
@@ -150,7 +152,7 @@ const OrderConfirmationPage: React.FC = () => {
                                         <p className="font-medium text-white/90">{item.name ?? `Product #${item.productId}`}</p>
                                         <p className="text-white/50 text-sm">Quantity: {item.quantity}</p>
                                     </div>
-                                    <p className="font-medium text-[#d4af37]">${(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="font-medium text-[#d4af37]">{formatCurrency(item.price * item.quantity)}</p>
                                 </div>
                             ))}
                         </div>
@@ -159,19 +161,19 @@ const OrderConfirmationPage: React.FC = () => {
                             <div className="border-t border-white/10 mt-6 pt-4 space-y-3 text-sm text-white/60">
                                 <div className="flex justify-between">
                                     <span>Subtotal</span>
-                                    <span>${totals.subtotal.toFixed(2)}</span>
+                                    <span>{formatCurrency(totals.subtotal)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Shipping</span>
-                                    <span>{totals.shipping > 0 ? `$${totals.shipping.toFixed(2)}` : 'Free'}</span>
+                                    <span>{totals.shipping > 0 ? formatCurrency(totals.shipping) : 'Free'}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Tax</span>
-                                    <span>${totals.tax.toFixed(2)}</span>
+                                    <span>{formatCurrency(totals.tax)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Total paid</span>
-                                    <span>${totals.total.toFixed(2)}</span>
+                                    <span>{formatCurrency(totals.total)}</span>
                                 </div>
                             </div>
                         )}

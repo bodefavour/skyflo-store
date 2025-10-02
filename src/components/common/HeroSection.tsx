@@ -5,21 +5,26 @@ interface HeroSectionProps {
   backgroundImage: string;
   brandName?: string;
   tagline?: string;
+  badgeText?: string;
   children?: ReactNode;
   className?: string;
   brandNameStyle?: React.CSSProperties;
   ctaText?: string;
   ctaLink?: string;
+  showOverlay?: boolean;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
   brandName,
   tagline,
+  badgeText,
   children,
   className = "",
-  ctaText = "Explore Collections",
-  ctaLink = "/collections"
+  brandNameStyle,
+  ctaText,
+  ctaLink,
+  showOverlay = true
 }) => {
   const controls = useAnimation();
 
@@ -93,8 +98,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/40"></div>
+      {showOverlay && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/40"></div>
+        </>
+      )}
 
       {/* Floating Elements */}
       <motion.div
@@ -112,27 +121,32 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Main Content Container */}
       <div className="relative z-10 max-w-6xl w-full px-6 sm:px-8 flex flex-col items-center text-center">
         {/* Brand Name */}
-        {brandName && (
+        {(badgeText || brandName) && (
           <motion.div
             className="text-center mb-6"
             variants={childVariants}
           >
-            <motion.div
-              className="border-t border-b border-[#d4af37] py-2 px-8 mb-6 text-sm tracking-[0.3em] text-[#d4af37]"
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "100%", opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              LUXURY GIFTING
-            </motion.div>
-            <motion.h1
-              className="font-serif font-light text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              {brandName}
-            </motion.h1>
+            {badgeText && (
+              <motion.div
+                className="border-t border-b border-[#d4af37] py-2 px-8 mb-6 text-sm tracking-[0.3em] text-[#d4af37]"
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "100%", opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+              >
+                {badgeText}
+              </motion.div>
+            )}
+            {brandName && (
+              <motion.h1
+                className="font-serif font-light text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight"
+                style={brandNameStyle}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              >
+                {brandName}
+              </motion.h1>
+            )}
           </motion.div>
         )}
 
@@ -154,23 +168,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         )}
 
         {/* Primary CTA */}
-        <motion.div
-          className="mb-16"
-          variants={childVariants}
-        >
+        {ctaText && ctaLink && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            className="mb-16"
+            variants={childVariants}
           >
-            <a
-              href={ctaLink}
-              className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 sm:px-10 sm:py-5 font-medium tracking-wider text-base sm:text-lg transition-all duration-300 shadow-xl rounded-full"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
             >
-              {ctaText}
-            </a>
+              <a
+                href={ctaLink}
+                className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 sm:px-10 sm:py-5 font-medium tracking-wider text-base sm:text-lg transition-all duration-300 shadow-xl rounded-full"
+              >
+                {ctaText}
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
 
         {/* Custom Content */}
         {children && (
