@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../Firebase/firebaseConfig';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { signOutAdmin } from '../../services/authService';
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +10,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      await signOutAdmin();
       navigate('/admin/login');
     } catch (error) {
       console.error('Error signing out:', error);

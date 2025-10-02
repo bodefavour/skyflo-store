@@ -1,0 +1,48 @@
+mutation AddNewProduct($productData: Product_Data!) @auth(level: USER) {
+  product_insert(data: $productData)
+}
+
+query ListAvailableProducts @auth(level: PUBLIC) {
+  products(where: {stockQuantity: {gt: 0}}) {
+    id
+    name
+    description
+    price
+    imageUrl
+    stockQuantity
+    category {
+      id
+      name
+    }
+    seller {
+      id
+      displayName
+    }
+  }
+}
+
+mutation UpdateStockQuantity($productId: UUID!, $quantity: Int!) @auth(level: USER) {
+  product_update(
+    key: {id: $productId}
+    data: {stockQuantity: $quantity}
+  )
+}
+
+query GetUserOrders($userId: UUID!) @auth(level: USER) {
+  orders(where: {userId: {eq: $userId}}) {
+    id
+    orderDate
+    status
+    totalAmount
+    orderItems_on_order {
+      id
+      product {
+        id
+        name
+        price
+      }
+      quantity
+      priceAtTimeOfOrder
+    }
+  }
+}

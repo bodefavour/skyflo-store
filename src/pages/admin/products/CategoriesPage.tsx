@@ -1,60 +1,99 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../../Firebase/firebaseConfig';
+import { useEffect, useState } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
+import {
+  createCategory,
+  deleteCategory,
+  fetchCategories,
+  updateCategory,
+} from '../../../services/categoriesService';
+import { Category } from '../../../types/types';
 
 const CategoriesPage = () => {
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [newCategory, setNewCategory] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingValue, setEditingValue] = useState('');
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const loadCategories = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'categories'));
-        const categoriesData = querySnapshot.docs.map(doc => doc.data().name);
-        setCategories(categoriesData);
+        setLoading(true);
+        const data = await fetchCategories();
+        setCategories(data);
       } catch (err) {
-        setError('Failed to fetch categories');
-        console.error(err);
+        setError(err instanceof Error ? err.message : 'Failed to load categories');
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchCategories();
+    loadCategories();
   }, []);
 
   const handleAddCategory = async () => {
     if (!newCategory.trim()) return;
-    
+
     try {
-      setLoading(true);
-      await addDoc(collection(db, 'categories'), { name: newCategory.trim() });
-      setCategories([...categories, newCategory.trim()]);
+      setSaving(true);
+      const category = await createCategory(newCategory.trim());
+      setCategories((prev) => [...prev, category]);
       setNewCategory('');
     } catch (err) {
-      setError('Failed to add category');
-      console.error(err);
+      setError(err instanceof Error ? err.message : 'Failed to add category');
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
 
-  const handleDeleteCategory = async (category: string) => {
+  const handleDeleteCategory = async (id: string) => {
     try {
-      setLoading(true);
-      const querySnapshot = await getDocs(collection(db, 'categories'));
-      const docToDelete = querySnapshot.docs.find(doc => doc.data().name === category);
-      
-      if (docToDelete) {
-        await deleteDoc(doc(db, 'categories', docToDelete.id));
-        setCategories(categories.filter(cat => cat !== category));
+      setSaving(true);
+      await deleteCategory(id);
+      setCategories((prev) => prev.filter((cat) => cat.id !== id));
+      if (editingId === id) {
+        setEditingId(null);
+        setEditingValue('');
       }
     } catch (err) {
-      setError('Failed to delete category');
-      console.error(err);
+      setError(err instanceof Error ? err.message : 'Failed to delete category');
     } finally {
-      setLoading(false);
+      setSaving(false);
+    }
+  };
+
+  const startEditing = (category: Category) => {
+    setEditingId(category.id);
+    setEditingValue(category.name);
+  };
+
+  const handleUpdateCategory = async () => {
+    if (!editingId || !editingValue.trim()) {
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const updated = await updateCategory(editingId, editingValue.trim());
+      setCategories((prev) => prev.map((cat) => (cat.id === updated.id ? updated : cat)));
+      setEditingId(null);
+      setEditingValue('');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update category');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleEditKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleUpdateCategory();
+    } else if (event.key === 'Escape') {
+      setEditingId(null);
+      setEditingValue('');
     }
   };
 
@@ -66,55 +105,109 @@ const CategoriesPage = () => {
         </div>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <div className="bg-red-900/20 border border-red-500 text-red-200 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
 
-        <div className="max-w-2xl bg-[#1a1a1a] p-6 rounded-lg border border-[#2a2a2a] mb-8">
-          <h2 className="text-xl font-medium mb-4 text-[#d4af37]">Add New Category</h2>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              className="flex-grow bg-[#0a0a0a] border border-[#2a2a2a] text-white p-3 rounded focus:border-[#d4af37] focus:outline-none"
-              placeholder="Category name"
-            />
-            <button
-              onClick={handleAddCategory}
-              disabled={loading || !newCategory.trim()}
-              className="bg-[#d4af37] hover:bg-[#c99b3f] text-black px-6 py-3 rounded font-medium disabled:bg-[#d4af37]/50"
-            >
-              {loading ? 'Adding...' : 'Add'}
-            </button>
+        {loading ? (
+          <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#2a2a2a] text-gray-400">
+            Loading categories...
           </div>
-        </div>
-
-        <div className="bg-[#1a1a1a] rounded-lg border border-[#2a2a2a] overflow-hidden">
-          <h2 className="text-xl font-medium p-6 border-b border-[#2a2a2a] text-[#d4af37]">
-            Existing Categories
-          </h2>
-          <ul className="divide-y divide-[#2a2a2a]">
-            {categories.map((category, index) => (
-              <li key={index} className="p-6 flex justify-between items-center">
-                <span className="text-lg">{category}</span>
+        ) : (
+          <>
+            <div className="max-w-2xl bg-[#1a1a1a] p-6 rounded-lg border border-[#2a2a2a] mb-8">
+              <h2 className="text-xl font-medium mb-4 text-[#d4af37]">Add New Category</h2>
+              <div className="flex flex-col md:flex-row gap-4">
+                <input
+                  type="text"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  className="flex-grow bg-[#0a0a0a] border border-[#2a2a2a] text-white p-3 rounded focus:border-[#d4af37] focus:outline-none"
+                  placeholder="Category name"
+                  disabled={saving}
+                />
                 <button
-                  onClick={() => handleDeleteCategory(category)}
-                  disabled={loading}
-                  className="text-red-500 hover:text-red-400 p-2 rounded-full hover:bg-red-500/10"
+                  onClick={handleAddCategory}
+                  disabled={saving || !newCategory.trim()}
+                  className="bg-[#d4af37] hover:bg-[#c99b3f] text-black px-6 py-3 rounded font-medium disabled:opacity-50"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
+                  {saving && !editingId ? 'Saving...' : 'Add'}
                 </button>
-              </li>
-            ))}
-            {categories.length === 0 && (
-              <li className="p-6 text-center text-gray-500">No categories found</li>
-            )}
-          </ul>
-        </div>
+              </div>
+            </div>
+
+            <div className="bg-[#1a1a1a] rounded-lg border border-[#2a2a2a] overflow-hidden">
+              <h2 className="text-xl font-medium p-6 border-b border-[#2a2a2a] text-[#d4af37]">
+                Existing Categories
+              </h2>
+              <ul className="divide-y divide-[#2a2a2a]">
+                {categories.length === 0 ? (
+                  <li className="p-6 text-center text-gray-500">No categories found</li>) : (
+                  categories.map((category) => (
+                    <li key={category.id} className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        {editingId === category.id ? (
+                          <div className="flex flex-col sm:flex-row gap-3">
+                            <input
+                              value={editingValue}
+                              onChange={(e) => setEditingValue(e.target.value)}
+                              onKeyDown={handleEditKeyDown}
+                              autoFocus
+                              className="flex-grow bg-[#0a0a0a] border border-[#2a2a2a] text-white p-2 rounded focus:border-[#d4af37]"
+                            />
+                            <div className="flex gap-2">
+                              <button
+                                onClick={handleUpdateCategory}
+                                disabled={saving}
+                                className="bg-[#d4af37] text-black px-4 py-2 rounded font-medium disabled:opacity-50"
+                              >
+                                Save
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setEditingId(null);
+                                  setEditingValue('');
+                                }}
+                                className="px-4 py-2 rounded border border-[#2a2a2a] text-sm"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="space-y-1">
+                            <span className="text-lg font-medium">{category.name}</span>
+                            {category.slug && (
+                              <p className="text-xs text-gray-500 uppercase tracking-wide">Slug: {category.slug}</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      {editingId !== category.id && (
+                        <div className="flex gap-3 justify-end">
+                          <button
+                            onClick={() => startEditing(category)}
+                            className="text-[#d4af37] hover:text-[#c99b3f]"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteCategory(category.id)}
+                            disabled={saving}
+                            className="text-red-500 hover:text-red-400"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </AdminLayout>
   );

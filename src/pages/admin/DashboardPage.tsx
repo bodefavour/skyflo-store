@@ -1,58 +1,46 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../Firebase/firebaseConfig';
+import { useEffect, useState } from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
+import { fetchDashboardStats } from '../../services/dashboardService';
+import { DashboardStats } from '../../types/types';
 
 const DashboardPage = () => {
-  const [stats, setStats] = useState<{
- totalProducts: number,
- totalOrders: number,
- totalRevenue: number,
-    recentOrders: { id: string; [key: string]: any }[]
-  }>({ totalProducts: 0, totalOrders: 0, totalRevenue: 0, recentOrders: [] });
-  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const load = async () => {
       try {
-        // Get total products
-        const productsQuery = await getDocs(collection(db, 'products'));
-        
-        // Get total orders (you'll need to implement this collection)
-        const ordersQuery = await getDocs(collection(db, 'orders'));
-        
-        // Calculate revenue (sum of all order totals)
-        let revenue = 0;
-        ordersQuery.forEach(doc => {
-          revenue += doc.data().total || 0;
-        });
-
-        // Get recent orders
-        const recentOrdersQuery = await getDocs(
-          query(collection(db, 'orders'), where('status', '==', 'pending'))
-        );
-        const recentOrders = recentOrdersQuery.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-
-        setStats({
-          totalProducts: productsQuery.size,
-          totalOrders: ordersQuery.size,
-          totalRevenue: revenue,
-          recentOrders
-        });
-      } catch (error) {
-        console.error('Error fetching dashboard stats:', error);
-      } finally {
-        setLoading(false);
+        const dashboardStats = await fetchDashboardStats();
+        setStats(dashboardStats);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load dashboard');
       }
     };
 
-    fetchStats();
+    load();
   }, []);
 
-  if (loading) return <div>Loading dashboard...</div>;
+  if (error) {
+    return (
+      <AdminLayout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="bg-red-900/20 border border-red-700 text-red-200 px-4 py-3 rounded">
+            {error}
+          </div>
+        </div>
+      </AdminLayout>
+    );
+  }
+
+  if (!stats) {
+    return (
+      <AdminLayout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center text-gray-400">Loading dashboard...</div>
+        </div>
+      </AdminLayout>
+    );
+  }
 
   return (
     <AdminLayout>
@@ -82,7 +70,7 @@ const DashboardPage = () => {
                   {stats.recentOrders.map(order => (
                     <tr key={order.id} className="border-b hover:bg-gray-50">
                       <td className="py-3 px-4">{order.id.slice(0, 8)}...</td>
-                      <td className="py-3 px-4">{order.customerName || 'N/A'}</td>
+                      <td className="py-3 px-4">{order.customer_name || 'N/A'}</td>
                       <td className="py-3 px-4">${order.total?.toFixed(2) || '0.00'}</td>
                       <td className="py-3 px-4">
                         <span className={`px-2 py-1 rounded text-xs ${

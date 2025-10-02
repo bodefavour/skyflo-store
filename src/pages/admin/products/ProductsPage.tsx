@@ -1,18 +1,12 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../../Firebase/firebaseConfig';
+import { useEffect, useState } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  description?: string;
-}
+import {
+  deleteProduct,
+  fetchAllProductsAdmin,
+} from '../../../services/productsService';
+import { Product } from '../../../types/types';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,15 +19,11 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const productsData: Product[] = [];
-        querySnapshot.forEach((doc) => {
-          productsData.push({ id: doc.id, ...doc.data() } as Product);
-        });
-        setProducts(productsData);
-      } catch (error) {
+        const records = await fetchAllProductsAdmin();
+        setProducts(records);
+      } catch (err) {
         setError('Failed to fetch products');
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products:', err);
       } finally {
         setLoading(false);
       }
@@ -44,18 +34,18 @@ const ProductsPage = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(db, 'products', id));
-      setProducts(products.filter(product => product.id !== id));
+      await deleteProduct(id);
+      setProducts((prev) => prev.filter((product) => product.id !== id));
       setDeleteConfirm(null);
-    } catch (error) {
+    } catch (err) {
       setError('Failed to delete product');
-      console.error('Error deleting product:', error);
+      console.error('Error deleting product:', err);
     }
   };
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.category.toLowerCase().includes(searchTerm.toLowerCase())
+    (product.category ?? '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) return (
@@ -133,7 +123,7 @@ const ProductsPage = () => {
                   {product.name}
                 </div>
                 <div className="col-span-2 flex items-center text-gray-400">
-                  {product.category}
+                  {product.category ?? 'Unassigned'}
                 </div>
                 <div className="col-span-2 flex items-center text-[#d4af37]">
                   ${product.price.toFixed(2)}

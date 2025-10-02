@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ProductFilter from "./ProductFilter";
 import { Product } from "../types/types";
-import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
-import { db } from "../Firebase/firebaseConfig";
 import LoadingSpinner from "./LoadingSpinner";
+import { fetchProductsByCollection } from "../services/productsService";
 
 interface ProductGridProps {
   collectionName: string; // e.g. "birthdayGifts", "jewelry"
@@ -21,21 +20,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch products from Firebase
+  // Fetch products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const q = query(collection(db, collectionName));
-        const querySnapshot = await getDocs(q);
-        const productsData: Product[] = [];
-        
-        querySnapshot.forEach((doc) => {
-          productsData.push({ 
-            id: doc.id, 
-            ...doc.data() 
-          } as Product);
-        });
-
+        const productsData = await fetchProductsByCollection(collectionName);
         setProducts(productsData);
         setFilteredProducts(productsData);
         applyDefaultSort(productsData, defaultSort);

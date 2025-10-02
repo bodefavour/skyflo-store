@@ -1,21 +1,43 @@
-import { useState } from 'react';
-import { 
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword 
-} from 'firebase/auth';
-import { auth, db } from '../../Firebase/firebaseConfig';
-import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {
+  fetchAdminSettings,
+  hasAdminAccount,
+  signInAdmin,
+  signOutAdmin,
+  signUpAdmin,
+} from '../../services/authService';
 
 const AdminAuth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [setupKey, setSetupKey] = useState('');
   const [error, setError] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  const [setupKey, setSetupKey] = useState('');
   const [isInitialSetup, setIsInitialSetup] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const hasAdmin = await hasAdminAccount();
+        if (!hasAdmin) {
+          setIsLogin(false);
+          setIsInitialSetup(true);
+        }
+        await fetchAdminSettings();
+      } catch (err) {
+        console.error(err);
+        setError(err instanceof Error ? err.message : 'Unable to load admin settings.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    init();
+  }, []);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,44 +45,50 @@ const AdminAuth = () => {
 
     try {
       if (isLogin) {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const adminConfig = await getDoc(doc(db, 'adminConfig', 'setup'));
-        
-        if (!adminConfig.data()?.adminEmails?.includes(userCredential.user.email)) {
-          await auth.signOut();
-          throw new Error('Not an admin');
+        const profile = await signInAdmin(email, password);
+        if (profile.role !== 'admin') {
+          setError('This account does not have admin access.');
+          await signOutAdmin();
+          return;
         }
         navigate('/admin/dashboard');
       } else {
-        if (isInitialSetup) {
-          const adminConfig = await getDoc(doc(db, 'adminConfig', 'setup'));
-          
-          if (adminConfig.data()?.key !== setupKey) {
-            throw new Error('Invalid setup key');
-          }
-
-          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          await updateDoc(doc(db, 'adminConfig', 'setup'), {
-            adminEmails: arrayUnion(email)
-          });
-
-          navigate('/admin/dashboard');
-        } else {
-          throw new Error('New admins require setup key');
+        if (!isInitialSetup) {
+          setError('Admin registration is disabled.');
+          return;
         }
+
+        const { profile, needsVerification } = await signUpAdmin(email, password, setupKey);
+
+        if (needsVerification) {
+          setError('Check your email to confirm the account before logging in.');
+          return;
+        }
+
+        if (!profile) {
+          setError('Sign-up completed. Please try signing in.');
+          return;
+        }
+
+        navigate('/admin/dashboard');
       }
     } catch (err) {
- if (err instanceof Error) {
- setError(err.message);
-      } else {
- setError('An unknown error occurred.');
-      }
+      const message = err instanceof Error ? err.message : 'An unknown error occurred.';
+      setError(message);
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+        <div className="text-sm text-gray-400">Loading admin portal...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans flex items-center justify-center p-4">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-8 shadow-2xl"
@@ -77,7 +105,7 @@ const AdminAuth = () => {
         </div>
 
         {error && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="bg-red-900/30 border border-red-700 text-red-200 px-4 py-3 rounded-lg mb-6 text-sm"
@@ -112,7 +140,7 @@ const AdminAuth = () => {
             />
           </div>
 
-          {!isLogin && isInitialSetup && (
+          {!isLogin && (
             <div>
               <label className="block text-gray-400 text-sm mb-2">Setup Key</label>
               <input
@@ -137,26 +165,17 @@ const AdminAuth = () => {
         </form>
 
         <div className="mt-6 text-center space-y-3">
-          <button 
+          <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-[#d4af37] hover:text-[#c99b3f] text-sm transition-colors"
           >
             {isLogin ? 'Need to setup first admin?' : 'Already have an account?'}
           </button>
-
-          {!isLogin && !isInitialSetup && (
-            <button 
-              onClick={() => setIsInitialSetup(true)}
-              className="block w-full text-[#d4af37] hover:text-[#c99b3f] text-sm transition-colors mt-2"
-            >
-              Perform initial setup
-            </button>
-          )}
         </div>
 
         <div className="mt-8 pt-6 border-t border-[#2a2a2a] text-center">
           <p className="text-gray-500 text-xs">
-            For security reasons, admin access is strictly controlled
+            Admin access is limited to approved users managed via Supabase Auth.
           </p>
         </div>
       </motion.div>

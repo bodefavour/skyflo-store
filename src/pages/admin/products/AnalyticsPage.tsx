@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../../Firebase/firebaseConfig';
+import { useEffect, useMemo, useState } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
 import {
   LineChart,
@@ -17,35 +15,24 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
+import { fetchOrders } from '../../../services/ordersService';
+import { Order, OrderItem } from '../../../types/types';
+
+const COLORS = ['#d4af37', '#c99b3f', '#bf8b47', '#b47c4f', '#a96e57'];
 
 const AnalyticsPage = () => {
   const [loading, setLoading] = useState(true);
   const [salesData, setSalesData] = useState<any[]>([]);
   const [productData, setProductData] = useState<any[]>([]);
   const [timeRange, setTimeRange] = useState('month');
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        
-        // Fetch orders data
-        const ordersQuery = query(collection(db, 'orders'));
-        const ordersSnapshot = await getDocs(ordersQuery);
-        const orders = ordersSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-          date: new Date(doc.data().date)
-        }));
-
-        // Process sales data
-        const monthlySales = processSalesData(orders, timeRange);
-        setSalesData(monthlySales);
-
-        // Process product data
-        const topProducts = processProductData(orders);
-        setProductData(topProducts);
-
+        const data = await fetchOrders();
+        setOrders(data);
       } catch (err) {
         console.error('Error fetching analytics data:', err);
       } finally {
@@ -54,41 +41,71 @@ const AnalyticsPage = () => {
     };
 
     fetchData();
-  }, [timeRange]);
+  }, []);
 
-  const processSalesData = (orders: any[], range: string) => {
+  const parsedOrders = useMemo(() => {
+    return orders.map((order) => {
+      const dateValue = order.placed_at ?? order.created_at ?? order.updated_at;
+      const parsedDate = dateValue ? new Date(dateValue) : null;
+
+      return {
+        ...order,
+        parsedDate,
+      };
+    });
+  }, [orders]);
+
+  useEffect(() => {
+    const monthlySales = processSalesData(parsedOrders, timeRange);
+    setSalesData(monthlySales);
+
+    const topProducts = processProductData(parsedOrders);
+    setProductData(topProducts);
+  }, [parsedOrders, timeRange]);
+
+  const processSalesData = (ordersWithDate: Array<Order & { parsedDate: Date | null }>, range: string) => {
     // Group orders by time period
     const now = new Date();
-    const groups: {[key: string]: number} = {};
+    const groups: {[key: string]: { total: number; referenceDate: Date }} = {};
 
-    orders.forEach(order => {
+    ordersWithDate.forEach(order => {
+      if (!order.parsedDate) {
+        return;
+      }
+
       let key;
+      let referenceDate = order.parsedDate;
       if (range === 'week') {
-        key = `Week ${Math.ceil((now.getTime() - order.date.getTime()) / (7 * 24 * 60 * 60 * 1000))}`;
+        const diffWeeks = Math.floor((now.getTime() - order.parsedDate.getTime()) / (7 * 24 * 60 * 60 * 1000));
+        key = diffWeeks <= 0 ? 'This week' : `${diffWeeks}w ago`;
+        referenceDate = new Date(order.parsedDate);
+        referenceDate.setDate(referenceDate.getDate() - referenceDate.getDay());
       } else if (range === 'day') {
-        key = order.date.toLocaleDateString();
+        key = order.parsedDate.toLocaleDateString();
       } else {
-        key = order.date.toLocaleString('default', { month: 'short' });
+        key = order.parsedDate.toLocaleString('default', { month: 'short', year: 'numeric' });
+        referenceDate = new Date(order.parsedDate.getFullYear(), order.parsedDate.getMonth(), 1);
       }
 
       if (!groups[key]) {
-        groups[key] = 0;
+        groups[key] = { total: 0, referenceDate };
       }
-      groups[key] += order.total;
+      groups[key].total += order.total;
     });
 
-    return Object.entries(groups).map(([name, value]) => ({ name, value }));
+    return Object.entries(groups)
+      .map(([name, { total, referenceDate }]) => ({ name, value: total, reference: referenceDate }))
+      .sort((a, b) => a.reference.getTime() - b.reference.getTime())
+      .map(({ name, value }) => ({ name, value }));
   };
 
-  const processProductData = (orders: any[]) => {
+  const processProductData = (ordersWithDate: Array<Order & { parsedDate: Date | null }>) => {
     const productCounts: {[key: string]: number} = {};
 
-    orders.forEach(order => {
-      order.items.forEach((item: any) => {
-        if (!productCounts[item.productId]) {
-          productCounts[item.productId] = 0;
-        }
-        productCounts[item.productId] += item.quantity;
+    ordersWithDate.forEach((order) => {
+      order.items.forEach((item: OrderItem) => {
+        const productKey = item.productId || 'unknown';
+        productCounts[productKey] = (productCounts[productKey] ?? 0) + item.quantity;
       });
     });
 
@@ -97,8 +114,6 @@ const AnalyticsPage = () => {
       .slice(0, 5)
       .map(([name, value]) => ({ name, value }));
   };
-
-  const COLORS = ['#d4af37', '#c99b3f', '#bf8b47', '#b47c4f', '#a96e57'];
 
   return (
     <AdminLayout>

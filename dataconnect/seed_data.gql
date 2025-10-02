@@ -1,0 +1,80 @@
+mutation SeedData @auth(level: USER) {
+  category_upsertMany(data: [
+    {
+      id: "11111111-1111-1111-1111-111111111111",
+      name: "Electronics",
+      description: "Electronic gadgets and accessories"
+    },
+    {
+      id: "22222222-2222-2222-2222-222222222222",
+      name: "Clothing",
+      description: "Apparel for all seasons"
+    },
+    {
+      id: "33333333-3333-3333-3333-333333333333",
+      name: "Books",
+      description: "A wide variety of reading materials"
+    }
+  ])
+  user_upsertMany(data: [
+    {
+      id: "44444444-4444-4444-4444-444444444444",
+      email: "seller1@example.com",
+      passwordHash: "hashed_password_1",
+      displayName: "Seller One",
+      billingAddress: "123 Main St",
+      shippingAddress: "123 Main St"
+    },
+    {
+      id: "55555555-5555-5555-5555-555555555555",
+      email: "seller2@example.com",
+      passwordHash: "hashed_password_2",
+      displayName: "Seller Two",
+      billingAddress: "456 Oak Ave",
+      shippingAddress: "456 Oak Ave"
+    },
+    {
+      id: "66666666-6666-6666-6666-666666666666",
+      email: "customer1@example.com",
+      passwordHash: "hashed_password_3",
+      displayName: "Customer One",
+      billingAddress: "789 Pine Ln",
+      shippingAddress: "789 Pine Ln"
+    }
+  ])
+  product_upsertMany(data: [
+    {
+      id: "77777777-7777-7777-7777-777777777777",
+      categoryId: "11111111-1111-1111-1111-111111111111",
+      sellerId: "44444444-4444-4444-4444-444444444444",
+      name: "Smart TV",
+      description: "High-definition smart television",
+      imageUrl: "http://example.com/smart_tv.jpg",
+      price: 499.99,
+      stockQuantity: 50,
+      createdAt: "2024-01-01T00:00:00Z"
+    },
+    {
+      id: "88888888-8888-8888-8888-888888888888",
+      categoryId: "22222222-2222-2222-2222-222222222222",
+      sellerId: "55555555-5555-5555-5555-555555555555",
+      name: "Cotton T-Shirt",
+      description: "Comfortable cotton t-shirt",
+      imageUrl: "http://example.com/t_shirt.jpg",
+      price: 19.99,
+      stockQuantity: 100,
+      createdAt: "2024-01-01T00:00:00Z"
+    },
+    {
+      id: "99999999-9999-9999-9999-999999999999",
+      categoryId: "33333333-3333-3333-3333-333333333333",
+      sellerId: "44444444-4444-4444-4444-444444444444",
+      name: "Science Fiction Novel",
+      description: "A thrilling science fiction novel",
+      imageUrl: "http://example.com/sci_fi_novel.jpg",
+      price: 9.99,
+      stockQuantity: 75,
+      createdAt: "2024-01-01T00:00:00Z"
+    }
+  ])
+}
