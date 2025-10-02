@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
-import { fetchUserProfiles, updateUserRole } from '../../../services/usersService';
+import { fetchUserProfiles, updateUserRole } from '../../../services/api/users.service';
 import { UserProfile, UserRole } from '../../../types/types';
 
 const UsersPage = () => {

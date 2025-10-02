@@ -7,8 +7,8 @@ import {
   SaveProductPayload,
   updateProduct,
   uploadProductImage,
-} from '../../../services/productsService';
-import { fetchCategories } from '../../../services/categoriesService';
+} from '../../../services/api/products.service';
+import { fetchCategories } from '../../../services/api/categories.service';
 import { Category, Product } from '../../../types/types';
 
 const emptyProduct: Partial<Product> = {

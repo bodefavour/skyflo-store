@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import {
   deleteProduct,
   fetchAllProductsAdmin,
-} from '../../../services/productsService';
+} from '../../../services/api/products.service';
 import { Product } from '../../../types/types';
 
 const ProductsPage = () => {

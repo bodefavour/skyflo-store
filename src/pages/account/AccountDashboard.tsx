@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentProfile, signOutUser } from '../../services/authService';
+import { getCurrentProfile, signOutUser } from '../../services/auth/auth.service';
 import { UserProfile } from '../../types/types';
 
 const AccountDashboard = () => {

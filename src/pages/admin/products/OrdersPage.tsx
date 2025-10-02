@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
-import { fetchOrders } from '../../../services/ordersService';
+import { fetchOrders } from '../../../services/api/orders.service';
 import { Order } from '../../../types/types';
 
 const OrdersPage = () => {

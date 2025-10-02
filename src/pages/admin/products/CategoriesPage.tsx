@@ -5,7 +5,7 @@ import {
   deleteCategory,
   fetchCategories,
   updateCategory,
-} from '../../../services/categoriesService';
+} from '../../../services/api/categories.service';
 import { Category } from '../../../types/types';
 
 const CategoriesPage = () => {

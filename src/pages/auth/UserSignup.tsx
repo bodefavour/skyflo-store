@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signUpUser, SignUpUserParams } from '../../services/authService';
+import { signUpUser, SignUpUserParams } from '../../services/auth/auth.service';
 
 const UserSignup = () => {
     const navigate = useNavigate();

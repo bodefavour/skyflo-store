@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
-import { fetchDashboardStats } from '../../services/dashboardService';
+import { fetchDashboardStats } from '../../services/api/dashboard.service';
 import { DashboardStats } from '../../types/types';
 
 const DashboardPage = () => {

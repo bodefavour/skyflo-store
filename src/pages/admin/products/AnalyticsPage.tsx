@@ -15,7 +15,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import { fetchOrders } from '../../../services/ordersService';
+import { fetchOrders } from '../../../services/api/orders.service';
 import { Order, OrderItem } from '../../../types/types';
 
 const COLORS = ['#d4af37', '#c99b3f', '#bf8b47', '#b47c4f', '#a96e57'];

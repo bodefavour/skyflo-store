@@ -7,7 +7,7 @@ import {
   signInAdmin,
   signOutAdmin,
   signUpAdmin,
-} from '../../services/authService';
+} from '../../services/auth/auth.service';
 
 const AdminAuth = () => {
   const [email, setEmail] = useState('');
