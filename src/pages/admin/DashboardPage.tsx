@@ -46,7 +46,7 @@ const DashboardPage = () => {
     <AdminLayout>
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold mb-8">Dashboard Overview</h1>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <StatCard title="Total Products" value={stats.totalProducts} icon="📦" />
           <StatCard title="Total Orders" value={stats.totalOrders} icon="🛒" />
@@ -73,11 +73,10 @@ const DashboardPage = () => {
                       <td className="py-3 px-4">{order.customer_name || 'N/A'}</td>
                       <td className="py-3 px-4">${order.total?.toFixed(2) || '0.00'}</td>
                       <td className="py-3 px-4">
-                        <span className={`px-2 py-1 rounded text-xs ${
-                          order.status === 'completed' ? 'bg-green-100 text-green-800' :
-                          order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-red-100 text-red-800'
-                        }`}>
+                        <span className={`px-2 py-1 rounded text-xs ${order.status === 'completed' ? 'bg-green-100 text-green-800' :
+                            order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-red-100 text-red-800'
+                          }`}>
                           {order.status}
                         </span>
                       </td>

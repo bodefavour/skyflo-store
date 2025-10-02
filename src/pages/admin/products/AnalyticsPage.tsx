@@ -66,7 +66,7 @@ const AnalyticsPage = () => {
   const processSalesData = (ordersWithDate: Array<Order & { parsedDate: Date | null }>, range: string) => {
     // Group orders by time period
     const now = new Date();
-    const groups: {[key: string]: { total: number; referenceDate: Date }} = {};
+    const groups: { [key: string]: { total: number; referenceDate: Date } } = {};
 
     ordersWithDate.forEach(order => {
       if (!order.parsedDate) {
@@ -100,7 +100,7 @@ const AnalyticsPage = () => {
   };
 
   const processProductData = (ordersWithDate: Array<Order & { parsedDate: Date | null }>) => {
-    const productCounts: {[key: string]: number} = {};
+    const productCounts: { [key: string]: number } = {};
 
     ordersWithDate.forEach((order) => {
       order.items.forEach((item: OrderItem) => {
@@ -154,7 +154,7 @@ const AnalyticsPage = () => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
                     <XAxis dataKey="name" stroke="#d4af37" />
                     <YAxis stroke="#d4af37" />
-                    <Tooltip 
+                    <Tooltip
                       contentStyle={{ backgroundColor: '#1a1a1a', borderColor: '#2a2a2a' }}
                     />
                     <Legend />
@@ -180,7 +180,7 @@ const AnalyticsPage = () => {
                       <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
                       <XAxis dataKey="name" stroke="#d4af37" />
                       <YAxis stroke="#d4af37" />
-                      <Tooltip 
+                      <Tooltip
                         contentStyle={{ backgroundColor: '#1a1a1a', borderColor: '#2a2a2a' }}
                       />
                       <Bar dataKey="value" name="Units Sold">
@@ -212,7 +212,7 @@ const AnalyticsPage = () => {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip 
+                      <Tooltip
                         contentStyle={{ backgroundColor: '#1a1a1a', borderColor: '#2a2a2a' }}
                       />
                       <Legend />

@@ -31,7 +31,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
           <NavItem href="/admin/orders" icon="receipt" text="Orders" currentPath={location.pathname} />
           <NavItem href="/admin/analytics" icon="analytics" text="Analytics" currentPath={location.pathname} />
           <NavItem href="/admin/users" icon="people" text="Users" currentPath={location.pathname} />
-          
+
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

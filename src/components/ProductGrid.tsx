@@ -10,10 +10,10 @@ interface ProductGridProps {
   showFilter?: boolean;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ 
-  collectionName, 
+const ProductGrid: React.FC<ProductGridProps> = ({
+  collectionName,
   defaultSort = "priceAsc",
-  showFilter = true 
+  showFilter = true
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -41,7 +41,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   const applyDefaultSort = (products: Product[], sortOption: string) => {
     let sorted = [...products];
-    switch(sortOption) {
+    switch (sortOption) {
       case "priceAsc":
         sorted.sort((a, b) => a.price - b.price);
         break;
@@ -94,8 +94,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {showFilter && (
-        <ProductFilter 
-          onFilterChange={handleFilterChange} 
+        <ProductFilter
+          onFilterChange={handleFilterChange}
           defaultSort={defaultSort}
         />
       )}
@@ -103,7 +103,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       {filteredProducts.length === 0 ? (
         <div className="text-center py-20">
           <h3 className="text-xl font-medium text-gray-700">No products found matching your criteria</h3>
-          <button 
+          <button
             onClick={() => setFilteredProducts(products)}
             className="mt-4 px-6 py-2 bg-[#d4af37] text-black rounded-md hover:bg-[#c99b3f] transition"
           >
@@ -126,26 +126,26 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="aspect-square overflow-hidden">
-        <img 
-          src={product.image} 
-          alt={product.name} 
+        <img
+          src={product.image}
+          alt={product.name}
           className={`w-full h-full object-cover transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}
         />
       </div>
-      
+
       <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4`}>
         <h3 className="text-white text-lg font-medium mb-1">{product.name}</h3>
         <p className="text-[#d4af37] text-md font-semibold">
           ${product.price.toFixed(2)}
         </p>
       </div>
-      
+
       <div className="p-4">
         <h3 className="text-gray-900 font-medium">{product.name}</h3>
         <p className="text-[#d4af37] font-semibold mt-1">

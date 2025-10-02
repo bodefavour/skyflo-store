@@ -96,22 +96,22 @@ const ProductsPage = () => {
             <div className="col-span-2">Price</div>
             <div className="col-span-3">Actions</div>
           </div>
-          
+
           {filteredProducts.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               {products.length === 0 ? 'No products found' : 'No matching products found'}
             </div>
           ) : (
             filteredProducts.map((product) => (
-              <div 
-                key={product.id} 
+              <div
+                key={product.id}
                 className="grid grid-cols-12 p-4 border-b border-[#2a2a2a] hover:bg-[#2a2a2a]/50 transition-colors"
               >
                 <div className="col-span-2 flex items-center">
                   <div className="w-16 h-16 rounded-lg overflow-hidden border border-[#2a2a2a]">
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
+                    <img
+                      src={product.image}
+                      alt={product.name}
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = '/path-to-fallback-image.jpg';
@@ -141,7 +141,7 @@ const ProductsPage = () => {
                       Edit
                     </motion.button>
                   </Link>
-                  
+
                   {deleteConfirm === product.id ? (
                     <div className="flex space-x-2">
                       <motion.button
