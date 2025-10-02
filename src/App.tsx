@@ -25,52 +25,59 @@ import JewellriesBeads from './pages/collections/BirthdayGiftPage';
 import UserLogin from './pages/auth/UserLogin';
 import UserSignup from './pages/auth/UserSignup';
 import AccountDashboard from './pages/account/AccountDashboard';
+import ProductDetailsPage from './pages/product/ProductDetailsPage';
+import CartPage from './pages/cart/CartPage';
+import { CartProvider } from './context/CartContext';
 
 const withLayout = (content: ReactNode) => <Layout>{content}</Layout>;
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={withLayout(
-            <>
-              <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" />
-              <LandingBody />
-            </>
-          )}
-        />
-        <Route path="/birthday-gifts" element={withLayout(<BirthdayGifts />)} />
-        <Route path="/Jewellries-Beads" element={withLayout(<JewellriesBeads />)} />
-        <Route path="/jewelry-%26-accessories" element={withLayout(<JewellriesBeads />)} />
-        <Route path="/Fashion" element={withLayout(<FashionSection />)} />
-        <Route path="/fashion-essentials" element={withLayout(<FashionSection />)} />
-        <Route path="/travel-collections" element={withLayout(<TravelSection />)} />
-        <Route path="/travel-section" element={withLayout(<TravelSection />)} />
-        <Route path="/tote-bags" element={withLayout(<ToteBag />)} />
-        <Route path="/Lip-gloss" element={withLayout(<LipGloss />)} />
-        <Route path="/Decor" element={withLayout(<Décor />)} />
-        <Route path="/home-decor" element={withLayout(<Décor />)} />
-        <Route path="/event-packages" element={withLayout(<EventsPae />)} />
-        <Route path="/Events" element={withLayout(<EventsPae />)} />
-        <Route path="/Holiday-Specials" element={withLayout(<HolidaySpecials />)} />
-        <Route path="/Product-page" element={withLayout(<ProductPage />)} />
-        <Route path="/login" element={withLayout(<UserLogin />)} />
-        <Route path="/signup" element={withLayout(<UserSignup />)} />
-        <Route path="/account" element={withLayout(<AccountDashboard />)} />
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={withLayout(
+              <>
+                <HeroSection backgroundImage="/images/1001631204_enhanced.jpg.avif" brandName="SKYFLO" />
+                <LandingBody />
+              </>
+            )}
+          />
+          <Route path="/product/:productId" element={withLayout(<ProductDetailsPage />)} />
+          <Route path="/cart" element={withLayout(<CartPage />)} />
+          <Route path="/birthday-gifts" element={withLayout(<BirthdayGifts />)} />
+          <Route path="/Jewellries-Beads" element={withLayout(<JewellriesBeads />)} />
+          <Route path="/jewelry-%26-accessories" element={withLayout(<JewellriesBeads />)} />
+          <Route path="/Fashion" element={withLayout(<FashionSection />)} />
+          <Route path="/fashion-essentials" element={withLayout(<FashionSection />)} />
+          <Route path="/travel-collections" element={withLayout(<TravelSection />)} />
+          <Route path="/travel-section" element={withLayout(<TravelSection />)} />
+          <Route path="/tote-bags" element={withLayout(<ToteBag />)} />
+          <Route path="/Lip-gloss" element={withLayout(<LipGloss />)} />
+          <Route path="/Decor" element={withLayout(<Décor />)} />
+          <Route path="/home-decor" element={withLayout(<Décor />)} />
+          <Route path="/event-packages" element={withLayout(<EventsPae />)} />
+          <Route path="/Events" element={withLayout(<EventsPae />)} />
+          <Route path="/Holiday-Specials" element={withLayout(<HolidaySpecials />)} />
+          <Route path="/Product-page" element={withLayout(<ProductPage />)} />
+          <Route path="/login" element={withLayout(<UserLogin />)} />
+          <Route path="/signup" element={withLayout(<UserSignup />)} />
+          <Route path="/account" element={withLayout(<AccountDashboard />)} />
 
-        <Route path="/admin/login" element={<AdminAuth />} />
-        <Route path="/admin/dashboard" element={<DashboardPage />} />
-        <Route path="/admin/products" element={<ProductsPage />} />
-        <Route path="/admin/products/add" element={<ProductForm />} />
-        <Route path="/admin/products/edit/:id" element={<ProductForm />} />
-        <Route path="/admin/categories" element={<CategoriesPage />} />
-        <Route path="/admin/orders" element={<OrdersPage />} />
-        <Route path="/admin/analytics" element={<AnalyticsPage />} />
-        <Route path="/admin/users" element={<UsersPage />} />
-      </Routes>
-    </Router>
+          <Route path="/admin/login" element={<AdminAuth />} />
+          <Route path="/admin/dashboard" element={<DashboardPage />} />
+          <Route path="/admin/products" element={<ProductsPage />} />
+          <Route path="/admin/products/add" element={<ProductForm />} />
+          <Route path="/admin/products/edit/:id" element={<ProductForm />} />
+          <Route path="/admin/categories" element={<CategoriesPage />} />
+          <Route path="/admin/orders" element={<OrdersPage />} />
+          <Route path="/admin/analytics" element={<AnalyticsPage />} />
+          <Route path="/admin/users" element={<UsersPage />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 

@@ -1,33 +1,27 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
 import ProductGrid from "../../components/products/ProductGrid";
 
-const BirthdayGifts: React.FC = () => {
+const HolidaySpecials: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
+    <main className="bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Holiday Specials
+          </h1>
+          <p className="text-lg text-gray-600">
+            Celebrate the season with our exclusive holiday collection.
+          </p>
         </div>
-      </HeroSection>
 
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
+        <ProductGrid
+          collectionName="holidaySpecials"
+          defaultSort="priceAsc"
+          showFilter={true}
+        />
+      </div>
     </main>
   );
 };
 
-export default BirthdayGifts;
+export default HolidaySpecials;

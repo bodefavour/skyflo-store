@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const LipGloss: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="High-Shine Lip Stories with Skin-Loving Ingredients"
+      subtitle="Lip Gloss Collection"
+      description="Swipe on cushiony textures infused with botanical oils, glass-like finishes, and longwear pigments designed to flatter every tone."
+      collectionName="lipGloss"
+      backgroundImage="/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg"
+      stats={[
+        { label: "Wear Time", value: "Up to 12H" },
+        { label: "Hydration Boost", value: "+48% Moisture" },
+        { label: "Clean Shades", value: "30 Vegan Tones" }
+      ]}
+      highlights={[
+        {
+          title: "Cushion Comfort",
+          description:
+            "Silky balms enriched with hyaluronic acid and jojoba to plump and smooth without stickiness."
+        },
+        {
+          title: "Editorial Finishes",
+          description:
+            "From holographic sheen to soft-focus tints, customize your signature reflective moment any time of day."
+        },
+        {
+          title: "Universal Shades",
+          description:
+            "Studio-tested on every undertone to ensure the perfect wash of color—from sheer neutrals to bold statement gloss."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default LipGloss;

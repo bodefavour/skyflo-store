@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const Décor: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Atmospheric Décor to Reimagine Every Corner"
+      subtitle="Home Décor"
+      description="Layer sculptural silhouettes, artisanal textures, and ambient lighting to create spaces that feel tailored to your story."
+      collectionName="decor"
+      backgroundImage="/images/hero-bg.jpg"
+      stats={[
+        { label: "Artisan Studios", value: "18 Collaborators" },
+        { label: "Sustainable Materials", value: "80% Sourced" },
+        { label: "Mood Lighting", value: "12 Signature Palettes" }
+      ]}
+      highlights={[
+        {
+          title: "Layered Textures",
+          description:
+            "Handwoven textiles, marble accents, and rich woods invite depth and warmth into every living space."
+        },
+        {
+          title: "Modular Styling",
+          description:
+            "Mix-and-match décor capsules designed to refresh shelves, consoles, and tabletops through the seasons."
+        },
+        {
+          title: "Artful Illumination",
+          description:
+            "Curated lighting moments featuring diffused glass, brass finishes, and adjustable glow for perfect ambience."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default Décor;

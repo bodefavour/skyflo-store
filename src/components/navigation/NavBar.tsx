@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { MenuIcon, XIcon, SearchIcon, ShoppingBagIcon, ArrowLeftIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const { getCartCount } = useCart();
 
   const menuItems = [
     "Gift Section",
@@ -74,7 +76,14 @@ const NavBar: React.FC = () => {
       {/* Right Section: Icons */}
       <div className="flex items-center space-x-4">
         <SearchIcon className="w-6 h-6 cursor-pointer text-white" />
-        <ShoppingBagIcon className="w-6 h-6 cursor-pointer text-white" />
+        <Link to="/cart" className="relative">
+          <ShoppingBagIcon className="w-6 h-6 cursor-pointer text-white" />
+          {getCartCount() > 0 && (
+            <span className="absolute -top-2 -right-2 bg-[#d4af37] text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              {getCartCount()}
+            </span>
+          )}
+        </Link>
         <button onClick={() => setMenuOpen(true)} className="focus:outline-none">
           <MenuIcon className="w-6 h-6 cursor-pointer text-white" />
         </button>

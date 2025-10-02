@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const EventsPae: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Event Concepts Curated for Iconic Moments"
+      subtitle="Event Packages"
+      description="Choose immersive styling kits, floral edits, and experiential décor designed by our planners to transform every celebration."
+      collectionName="events"
+      backgroundImage="/images/hero-bg.jpg"
+      stats={[
+        { label: "Event Styles", value: "15 Signature Themes" },
+        { label: "Setup Support", value: "Concierge Ready" },
+        { label: "Custom Builds", value: "48 Hour Turnaround" }
+      ]}
+      highlights={[
+        {
+          title: "Complete Atmosphere Kits",
+          description:
+            "Luxe backdrops, statement arrangements, and table styling delivered with an intuitive setup guide."
+        },
+        {
+          title: "Personal Planner Notes",
+          description:
+            "Styling tips from our events team, including layout diagrams, lighting cues, and playlist inspiration."
+        },
+        {
+          title: "On-Demand Customization",
+          description:
+            "Swap color palettes, add signage, or integrate branded elements to ensure your celebration feels personal."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default EventsPae;

@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const TravelSection: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Travel Companions Built for Long Hauls & Spontaneous Escapes"
+      subtitle="Travel Collection"
+      description="Navigate every journey with modular luggage, organized carryalls, and weather-ready accessories engineered for movement."
+      collectionName="travel"
+      backgroundImage="/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.avif"
+      stats={[
+        { label: "Featherlight Builds", value: "< 2.1 kg" },
+        { label: "Storage Modules", value: "12 Configurations" },
+        { label: "Weatherproof Rating", value: "IPX4+" }
+      ]}
+      highlights={[
+        {
+          title: "Smart Organization",
+          description:
+            "Interchangeable packing cubes, hidden tech sleeves, and easy-access compartments keep essentials within reach."
+        },
+        {
+          title: "Durability Standards",
+          description:
+            "Aircraft-grade aluminum frames, recycled ballistic nylon shells, and stress-tested hardware withstand the toughest itineraries."
+        },
+        {
+          title: "Journey-Ready Details",
+          description:
+            "360° glide wheels, silent zippers, and QR-enabled tags make every transfer seamless and elevated."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default TravelSection;

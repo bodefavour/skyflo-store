@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import ProductFilter from "./ProductFilter";
 import { Product } from "../../types/types";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -9,17 +9,20 @@ interface ProductGridProps {
   collectionName: string; // e.g. "birthdayGifts", "jewelry"
   defaultSort?: "priceAsc" | "priceDesc" | "nameAsc";
   showFilter?: boolean;
+  theme?: "light" | "dark";
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   collectionName,
   defaultSort = "priceAsc",
-  showFilter = true
+  showFilter = true,
+  theme = "light"
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isDark = theme === "dark";
 
   // Fetch products from Supabase
   useEffect(() => {
@@ -93,46 +96,77 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {showFilter && (
-        <ProductFilter
-          onFilterChange={handleFilterChange}
-          defaultSort={defaultSort}
-        />
-      )}
+    <section
+      className={`py-12 sm:py-16 ${
+        isDark ? "bg-transparent text-white" : "bg-white text-gray-900"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {showFilter && (
+          <ProductFilter
+            onFilterChange={handleFilterChange}
+            defaultSort={defaultSort}
+            theme={theme}
+          />
+        )}
 
-      {filteredProducts.length === 0 ? (
-        <div className="text-center py-20">
-          <h3 className="text-xl font-medium text-gray-700">No products found matching your criteria</h3>
-          <button
-            onClick={() => setFilteredProducts(products)}
-            className="mt-4 px-6 py-2 bg-[#d4af37] text-black rounded-md hover:bg-[#c99b3f] transition"
+        {filteredProducts.length === 0 ? (
+          <div
+            className={`text-center py-20 rounded-3xl border ${
+              isDark
+                ? "border-white/10 bg-[#0f0f0f]/80 backdrop-blur-sm"
+                : "border-gray-200 bg-white"
+            }`}
           >
-            Reset Filters
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+            <h3
+              className={`text-xl font-semibold ${
+                isDark ? "text-white" : "text-gray-800"
+              }`}
+            >
+              No products match your criteria yet
+            </h3>
+            <p className={`mt-3 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+              Try adjusting the filters or exploring another collection.
+            </p>
+            <button
+              onClick={() => setFilteredProducts(products)}
+              className="mt-6 px-8 py-3 bg-[#d4af37] text-black rounded-full font-semibold hover:bg-[#c99b3f] transition shadow-lg shadow-[#d4af37]/30"
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} theme={theme} />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 };
 
 // Separate ProductCard component for better reusability
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
+  product,
+  theme
+}) => {
+  const isDark = theme === "dark";
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="relative group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+    <Link
+      to={`/product/${product.id}`}
+      className={`relative group block overflow-hidden rounded-2xl border transition-all duration-500 ${
+        isDark
+          ? "bg-[#111111] border-white/10 shadow-xl shadow-black/40 hover:border-[#d4af37]/60 hover:shadow-[#d4af37]/20"
+          : "bg-white border-gray-100 hover:shadow-xl"
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-square overflow-hidden">
+      <div className="aspect-square overflow-hidden bg-black/20">
         <img
           src={product.image}
           alt={product.name}
@@ -140,25 +174,37 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         />
       </div>
 
-      <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4`}>
-        <h3 className="text-white text-lg font-medium mb-1">{product.name}</h3>
+      <div
+        className={`absolute inset-0 bg-gradient-to-t opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 ${
+          isDark
+            ? "from-black via-black/60 to-transparent"
+            : "from-black/70 via-black/30 to-transparent"
+        }`}
+      >
+        <h3 className="text-white text-lg font-semibold mb-1">{product.name}</h3>
         <p className="text-[#d4af37] text-md font-semibold">
           ${product.price.toFixed(2)}
         </p>
       </div>
 
-      <div className="p-4">
-        <h3 className="text-gray-900 font-medium">{product.name}</h3>
+      <div className={`p-5 ${isDark ? "text-white" : "text-gray-900"}`}>
+        <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-[#d4af37] font-semibold mt-1">
           ${product.price.toFixed(2)}
         </p>
         {product.category && (
-          <span className="inline-block mt-2 px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded">
+          <span
+            className={`inline-block mt-3 px-3 py-1 text-xs font-semibold tracking-wide rounded-full ${
+              isDark
+                ? "bg-white/10 text-white/70"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
             {product.category}
           </span>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

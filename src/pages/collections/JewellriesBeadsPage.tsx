@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const JewellriesBeads: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Handcrafted Jewellery with Modern Heirloom Energy"
+      subtitle="Jewellery & Beaded Bracelets"
+      description="Discover luminous metals, hand-strung beadwork, and customizable stacks that transition from daytime ease to evening glow."
+      collectionName="jewelry"
+      backgroundImage="/images/31343C.svg"
+      stats={[
+        { label: "Artisans", value: "25 Studio Makers" },
+        { label: "Gem Cuts", value: "40+ Variations" },
+        { label: "Hypoallergenic", value: "Nickel-Free" }
+      ]}
+      highlights={[
+        {
+          title: "Layering Sets",
+          description:
+            "Curated trios of chains, charms, and beads designed to stack effortlessly while maintaining balanced proportions."
+        },
+        {
+          title: "Materials You Can Trust",
+          description:
+            "Recycled gold-plated brass, sterling silver, and premium crystals sourced from responsible partners."
+        },
+        {
+          title: "Personal Symbolism",
+          description:
+            "Add initials, celestial motifs, or birthstones to create a signature piece with story-worthy meaning."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default JewellriesBeads;

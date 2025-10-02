@@ -1,33 +1,38 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
-const BirthdayGifts: React.FC = () => {
+const ToteBag: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Carryall Totes Refined for Daily Momentum"
+      subtitle="Tote Bag Section"
+      description="From boardroom polish to weekend ease, discover structured totes, convertible carryalls, and textured statements built to keep up."
+      collectionName="toteBags"
+      backgroundImage="/images/hero-bg.jpg"
+      stats={[
+        { label: "Capacity", value: "Up to 24L" },
+        { label: "Laptop Ready", value: "Fits 16\" Screens" },
+        { label: "Material Mix", value: "Leather & Vegan" }
+      ]}
+      highlights={[
+        {
+          title: "Organized Interiors",
+          description:
+            "Segmented pockets, padded tech sleeves, and detachable pouches keep essentials sorted and scuff-free."
+        },
+        {
+          title: "Weather Guard",
+          description:
+            "Water-resistant coatings and wipe-clean linings protect valuables from unpredictable commutes."
+        },
+        {
+          title: "Day-to-Night Versatility",
+          description:
+            "Convertible straps and sculpted silhouettes transition seamlessly from work settings to evening plans."
+        }
+      ]}
+    />
   );
 };
 
-export default BirthdayGifts;
+export default ToteBag;

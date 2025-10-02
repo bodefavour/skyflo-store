@@ -1,32 +1,37 @@
 import React from "react";
-import HeroSection from "../../components/common/HeroSection";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
 const BirthdayGifts: React.FC = () => {
   return (
-    <main className="bg-white">
-      {/* Customized Hero Section */}
-      <HeroSection
-        backgroundImage="/images/1001631204_enhanced.jpg.avif"
-        className="h-[20vh]"
-      >
-        <div className="max-w-[70%] mx-auto p-6 rounded-lg">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Thoughtfully curated gifts to make every moment special.
-          </h2>
-          <button className="mt-6 px-6 py-3 bg-white text-black text-lg rounded-lg hover:bg-gray-300 transition">
-            Explore Birthday Gifts
-          </button>
-        </div>
-      </HeroSection>
-
-      {/* Updated ProductGrid usage */}
-      <ProductGrid
-        collectionName="birthdayGifts"
-        defaultSort="priceAsc"
-        showFilter={true}
-      />
-    </main>
+    <CollectionPageLayout
+      title="Curated Birthday Gifts for Every Milestone"
+      subtitle="Birthday Collection"
+      description="Celebrate the people you love with elevated gifting experiences. From handcrafted keepsakes to luxe celebration kits, every piece is thoughtfully assembled to make the big day unforgettable."
+      collectionName="birthdayGifts"
+      backgroundImage="/images/HP_Hero-FullBleed-Desktop_Gucci-SOFTBIT-Mar25-GUCCI-PREFALL-DETAILS-29-INDIGO-LEWIN_001_Default.jpg"
+      stats={[
+        { label: "Express Delivery", value: "Within 48 Hours" },
+        { label: "Personalized Bundles", value: "120+ Options" },
+        { label: "Gift Wrapping", value: "Complimentary" }
+      ]}
+      highlights={[
+        {
+          title: "Curated Celebration Sets",
+          description:
+            "Pre-styled gift boxes featuring artisanal chocolates, florals, and keepsakes to match any personality or theme."
+        },
+        {
+          title: "Personal Notes & Engraving",
+          description:
+            "Add a heartfelt message or signature etching to elevate the unboxing experience and make it uniquely theirs."
+        },
+        {
+          title: "Seasonal Limited Releases",
+          description:
+            "Discover exclusive drops crafted with premium materials, available only for a limited time each season."
+        }
+      ]}
+    />
   );
 };
 
