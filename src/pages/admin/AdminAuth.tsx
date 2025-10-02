@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  fetchAdminSettings,
+  checkAdminSetup,
   hasAdminAccount,
   signInAdmin,
   signOutAdmin,
@@ -23,12 +23,19 @@ const AdminAuth = () => {
     const init = async () => {
       try {
         const hasAdmin = await hasAdminAccount();
+        console.log('[AdminAuth:init] existing admin detected?', hasAdmin);
         if (!hasAdmin) {
           setIsLogin(false);
           setIsInitialSetup(true);
         }
-        await fetchAdminSettings();
+        const setupStatus = await checkAdminSetup();
+        console.log('[AdminAuth:init] setup status', setupStatus);
+        console.log('[AdminAuth:init] using runtime setup key?', Boolean(setupKey));
+        if (!setupStatus.configured) {
+          setError('Admin setup is not configured yet. Please run the database migration.');
+        }
       } catch (err) {
+        console.error('[AdminAuth:init] failed to load admin settings', err);
         console.error(err);
         setError(err instanceof Error ? err.message : 'Unable to load admin settings.');
       } finally {
@@ -45,7 +52,9 @@ const AdminAuth = () => {
 
     try {
       if (isLogin) {
+        console.log('[AdminAuth:auth] attempting admin login', { email });
         const profile = await signInAdmin(email, password);
+        console.log('[AdminAuth:auth] login profile', profile);
         if (profile.role !== 'admin') {
           setError('This account does not have admin access.');
           await signOutAdmin();
@@ -53,12 +62,14 @@ const AdminAuth = () => {
         }
         navigate('/admin/dashboard');
       } else {
+        console.log('[AdminAuth:auth] attempting admin signup', { email, setupProvided: Boolean(setupKey) });
         if (!isInitialSetup) {
           setError('Admin registration is disabled.');
           return;
         }
 
         const { profile, needsVerification } = await signUpAdmin(email, password, setupKey);
+        console.log('[AdminAuth:auth] signup result', { profile, needsVerification });
 
         if (needsVerification) {
           setError('Check your email to confirm the account before logging in.');
@@ -74,6 +85,7 @@ const AdminAuth = () => {
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : 'An unknown error occurred.';
+      console.error('[AdminAuth:auth] error', message, err);
       setError(message);
     }
   };

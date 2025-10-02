@@ -2,11 +2,11 @@ import { supabase } from '../Supabase/supabaseClient';
 import { UserProfile, UserRole } from '../types/types';
 import { recordLastLogin, upsertProfile } from './usersService';
 
-interface AdminSettings {
-    setup_key: string;
+export interface AdminSetupStatus {
+    configured: boolean;
+    valid: boolean;
 }
 
-const ADMIN_SETTINGS_TABLE = 'admin_settings';
 const PROFILES_TABLE = 'profiles';
 
 const mapProfile = (row: any): UserProfile => ({
@@ -19,18 +19,21 @@ const mapProfile = (row: any): UserProfile => ({
     updated_at: row.updated_at ?? undefined,
 });
 
-export async function fetchAdminSettings(): Promise<AdminSettings | null> {
-    const { data, error } = await supabase
-        .from(ADMIN_SETTINGS_TABLE)
-        .select('setup_key')
-        .eq('id', 'setup')
-        .maybeSingle();
+export async function checkAdminSetup(providedKey?: string): Promise<AdminSetupStatus> {
+    const { data, error } = await supabase.rpc('validate_admin_setup_key', {
+        provided_key: providedKey ?? null,
+    });
 
     if (error) {
         throw new Error(error.message);
     }
 
-    return data ?? null;
+    const status = Array.isArray(data) ? data[0] : data;
+
+    return {
+        configured: Boolean(status?.configured),
+        valid: Boolean(status?.valid),
+    };
 }
 
 export async function hasAdminAccount(): Promise<boolean> {
@@ -99,13 +102,13 @@ export interface SignUpAdminResult {
 }
 
 export async function signUpAdmin(email: string, password: string, setupKey: string): Promise<SignUpAdminResult> {
-    const settings = await fetchAdminSettings();
+    const setupStatus = await checkAdminSetup(setupKey);
 
-    if (!settings) {
+    if (!setupStatus.configured) {
         throw new Error('Admin setup is not configured yet.');
     }
 
-    if (settings.setup_key !== setupKey) {
+    if (!setupStatus.valid) {
         throw new Error('Invalid setup key');
     }
 
@@ -121,8 +124,9 @@ export async function signUpAdmin(email: string, password: string, setupKey: str
         throw new Error(error.message);
     }
 
-    const user = data.user;
-    if (!user) {
+    const { user, session } = data;
+
+    if (!user || !session) {
         return { needsVerification: true };
     }
 
@@ -208,8 +212,8 @@ export async function signUpUser(params: SignUpUserParams): Promise<SignUpUserRe
         throw new Error(error.message);
     }
 
-    const user = data.user;
-    if (!user) {
+    const { user, session } = data;
+    if (!user || !session) {
         return { needsVerification: true };
     }
 
