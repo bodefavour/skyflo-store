@@ -1,26 +1,37 @@
 import React from "react";
-import ProductGrid from "../../components/products/ProductGrid";
+import CollectionPageLayout from "../../components/products/CollectionPageLayout";
 
 const HolidaySpecials: React.FC = () => {
   return (
-    <main className="bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Holiday Specials
-          </h1>
-          <p className="text-lg text-gray-600">
-            Celebrate the season with our exclusive holiday collection.
-          </p>
-        </div>
-
-        <ProductGrid
-          collectionName="holidaySpecials"
-          defaultSort="priceAsc"
-          showFilter={true}
-        />
-      </div>
-    </main>
+    <CollectionPageLayout
+      title="Festive Statements Wrapped in Signature Skyflo Glow"
+      subtitle="Holiday Specials"
+      description="Limited-edition décor, gifting, and party accents drenched in metallic hues, lush textures, and celebratory sparkle."
+      collectionName="holidaySpecials"
+      backgroundImage="/images/hero-bg.jpg"
+      stats={[
+        { label: "Limited Runs", value: "Seasonal Drops" },
+        { label: "Gift Bundles", value: "45 Curated Sets" },
+        { label: "Packaging", value: "Ready-to-Gift" }
+      ]}
+      highlights={[
+        {
+          title: "Glimmering Finishes",
+          description:
+            "Metallic ornaments, velvet ribbons, and glassware designed to layer instant holiday drama into your space."
+        },
+        {
+          title: "Party-Ready Essentials",
+          description:
+            "Tablescape edit featuring centerpiece accents, candle trios, and serveware primed for gatherings."
+        },
+        {
+          title: "Curated Gifting",
+          description:
+            "Pre-wrapped sets with handwritten note cards, seasonal scents, and luxe keepsakes for effortless giving."
+        }
+      ]}
+    />
   );
 };
 

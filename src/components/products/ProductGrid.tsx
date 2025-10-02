@@ -97,9 +97,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   return (
     <section
-      className={`py-12 sm:py-16 ${
-        isDark ? "bg-transparent text-white" : "bg-white text-gray-900"
-      }`}
+      className={`py-12 sm:py-16 ${isDark ? "bg-transparent text-white" : "bg-white text-gray-900"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {showFilter && (
@@ -112,16 +111,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
         {filteredProducts.length === 0 ? (
           <div
-            className={`text-center py-20 rounded-3xl border ${
-              isDark
+            className={`text-center py-20 rounded-3xl border ${isDark
                 ? "border-white/10 bg-[#0f0f0f]/80 backdrop-blur-sm"
                 : "border-gray-200 bg-white"
-            }`}
+              }`}
           >
             <h3
-              className={`text-xl font-semibold ${
-                isDark ? "text-white" : "text-gray-800"
-              }`}
+              className={`text-xl font-semibold ${isDark ? "text-white" : "text-gray-800"
+                }`}
             >
               No products match your criteria yet
             </h3>
@@ -158,11 +155,10 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
   return (
     <Link
       to={`/product/${product.id}`}
-      className={`relative group block overflow-hidden rounded-2xl border transition-all duration-500 ${
-        isDark
+      className={`relative group block overflow-hidden rounded-2xl border transition-all duration-500 ${isDark
           ? "bg-[#111111] border-white/10 shadow-xl shadow-black/40 hover:border-[#d4af37]/60 hover:shadow-[#d4af37]/20"
           : "bg-white border-gray-100 hover:shadow-xl"
-      }`}
+        }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -175,11 +171,10 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
       </div>
 
       <div
-        className={`absolute inset-0 bg-gradient-to-t opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 ${
-          isDark
+        className={`absolute inset-0 bg-gradient-to-t opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 ${isDark
             ? "from-black via-black/60 to-transparent"
             : "from-black/70 via-black/30 to-transparent"
-        }`}
+          }`}
       >
         <h3 className="text-white text-lg font-semibold mb-1">{product.name}</h3>
         <p className="text-[#d4af37] text-md font-semibold">
@@ -194,11 +189,10 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
         </p>
         {product.category && (
           <span
-            className={`inline-block mt-3 px-3 py-1 text-xs font-semibold tracking-wide rounded-full ${
-              isDark
+            className={`inline-block mt-3 px-3 py-1 text-xs font-semibold tracking-wide rounded-full ${isDark
                 ? "bg-white/10 text-white/70"
                 : "bg-gray-100 text-gray-600"
-            }`}
+              }`}
           >
             {product.category}
           </span>
