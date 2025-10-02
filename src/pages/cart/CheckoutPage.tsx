@@ -39,15 +39,15 @@ const CheckoutPage: React.FC = () => {
     const [errors, setErrors] = useState<FormErrors>({});
     const [submitError, setSubmitError] = useState<string | null>(null);
 
-        const subtotal = getCartTotal();
-        const shippingFee = subtotal >= 250 ? 0 : 15;
-        const tax = subtotal * 0.08;
-        const totals = {
-            subtotal,
-            shippingFee,
-            tax,
-            total: subtotal + shippingFee + tax,
-        };
+    const subtotal = getCartTotal();
+    const shippingFee = subtotal >= 250 ? 0 : 15;
+    const tax = subtotal * 0.08;
+    const totals = {
+        subtotal,
+        shippingFee,
+        tax,
+        total: subtotal + shippingFee + tax,
+    };
 
     const validate = (): boolean => {
         const newErrors: FormErrors = {};
@@ -288,8 +288,8 @@ const CheckoutPage: React.FC = () => {
                                             setErrors((prev) => ({ ...prev, paymentMethod: undefined }));
                                         }}
                                         className={`rounded-2xl border px-4 py-4 text-sm font-medium transition ${paymentMethod === method
-                                                ? 'border-[#d4af37] bg-[#d4af37]/10 text-[#d4af37]'
-                                                : 'border-white/10 bg-[#151515] text-white/70 hover:border-white/30'
+                                            ? 'border-[#d4af37] bg-[#d4af37]/10 text-[#d4af37]'
+                                            : 'border-white/10 bg-[#151515] text-white/70 hover:border-white/30'
                                             }`}
                                     >
                                         {method === 'card' && 'Card payment'}

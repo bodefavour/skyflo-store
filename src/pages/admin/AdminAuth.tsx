@@ -29,7 +29,7 @@ const AdminAuth = () => {
           setIsInitialSetup(true);
         }
         const setupStatus = await checkAdminSetup();
-  console.log('[AdminAuth:init] setup status', setupStatus);
+        console.log('[AdminAuth:init] setup status', setupStatus);
         if (!setupStatus.configured) {
           setError('Admin setup is not configured yet. Please run the database migration.');
         }
