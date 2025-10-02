@@ -21,8 +21,8 @@ const BirthdayGifts: React.FC = () => {
       </HeroSection>
 
       {/* Updated ProductGrid usage */}
-      <ProductGrid 
-        collectionName="birthdayGifts" 
+      <ProductGrid
+        collectionName="birthdayGifts"
         defaultSort="priceAsc"
         showFilter={true}
       />

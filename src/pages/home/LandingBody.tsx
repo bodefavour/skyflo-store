@@ -134,7 +134,7 @@ const LandingContents = () => {
               Discover our signature gift box collections, each thoughtfully curated to create unforgettable moments and lasting impressions.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {giftCollections.map((collection, index) => (
               <motion.div
@@ -153,7 +153,7 @@ const LandingContents = () => {
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
                     loading="lazy"
                   />
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 z-20 p-8 transition-all duration-500 group-hover:pb-12">
                     <h3 className="text-2xl md:text-3xl font-serif mb-2">{collection.title}</h3>
                     <p className="text-gray-300 mb-3">{collection.desc}</p>
@@ -171,7 +171,7 @@ const LandingContents = () => {
               </motion.div>
             ))}
           </div>
-          
+
           <div className="mt-20 text-center">
             <Link to="/collections">
               <motion.button
@@ -198,13 +198,13 @@ const LandingContents = () => {
               className="relative"
             >
               <div className="absolute -inset-8 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-2xl z-0"></div>
-              <img 
-                src={imageAssets.products.customGifts} 
-                alt="Custom gift box" 
+              <img
+                src={imageAssets.products.customGifts}
+                alt="Custom gift box"
                 className="relative z-10 rounded-xl shadow-2xl"
               />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -222,7 +222,7 @@ const LandingContents = () => {
               <p className="text-gray-400 mb-8 text-lg">
                 Our bespoke service allows you to create a truly unique gifting experience. Collaborate with our luxury curators to design a custom box that perfectly captures your sentiment and style.
               </p>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   "Personalized item selection",
@@ -239,7 +239,7 @@ const LandingContents = () => {
                   </li>
                 ))}
               </ul>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/custom-orders">
                   <motion.button
@@ -268,14 +268,14 @@ const LandingContents = () => {
       {/* Featured Gift Box */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src={featuredGiftBox} 
-            alt="Luxury gift box background" 
+          <img
+            src={featuredGiftBox}
+            alt="Luxury gift box background"
             className="w-full h-full object-cover opacity-20"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]"></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -290,7 +290,7 @@ const LandingContents = () => {
               <p className="text-gray-400 mb-8 text-lg">
                 Our flagship collection embodies the essence of luxury gifting. Each box contains a curated selection of premium products that create a multisensory unboxing experience.
               </p>
-              
+
               <div className="mb-10">
                 <h3 className="text-xl font-serif mb-4 text-[#d4af37]">Included in this collection:</h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -311,7 +311,7 @@ const LandingContents = () => {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="flex flex-wrap gap-4 items-center">
                 <Link to="/product/signature-experience-box">
                   <motion.button
@@ -325,7 +325,7 @@ const LandingContents = () => {
                 <div className="text-2xl font-light">$349</div>
               </div>
             </div>
-            
+
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -334,9 +334,9 @@ const LandingContents = () => {
               className="relative"
             >
               <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={featuredGiftBox} 
-                  alt="Signature Skyflo Experience Box" 
+                <img
+                  src={featuredGiftBox}
+                  alt="Signature Skyflo Experience Box"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 border border-[#ffffff30] rounded-2xl pointer-events-none"></div>
@@ -369,7 +369,7 @@ const LandingContents = () => {
               Discover our curated selection of luxury items that perfectly complement our gift boxes
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.map((service, index) => (
               <motion.div
@@ -391,7 +391,7 @@ const LandingContents = () => {
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
                     loading="lazy"
                   />
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 z-20 p-6 transition-all duration-500 group-hover:pb-10">
                     <h4 className="text-xl md:text-2xl font-serif mb-2">{service.title}</h4>
                     <p className="text-gray-300 mb-4 text-sm">{service.desc}</p>
@@ -434,7 +434,7 @@ const LandingContents = () => {
               Discover what our distinguished clientele says about the Skyflo experience
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -465,14 +465,14 @@ const LandingContents = () => {
       {/* Newsletter Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src={imageAssets.backgrounds.pattern} 
+          <img
+            src={imageAssets.backgrounds.pattern}
             alt="Luxury pattern background"
             className="w-full h-full object-cover opacity-[0.03]"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
           <div className="inline-block mb-8">
             <div className="border-t border-b border-[#d4af37] py-1 px-6 text-sm tracking-widest text-[#d4af37]">
@@ -485,7 +485,7 @@ const LandingContents = () => {
           <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
             Subscribe to receive exclusive offers, new collection previews, and styling inspiration
           </p>
-          
+
           <form className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-4">
             <input
               type="email"
@@ -501,7 +501,7 @@ const LandingContents = () => {
               Subscribe
             </motion.button>
           </form>
-          
+
           <p className="text-gray-500 text-sm mt-4">
             We respect your privacy. Unsubscribe at any time.
           </p>
@@ -517,14 +517,14 @@ const LandingContents = () => {
         className="py-32 relative overflow-hidden"
       >
         <div className="absolute inset-0">
-          <img 
-            src={giftBoxImage} 
-            alt="Luxury gift box background" 
+          <img
+            src={giftBoxImage}
+            alt="Luxury gift box background"
             className="w-full h-full object-cover opacity-10"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/90 to-[#0a0a0a]"></div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-16">
           <div className="inline-block mb-8">
             <div className="border-t border-b border-[#d4af37] py-1 px-6 text-sm tracking-widest text-[#d4af37]">
