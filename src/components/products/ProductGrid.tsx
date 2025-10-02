@@ -4,6 +4,7 @@ import ProductFilter from "./ProductFilter";
 import { Product } from "../../types/types";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { fetchProductsByCollection } from "../../services/api/products.service";
+import { useWishlist } from "../../context/WishlistContext";
 
 interface ProductGridProps {
   collectionName: string; // e.g. "birthdayGifts", "jewelry"
@@ -145,12 +146,38 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 };
 
 // Separate ProductCard component for better reusability
+const HeartOutlineIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.6}
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3.172 5.172a4.5 4.5 0 0 1 6.364 0L12 7.637l2.464-2.465a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-8.828-8.828a4.5 4.5 0 0 1 0-6.364z"
+    />
+  </svg>
+);
+
 const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
   product,
   theme
 }) => {
   const isDark = theme === "dark";
   const [isHovered, setIsHovered] = useState(false);
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const inWishlist = isInWishlist(product.id);
+  const productImage = product.image || "/images/placeholder.jpg";
+
+  const handleWishlistClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleWishlist(product);
+  };
 
   return (
     <Link
@@ -162,9 +189,32 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+        <button
+          onClick={handleWishlistClick}
+          className={`absolute top-4 right-4 z-20 w-11 h-11 rounded-full flex items-center justify-center transition ${
+            inWishlist
+              ? "bg-[#d4af37] text-black"
+              : "bg-black/60 text-white hover:bg-black/80"
+          }`}
+          aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          {inWishlist ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-5 h-5"
+            >
+              <path d="M11.998 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.416 3 7.488 3c1.74 0 3.412.81 4.51 2.09A5.907 5.907 0 0116.509 3C19.58 3 22 5.42 22 8.5c0 3.78-3.408 6.86-8.54 11.54l-1.462 1.31z" />
+            </svg>
+          ) : (
+            <HeartOutlineIcon className="w-5 h-5" />
+          )}
+        </button>
+
       <div className="aspect-square overflow-hidden bg-black/20">
         <img
-          src={product.image}
+            src={productImage}
           alt={product.name}
           className={`w-full h-full object-cover transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}
         />

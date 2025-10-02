@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 import { Product } from '../../types/types';
 import { fetchProductById } from '../../services/api/products.service';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const ProductDetailsPage: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
@@ -79,6 +81,11 @@ const ProductDetailsPage: React.FC = () => {
     }
 
     const productImages = product.image ? [product.image] : [];
+    const inWishlist = isInWishlist(product.id);
+
+    const handleToggleWishlist = () => {
+        toggleWishlist(product);
+    };
 
     return (
         <div className="bg-white min-h-screen">
@@ -237,6 +244,29 @@ const ProductDetailsPage: React.FC = () => {
                                 ) : (
                                     'Add to Cart'
                                 )}
+                            </motion.button>
+
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={handleToggleWishlist}
+                                className={`w-full border border-[#d4af37]/60 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2 ${
+                                    inWishlist ? 'bg-[#d4af37] text-black' : 'bg-transparent text-gray-900 hover:bg-[#d4af37]/10'
+                                }`}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    className={`w-5 h-5 ${inWishlist ? 'fill-current' : 'fill-none stroke-current'}`}
+                                    strokeWidth={1.6}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M3.172 5.172a4.5 4.5 0 0 1 6.364 0L12 7.637l2.464-2.465a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-8.828-8.828a4.5 4.5 0 0 1 0-6.364z"
+                                    />
+                                </svg>
+                                {inWishlist ? 'Saved to wishlist' : 'Save to wishlist'}
                             </motion.button>
                         </div>
 

@@ -79,6 +79,25 @@ export async function fetchProductById(id: string): Promise<Product | null> {
     return data ? mapProduct(data) : null;
 }
 
+export async function searchProducts(query: string, limit = 20): Promise<Product[]> {
+    if (!query.trim()) {
+        return fetchAllProducts();
+    }
+
+    const { data, error } = await supabase
+        .from(TABLE_NAME)
+        .select('*')
+        .ilike('name', `%${query}%`)
+        .eq('is_published', true)
+        .limit(limit);
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return (data ?? []).map(mapProduct);
+}
+
 export interface SaveProductPayload {
     name: string;
     price: number;

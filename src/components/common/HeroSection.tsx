@@ -112,7 +112,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       />
       
       {/* Main Content Container */}
-      <div className="relative z-10 max-w-6xl w-full px-8 flex flex-col items-center">
+  <div className="relative z-10 max-w-6xl w-full px-6 sm:px-8 flex flex-col items-center text-center">
         {/* Brand Name */}
         {brandName && (
           <motion.div 
@@ -128,7 +128,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               LUXURY GIFTING
             </motion.div>
             <motion.h1 
-              className="font-serif font-light text-white text-6xl md:text-7xl lg:text-8xl tracking-tight"
+              className="font-serif font-light text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -145,7 +145,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             variants={childVariants}
           >
             <motion.p 
-              className="text-xl md:text-2xl font-light text-gray-200 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl font-light text-gray-200 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.7 }}
@@ -167,7 +167,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           >
             <a 
               href={ctaLink}
-              className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-10 py-5 font-medium tracking-wider text-lg transition-all duration-300 shadow-xl rounded-full"
+              className="inline-block bg-[#d4af37] hover:bg-[#c99b3f] text-black px-8 py-4 sm:px-10 sm:py-5 font-medium tracking-wider text-base sm:text-lg transition-all duration-300 shadow-xl rounded-full"
             >
               {ctaText}
             </a>

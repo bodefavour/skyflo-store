@@ -21,21 +21,26 @@ import OrdersPage from './pages/admin/products/OrdersPage';
 import AnalyticsPage from './pages/admin/products/AnalyticsPage';
 import CategoriesPage from './pages/admin/products/CategoriesPage';
 import UsersPage from './pages/admin/products/UsersPage';
-import JewellriesBeads from './pages/collections/BirthdayGiftPage';
+import JewellriesBeads from './pages/collections/JewellriesBeadsPage';
 import UserLogin from './pages/auth/UserLogin';
 import UserSignup from './pages/auth/UserSignup';
 import AccountDashboard from './pages/account/AccountDashboard';
 import ProductDetailsPage from './pages/product/ProductDetailsPage';
 import CartPage from './pages/cart/CartPage';
+import WishlistPage from './pages/wishlist/WishlistPage';
+import CheckoutPage from './pages/cart/CheckoutPage';
+import OrderConfirmationPage from './pages/cart/OrderConfirmationPage';
 import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
 
 const withLayout = (content: ReactNode) => <Layout>{content}</Layout>;
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Routes>
+    <WishlistProvider>
+      <CartProvider>
+        <Router>
+          <Routes>
           <Route
             path="/"
             element={withLayout(
@@ -47,6 +52,9 @@ function App() {
           />
           <Route path="/product/:productId" element={withLayout(<ProductDetailsPage />)} />
           <Route path="/cart" element={withLayout(<CartPage />)} />
+          <Route path="/checkout" element={withLayout(<CheckoutPage />)} />
+          <Route path="/order-confirmation/:orderId" element={withLayout(<OrderConfirmationPage />)} />
+          <Route path="/wishlist" element={withLayout(<WishlistPage />)} />
           <Route path="/birthday-gifts" element={withLayout(<BirthdayGifts />)} />
           <Route path="/Jewellries-Beads" element={withLayout(<JewellriesBeads />)} />
           <Route path="/jewelry-%26-accessories" element={withLayout(<JewellriesBeads />)} />
@@ -75,9 +83,10 @@ function App() {
           <Route path="/admin/orders" element={<OrdersPage />} />
           <Route path="/admin/analytics" element={<AnalyticsPage />} />
           <Route path="/admin/users" element={<UsersPage />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+          </Routes>
+        </Router>
+      </CartProvider>
+    </WishlistProvider>
   );
 }
 
