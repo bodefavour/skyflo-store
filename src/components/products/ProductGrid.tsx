@@ -195,8 +195,8 @@ const ProductCard: React.FC<{ product: Product; theme: "light" | "dark" }> = ({
       <button
         onClick={handleWishlistClick}
         className={`absolute top-4 right-4 z-20 w-11 h-11 rounded-full flex items-center justify-center transition ${inWishlist
-            ? "bg-[#d4af37] text-black"
-            : "bg-black/60 text-white hover:bg-black/80"
+          ? "bg-[#d4af37] text-black"
+          : "bg-black/60 text-white hover:bg-black/80"
           }`}
         aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
       >
