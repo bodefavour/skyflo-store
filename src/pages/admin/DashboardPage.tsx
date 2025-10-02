@@ -74,8 +74,8 @@ const DashboardPage = () => {
                       <td className="py-3 px-4 text-white">${order.total?.toFixed(2) || '0.00'}</td>
                       <td className="py-3 px-4">
                         <span className={`px-2 py-1 rounded text-xs ${order.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                            order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
-                              'bg-red-500/20 text-red-400'
+                          order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
+                            'bg-red-500/20 text-red-400'
                           }`}>
                           {order.status}
                         </span>
