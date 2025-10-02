@@ -47,9 +47,9 @@ const UsersPage = () => {
         prev.map((profile) =>
           profile.id === userId
             ? {
-                ...profile,
-                role: nextRole,
-              }
+              ...profile,
+              role: nextRole,
+            }
             : profile
         )
       );
@@ -97,7 +97,7 @@ const UsersPage = () => {
               <div className="col-span-2">Last Login</div>
               <div className="col-span-1">Actions</div>
             </div>
-            
+
             {users.length === 0 ? (
               <div className="p-8 text-center text-gray-500">No users found</div>
             ) : (
