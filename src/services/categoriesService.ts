@@ -13,14 +13,6 @@ const mapCategory = (item: RawCategory): Category => ({
     updated_at: item.updated_at ?? undefined,
 });
 
-const toSlug = (value: string): string =>
-    value
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
-
 export async function fetchCategories(): Promise<Category[]> {
     const { data, error } = await supabase
         .from(TABLE_NAME)
@@ -35,14 +27,9 @@ export async function fetchCategories(): Promise<Category[]> {
 }
 
 export async function createCategory(name: string): Promise<Category> {
-    const payload = {
-        name,
-        slug: toSlug(name),
-    };
-
     const { data, error } = await supabase
         .from(TABLE_NAME)
-        .insert(payload)
+        .insert({ name })
         .select('*')
         .single();
 
@@ -65,15 +52,9 @@ export async function deleteCategory(id: string): Promise<void> {
 }
 
 export async function updateCategory(id: string, name: string): Promise<Category> {
-    const payload = {
-        name,
-        slug: toSlug(name),
-        updated_at: new Date().toISOString(),
-    };
-
     const { data, error } = await supabase
         .from(TABLE_NAME)
-        .update(payload)
+        .update({ name })
         .eq('id', id)
         .select('*')
         .single();
