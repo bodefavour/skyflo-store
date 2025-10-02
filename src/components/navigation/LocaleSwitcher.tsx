@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { GlobeAltIcon, RefreshIcon } from "@heroicons/react/outline";
+import { GlobeAltIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useLocale } from "../../context/LocaleContext";
 
 const LOCALE_LABELS: Record<string, string> = {
@@ -124,7 +124,7 @@ const LocaleSwitcher: React.FC = () => {
                             className="p-1.5 rounded-full border border-white/10 hover:border-[#d4af37] hover:text-[#d4af37] transition"
                             title="Refresh exchange rates"
                         >
-                            <RefreshIcon className={`w-4 h-4 ${loadingRates ? "animate-spin" : ""}`} />
+                            <ArrowPathIcon className={`w-4 h-4 ${loadingRates ? "animate-spin" : ""}`} />
                         </button>
                     </div>
 

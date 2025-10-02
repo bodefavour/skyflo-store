@@ -4,10 +4,9 @@ import {
   XIcon,
   SearchIcon,
   ShoppingBagIcon,
-  ArrowLeftIcon,
-  UserIcon
+  ArrowLeftIcon
 } from "@heroicons/react/outline";
-import { HeartIcon } from "@heroicons/react/solid";
+import { HeartIcon, UserIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
