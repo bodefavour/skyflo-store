@@ -1,5 +1,6 @@
 import React, {
     createContext,
+    useCallback,
     useContext,
     useEffect,
     useMemo,
@@ -263,6 +264,17 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     const [loadingRates, setLoadingRates] = useState<boolean>(false);
     const [lastUpdated, setLastUpdated] = useState<string | undefined>();
 
+    const handleRefreshRates = useCallback(async () => {
+        setLoadingRates(true);
+        const freshRates = await fetchRates();
+        if (freshRates) {
+            setExchangeRates({ ...FALLBACK_RATES, ...freshRates.rates });
+            setLastUpdated(freshRates.lastUpdatedText);
+            saveStoredRates(freshRates);
+        }
+        setLoadingRates(false);
+    }, []);
+
     useEffect(() => {
         const prefs = loadPreferences();
         const systemLocale = getSystemLocale();
@@ -288,21 +300,9 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         if (shouldRefresh) {
             void handleRefreshRates();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [handleRefreshRates]);
 
-    const handleRefreshRates = async () => {
-        setLoadingRates(true);
-        const freshRates = await fetchRates();
-        if (freshRates) {
-            setExchangeRates({ ...FALLBACK_RATES, ...freshRates.rates });
-            setLastUpdated(freshRates.lastUpdatedText);
-            saveStoredRates(freshRates);
-        }
-        setLoadingRates(false);
-    };
-
-    const changeLocale = (value: string) => {
+    const changeLocale = useCallback((value: string) => {
         const nextLocale = normaliseLocale(value) || DEFAULT_LOCALE;
         setLocaleState(nextLocale);
         setCurrencyState((prevCurrency) => {
@@ -314,32 +314,32 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             savePreferences({ locale: nextLocale, currency: derived });
             return derived;
         });
-    };
+    }, []);
 
-    const changeCurrency = (value: string) => {
+    const changeCurrency = useCallback((value: string) => {
         const nextCurrency = clampCurrency(value);
         setCurrencyState(nextCurrency);
         savePreferences({ locale, currency: nextCurrency });
         if (!exchangeRates[nextCurrency]) {
             void handleRefreshRates();
         }
-    };
+    }, [exchangeRates, handleRefreshRates, locale]);
 
-    const getCurrencyRate = (code: string): number => {
+    const getCurrencyRate = useCallback((code: string): number => {
         const normalised = clampCurrency(code);
         const rate = exchangeRates[normalised];
         if (!rate || Number.isNaN(rate) || rate <= 0) {
             return 1;
         }
         return rate;
-    };
+    }, [exchangeRates]);
 
-    const convertAmount = (amount: number, targetCurrency = currency): number => {
+    const convertAmount = useCallback((amount: number, targetCurrency = currency): number => {
         const rate = getCurrencyRate(targetCurrency);
         return amount * rate;
-    };
+    }, [currency, getCurrencyRate]);
 
-    const formatAmount = (
+    const formatAmount = useCallback((
         amount: number,
         {
             currency: currencyOverride,
@@ -364,7 +364,7 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             currency: targetCurrency,
             ...numberOptions
         }).format(value);
-    };
+    }, [currency, locale, getCurrencyRate]);
 
     const contextValue: LocaleContextValue = useMemo(
         () => ({
@@ -385,7 +385,7 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             convertAmount,
             getCurrencyRate
         }),
-        [currency, locale, exchangeRates, loadingRates, lastUpdated, supportedCurrencies]
+        [currency, locale, exchangeRates, loadingRates, lastUpdated, supportedCurrencies, changeCurrency, changeLocale, handleRefreshRates, formatAmount, convertAmount, getCurrencyRate]
     );
 
     return <LocaleContext.Provider value={contextValue}>{children}</LocaleContext.Provider>;

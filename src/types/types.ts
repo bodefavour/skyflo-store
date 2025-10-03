@@ -62,6 +62,11 @@ export interface Order {
   subtotal?: number;
   shipping_fee?: number;
   tax?: number;
+  notes?: string;
+  currency_code?: string;
+  currency_rate?: number;
+  base_currency?: string;
+  locale?: string;
   placed_at?: string;
   created_at?: string;
   updated_at?: string;
@@ -79,6 +84,10 @@ export interface CreateOrderPayload {
   total: number;
   payment: PaymentDetails;
   notes?: string;
+  currency_code: string;
+  currency_rate: number;
+  base_currency: string;
+  locale?: string;
 }
 
 export type UserRole = 'admin' | 'staff' | 'user';

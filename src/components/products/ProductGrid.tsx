@@ -25,7 +25,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isDark = theme === "dark";
-  const { formatCurrency } = useLocale();
 
   // Fetch products from Supabase
   useEffect(() => {

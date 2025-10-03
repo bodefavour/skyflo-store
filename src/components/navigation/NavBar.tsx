@@ -4,9 +4,10 @@ import {
   XIcon,
   SearchIcon,
   ShoppingBagIcon,
-  ArrowLeftIcon
+  ArrowLeftIcon,
+  UserCircleIcon
 } from "@heroicons/react/outline";
-import { HeartIcon, UserIcon } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
@@ -97,7 +98,7 @@ const NavBar: React.FC = () => {
                 className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#d4af37] hover:text-[#d4af37] transition"
                 aria-label="Sign in or manage your account"
               >
-                <UserIcon className="w-5 h-5" />
+                <UserCircleIcon className="w-5 h-5" />
                 <span className="text-sm font-medium uppercase tracking-[0.2em]">Sign in</span>
               </Link>
 
