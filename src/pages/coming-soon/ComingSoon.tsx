@@ -11,7 +11,7 @@ type Countdown = {
 type SubscribeStatus = "idle" | "loading" | "success" | "error";
 
 const HIGHLIGHT_COLOR = "#d4af37";
-const LAUNCH_TARGET = new Date("2025-12-01T12:00:00Z");
+const LAUNCH_TARGET = new Date("2026-01-01T12:00:00Z");
 
 const padValue = (value: number) => value.toString().padStart(2, "0");
 
